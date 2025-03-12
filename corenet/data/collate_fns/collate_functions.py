@@ -13,13 +13,6 @@ from corenet.data.collate_fns import COLLATE_FN_REGISTRY
 from corenet.utils import logger
 
 
-@COLLATE_FN_REGISTRY.register(name="pytorch_default_collate_fn")
-def pytorch_default_collate_fn(batch: Any, *args, **kwargs) -> Any:
-    """A wrapper around PyTorch's default collate function."""
-    batch = default_collate(batch)
-    return batch
-
-
 @COLLATE_FN_REGISTRY.register(name="unlabeled_image_data_collate_fn")
 def unlabeled_image_data_collate_fn(
     batch: List[Mapping[str, Any]], opts: argparse.Namespace

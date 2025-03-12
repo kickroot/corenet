@@ -24,6 +24,35 @@ from torch.nn import functional
 from corenet.data.collate_fns import COLLATE_FN_REGISTRY, collate_functions
 from corenet.data.transforms import audio_bytes, image_bytes
 
+@COLLATE_FN_REGISTRY.register(name="pcap_collate_fn")
+def pcap_collate_fn(batch: List[Mapping[str, Tensor]], opts: argparse.Namespace) -> Mapping[str, Tensor]:
+    # print(batch)
+    # Retrieve the max length for PCAP data from options
+    max_pcap_length = getattr(opts, "pcap_augmentation.max_pcap_length", 1500)
+
+    # Resize all batch elements to the max_pcap_length by padding or truncating
+    batch_padded = []
+    for sample in batch:
+        pcap_data = sample["data"]  # Assuming each sample has a 'pcap' key with a tensor
+
+        # Ensure all PCAP byte sequences match the required length
+        if pcap_data.shape[0] < max_pcap_length:
+            # Pad with zeros (or another padding strategy)
+            padded_pcap = torch.nn.functional.pad(
+                pcap_data, (0, max_pcap_length - pcap_data.shape[0]), value=0
+            )
+        else:
+            # Truncate to max length
+            padded_pcap = pcap_data[:max_pcap_length]
+
+        # Store processed sample
+        batch_padded.append({"data": padded_pcap, "label": sample["label"]})
+
+    # Stack the batch elements into tensors
+    batch_pcap_tensor = torch.stack([item["data"] for item in batch_padded]).to(torch.int64)
+    batch_labels = torch.tensor([item["label"] for item in batch_padded], dtype=torch.long)
+
+    return {"samples": batch_pcap_tensor, "targets": batch_labels}
 
 @COLLATE_FN_REGISTRY.register(name="byteformer_image_collate_fn")
 def byteformer_image_collate_fn(

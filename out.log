@@ -1,0 +1,18 @@
+2025-03-10 22:27:37 - [93m[1mDEBUG   [0m - Cannot load internal arguments, skipping.
+2025-03-10 22:27:37 - [33m[1mWARNING[0m - UnrecognizedYamlConfigEntry("Yaml config key 'pcap_augmentation.max_pcap_length' was not recognized by argparser. If you think that you have already added argument in corenet/options/opts.py file, then check for typos. If not, then please add it to corenet/options/opts.py."
+2025-03-10 22:27:37 - [33m[1mWARNING[0m - UnrecognizedYamlConfigEntry("Yaml config key 'pcap_augmentation.mask_sections' was not recognized by argparser. If you think that you have already added argument in corenet/options/opts.py file, then check for typos. If not, then please add it to corenet/options/opts.py."
+2025-03-10 22:27:37 - [34m[1mLOGS   [0m - Random seeds are set to 0
+2025-03-10 22:27:37 - [34m[1mLOGS   [0m - Using PyTorch version 2.3.0+cu121
+2025-03-10 22:27:37 - [34m[1mLOGS   [0m - Available GPUs: 1
+2025-03-10 22:27:37 - [34m[1mLOGS   [0m - CUDNN is enabled
+2025-03-10 22:27:37 - [34m[1mLOGS   [0m - Setting --ddp.world-size the same as the number of available gpus.
+2025-03-10 22:27:37 - [34m[1mLOGS   [0m - Directory exists at: classification_results/train
+2025-03-10 22:27:39 - [32m[1mINFO   [0m - distributed init (rank 0): tcp://nebula:30786
+****** Loading PCAP Dataset from /home/jason/data/pcap/pcap_streams/train *********
+2025-03-10 22:27:43 - [34m[1mLOGS   [0m - Training dataset details are given below
+PCAPDataset(
+	root=/home/jason/data/pcap/pcap_streams/train 
+	is_training=True 
+	num_samples=14192
+)
+****** Loading PCAP Dataset from /home/jason/data/pcap/pcap_streams/train *********
