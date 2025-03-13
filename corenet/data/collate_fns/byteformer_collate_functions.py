@@ -33,7 +33,7 @@ def pcap_collate_fn(batch: List[Mapping[str, Tensor]], opts: argparse.Namespace)
     # Resize all batch elements to the max_pcap_length by padding or truncating
     batch_padded = []
     for sample in batch:
-        pcap_data = sample["data"]  # Assuming each sample has a 'pcap' key with a tensor
+        pcap_data = sample["data"]
 
         # Ensure all PCAP byte sequences match the required length
         if pcap_data.shape[0] < max_pcap_length:
