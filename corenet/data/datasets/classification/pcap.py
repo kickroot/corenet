@@ -19,6 +19,19 @@ class PCAPDataset(BaseDataset):
         except Exception as e:
             print(f"Error loading {pcap_path}: {e}")
             return None
+        
+    def _load_pcaps_as_tensor(self, pcap_path):
+        """Load a PCAP file and convert its raw bytes into a tensor."""
+        try:            
+            packets = rdpcap(pcap_path)
+            return [torch.tensor(list(bytes(pkt)), dtype=torch.uint8) for pkt in packets]
+            # np.random.shuffle(list(packets))
+            # raw_bytes = b"".join(bytes(pkt) for pkt in packets)
+            # byte_tensor = torch.tensor(list(raw_bytes), dtype=torch.uint8)
+            # return byte_tensor
+        except Exception as e:
+            print(f"Error loading {pcap_path}: {e}")
+            return None        
 
     def _load_pcap_dataset(self, pcap_root_folder):
         """
@@ -45,11 +58,12 @@ class PCAPDataset(BaseDataset):
                 for filename in os.listdir(category_path):
                     if filename.endswith(".pcap"):  # Ensure only PCAP files are processed
                         file_path = os.path.join(category_path, filename)
-                        tensor = self._load_pcap_as_tensor(file_path)
-                        if tensor is not None:
-                            # print(f"Adding {file_path} to {category}")
+                        for tensor in self._load_pcaps_as_tensor(file_path):
                             items.append({'label': label_map[category], 'data': tensor})
-                            # pcap_dict[category].append(tensor)
+                        # if tensor is not None:
+                        #     # print(f"Adding {file_path} to {category}")
+                        #     items.append({'label': label_map[category], 'data': tensor})
+                        #     # pcap_dict[category].append(tensor)
         return items
 
 
