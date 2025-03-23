@@ -20,8 +20,7 @@ class PCAPDataset(BaseDataset):
             packets = rdpcap(pcap_file_path)
             np.random.shuffle(list(packets))
             raw_bytes = b"".join(bytes(pkt) for pkt in packets)
-            byte_tensor = torch.tensor(list(raw_bytes), dtype=torch.uint8)
-            return byte_tensor
+            return [torch.tensor(list(raw_bytes), dtype=torch.uint8)]
         except Exception as e:
             print(f"Error loading {pcap_file_path}: {e}")
             return None

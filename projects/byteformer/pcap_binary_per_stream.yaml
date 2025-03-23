@@ -7,7 +7,7 @@ common:
   tensorboard_logging: false
   accum_freq: 2
 dataset:
-  pcap_collate_mode: PER_PACKET
+  pcap_collate_mode: PER_STREAM
   root_train: /home/jason/data/pcap/pcap_streams/train
   root_val: /home/jason/data/pcap/pcap_streams/val
   name: pcap

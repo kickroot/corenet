@@ -1,0 +1,78 @@
+# pytest: disable
+common:
+  run_label: train
+  log_freq: 10
+  auto_resume: false
+  mixed_precision: true
+  tensorboard_logging: false
+  accum_freq: 2
+dataset:
+  pcap_collate_mode: PER_PACKET
+  root_train: /home/jason/data/pcap/pcap_streams/train
+  root_val: /home/jason/data/pcap/pcap_streams/val
+  name: pcap
+  category: classification
+  train_batch_size0: 48
+  val_batch_size0: 48
+  eval_batch_size0: 48
+  workers: 10
+  persistent_workers: false
+  pin_memory: true
+  collate_fn_name_train: pcap_collate_fn
+  collate_fn_name_val: pcap_collate_fn
+  collate_fn_name_test: pcap_collate_fn
+sampler:
+  name: batch_sampler
+loss:
+  category: classification
+  classification:
+    name: cross_entropy
+    cross_entropy:
+      label_smoothing: 0.1
+      class_weights: [0.66, 0.33]
+optim:
+  name: adamw
+  weight_decay: 0.05
+  no_decay_bn_filter_bias: true
+  adamw:
+    beta1: 0.9
+    beta2: 0.999
+scheduler:
+  name: cosine
+  is_iteration_based: false
+  max_epochs: 20
+  max_iterations: 5000
+  warmup_iterations: 100
+  warmup_init_lr: 1.0e-06
+  cosine:
+    max_lr: 0.001
+    min_lr: 2.0e-05
+model:
+  classification:
+    name: byteformer
+    n_classes: 2
+    byteformer:
+      mode: tiny
+      max_num_tokens: 20000
+      conv_kernel_size: 32
+      window_sizes:
+      - 128
+  activation:
+    name: gelu
+  layer:
+    global_pool: mean
+    conv_init: kaiming_uniform
+    linear_init: trunc_normal
+    linear_init_std_dev: 0.02
+ema:
+  enable: true
+  momentum: 0.0001
+stats:
+  val:
+  - loss
+  - top1
+#  - top5
+  train:
+  - loss
+  checkpoint_metric: top1
+  checkpoint_metric_max: false
