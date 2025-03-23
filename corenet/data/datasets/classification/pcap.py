@@ -71,9 +71,6 @@ class PCAPDataset(BaseDataset):
 
     def __init__(self, opts, is_training: bool = True, is_evaluation: bool = False):
         super().__init__(opts)
-        # print(opts)
-        # print(f"Dataset initialized: {opts.dataset.split}, Path: {opts.dataset.root}")
-        # print(f"PCAPDataset: opts={opts}, is_training={is_training}, is_evaluation={is_evaluation}")
         dataset_root = getattr(opts, "dataset.root_train")
         print(f"collate_mode={getattr(opts, 'dataset.pcap_collate_mode')}")
         self.collate_mode = getattr(opts, "dataset.pcap_collate_mode", PCAPMode.PER_STREAM)

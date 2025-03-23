@@ -26,9 +26,8 @@ from corenet.data.transforms import audio_bytes, image_bytes
 
 @COLLATE_FN_REGISTRY.register(name="pcap_collate_fn")
 def pcap_collate_fn(batch: List[Mapping[str, Tensor]], opts: argparse.Namespace) -> Mapping[str, Tensor]:
-    # print(batch)
-    # Retrieve the max length for PCAP data from options
-    max_pcap_length = getattr(opts, "pcap_augmentation.max_pcap_length", 1500)
+
+    max_pcap_length = 1500
 
     # Resize all batch elements to the max_pcap_length by padding or truncating
     batch_padded = []
