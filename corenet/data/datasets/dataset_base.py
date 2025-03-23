@@ -100,6 +100,12 @@ class BaseDataset(data.Dataset, ABC):
             help="Root location of train dataset",
         )
         group.add_argument(
+            "--dataset.pcap-collate-mode",
+            type=str,
+            default="",
+            help="Tensor per-stream vs per-packet",
+        )        
+        group.add_argument(
             "--dataset.root-val",
             type=str,
             default="",

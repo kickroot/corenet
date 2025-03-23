@@ -1,12 +1,13 @@
 # pytest: disable
 common:
   run_label: train
-  log_freq: 100
+  log_freq: 10
   auto_resume: false
   mixed_precision: true
   tensorboard_logging: false
   accum_freq: 2
 dataset:
+  pcap_collate_mode: PER_PACKET
   root_train: /home/jason/data/pcap/pcap_streams/train
   root_val: /home/jason/data/pcap/pcap_streams/val
   name: pcap
