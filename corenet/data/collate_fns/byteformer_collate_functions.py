@@ -24,6 +24,29 @@ from torch.nn import functional
 from corenet.data.collate_fns import COLLATE_FN_REGISTRY, collate_functions
 from corenet.data.transforms import audio_bytes, image_bytes
 
+from torch.nn.utils.rnn import pad_sequence
+
+@COLLATE_FN_REGISTRY.register(name="pcap_collate_padding_fn")
+def pcap_collate_padding_fn(batch, opts):
+    data = [x["data"] for x in batch]  # list of variable-size tensors
+
+    for x in batch:
+        assert 0 <= x['label'] < 33
+
+    labels = torch.tensor([x["label"] for x in batch], dtype=torch.long)
+    assert torch.all((labels >= 0) & (labels < 33)), f"Invalid label in batch: {labels}"
+    # Pad to max length
+    padded = pad_sequence(data, batch_first=True)
+
+    # print("=" * 20)
+    # print("batch padded shape:", padded.shape)
+    # print("batch label distribution:", torch.bincount(labels))
+    # print("first sample sum:", data[0].sum().item())
+
+    return {"samples": padded, "targets": labels}
+
+
+
 @COLLATE_FN_REGISTRY.register(name="pcap_collate_fn")
 def pcap_collate_fn(batch: List[Mapping[str, Tensor]], opts: argparse.Namespace) -> Mapping[str, Tensor]:
 
