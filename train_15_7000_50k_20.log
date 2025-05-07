@@ -1,0 +1,304 @@
+2025-05-07 06:53:03 - [93m[1mDEBUG   [0m - Cannot load internal arguments, skipping.
+2025-05-07 06:53:03 - [34m[1mLOGS   [0m - Random seeds are set to 0
+2025-05-07 06:53:03 - [34m[1mLOGS   [0m - Using PyTorch version 2.3.0+cu121
+2025-05-07 06:53:03 - [34m[1mLOGS   [0m - Available GPUs: 1
+2025-05-07 06:53:03 - [34m[1mLOGS   [0m - CUDNN is enabled
+2025-05-07 06:53:03 - [34m[1mLOGS   [0m - Setting --ddp.world-size the same as the number of available gpus.
+2025-05-07 06:53:03 - [34m[1mLOGS   [0m - Directory created at: results/train
+2025-05-07 06:53:05 - [32m[1mINFO   [0m - distributed init (rank 0): tcp://nebula:30786
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - Training dataset details are given below
+PCAPTupleDataset(
+	root=/home/jason/data/pcap/pcap_tuples/splits/train 
+	is_training=True 
+	num_samples=161699
+)
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - Validation dataset details are given below
+PCAPTupleDataset(
+	root=/home/jason/data/pcap/pcap_tuples/splits/val 
+	is_training=False 
+	num_samples=46201
+)
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - Training sampler details: BatchSamplerDDP(
+	 num_repeat=1
+	 trunc_rep_aug=False
+	 sharding=False
+	 disable_shuffle_sharding=False
+	base_im_size=(h=256, w=256)
+	base_batch_size=120
+)
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - Validation sampler details: BatchSamplerDDP(
+	 num_repeat=1
+	 trunc_rep_aug=False
+	 sharding=False
+	 disable_shuffle_sharding=False
+	base_im_size=(h=256, w=256)
+	base_batch_size=120
+)
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - Number of data workers: 10
+2025-05-07 06:53:07 - [32m[1mINFO   [0m - Trainable parameters: ['embeddings.weight', 'token_reduction_net.weight', 'pos_embed.pos_embed.pos_embed', 'downsamplers.downsample_0.reduction.weight', 'downsamplers.downsample_0.norm.weight', 'downsamplers.downsample_0.norm.bias', 'downsamplers.downsample_1.reduction.weight', 'downsamplers.downsample_1.norm.weight', 'downsamplers.downsample_1.norm.bias', 'downsamplers.downsample_3.reduction.weight', 'downsamplers.downsample_3.norm.weight', 'downsamplers.downsample_3.norm.bias', 'downsamplers.downsample_5.reduction.weight', 'downsamplers.downsample_5.norm.weight', 'downsamplers.downsample_5.norm.bias', 'downsamplers.downsample_7.reduction.weight', 'downsamplers.downsample_7.norm.weight', 'downsamplers.downsample_7.norm.bias', 'downsamplers.downsample_9.reduction.weight', 'downsamplers.downsample_9.norm.weight', 'downsamplers.downsample_9.norm.bias', 'transformer.0.pre_norm_mha.0.weight', 'transformer.0.pre_norm_mha.0.bias', 'transformer.0.pre_norm_mha.1.qkv_proj.weight', 'transformer.0.pre_norm_mha.1.qkv_proj.bias', 'transformer.0.pre_norm_mha.1.out_proj.weight', 'transformer.0.pre_norm_mha.1.out_proj.bias', 'transformer.0.pre_norm_ffn.0.weight', 'transformer.0.pre_norm_ffn.0.bias', 'transformer.0.pre_norm_ffn.1.weight', 'transformer.0.pre_norm_ffn.1.bias', 'transformer.0.pre_norm_ffn.4.weight', 'transformer.0.pre_norm_ffn.4.bias', 'transformer.1.pre_norm_mha.0.weight', 'transformer.1.pre_norm_mha.0.bias', 'transformer.1.pre_norm_mha.1.qkv_proj.weight', 'transformer.1.pre_norm_mha.1.qkv_proj.bias', 'transformer.1.pre_norm_mha.1.out_proj.weight', 'transformer.1.pre_norm_mha.1.out_proj.bias', 'transformer.1.pre_norm_ffn.0.weight', 'transformer.1.pre_norm_ffn.0.bias', 'transformer.1.pre_norm_ffn.1.weight', 'transformer.1.pre_norm_ffn.1.bias', 'transformer.1.pre_norm_ffn.4.weight', 'transformer.1.pre_norm_ffn.4.bias', 'transformer.2.pre_norm_mha.0.weight', 'transformer.2.pre_norm_mha.0.bias', 'transformer.2.pre_norm_mha.1.qkv_proj.weight', 'transformer.2.pre_norm_mha.1.qkv_proj.bias', 'transformer.2.pre_norm_mha.1.out_proj.weight', 'transformer.2.pre_norm_mha.1.out_proj.bias', 'transformer.2.pre_norm_ffn.0.weight', 'transformer.2.pre_norm_ffn.0.bias', 'transformer.2.pre_norm_ffn.1.weight', 'transformer.2.pre_norm_ffn.1.bias', 'transformer.2.pre_norm_ffn.4.weight', 'transformer.2.pre_norm_ffn.4.bias', 'transformer.3.pre_norm_mha.0.weight', 'transformer.3.pre_norm_mha.0.bias', 'transformer.3.pre_norm_mha.1.qkv_proj.weight', 'transformer.3.pre_norm_mha.1.qkv_proj.bias', 'transformer.3.pre_norm_mha.1.out_proj.weight', 'transformer.3.pre_norm_mha.1.out_proj.bias', 'transformer.3.pre_norm_ffn.0.weight', 'transformer.3.pre_norm_ffn.0.bias', 'transformer.3.pre_norm_ffn.1.weight', 'transformer.3.pre_norm_ffn.1.bias', 'transformer.3.pre_norm_ffn.4.weight', 'transformer.3.pre_norm_ffn.4.bias', 'transformer.4.pre_norm_mha.0.weight', 'transformer.4.pre_norm_mha.0.bias', 'transformer.4.pre_norm_mha.1.qkv_proj.weight', 'transformer.4.pre_norm_mha.1.qkv_proj.bias', 'transformer.4.pre_norm_mha.1.out_proj.weight', 'transformer.4.pre_norm_mha.1.out_proj.bias', 'transformer.4.pre_norm_ffn.0.weight', 'transformer.4.pre_norm_ffn.0.bias', 'transformer.4.pre_norm_ffn.1.weight', 'transformer.4.pre_norm_ffn.1.bias', 'transformer.4.pre_norm_ffn.4.weight', 'transformer.4.pre_norm_ffn.4.bias', 'transformer.5.pre_norm_mha.0.weight', 'transformer.5.pre_norm_mha.0.bias', 'transformer.5.pre_norm_mha.1.qkv_proj.weight', 'transformer.5.pre_norm_mha.1.qkv_proj.bias', 'transformer.5.pre_norm_mha.1.out_proj.weight', 'transformer.5.pre_norm_mha.1.out_proj.bias', 'transformer.5.pre_norm_ffn.0.weight', 'transformer.5.pre_norm_ffn.0.bias', 'transformer.5.pre_norm_ffn.1.weight', 'transformer.5.pre_norm_ffn.1.bias', 'transformer.5.pre_norm_ffn.4.weight', 'transformer.5.pre_norm_ffn.4.bias', 'transformer.6.pre_norm_mha.0.weight', 'transformer.6.pre_norm_mha.0.bias', 'transformer.6.pre_norm_mha.1.qkv_proj.weight', 'transformer.6.pre_norm_mha.1.qkv_proj.bias', 'transformer.6.pre_norm_mha.1.out_proj.weight', 'transformer.6.pre_norm_mha.1.out_proj.bias', 'transformer.6.pre_norm_ffn.0.weight', 'transformer.6.pre_norm_ffn.0.bias', 'transformer.6.pre_norm_ffn.1.weight', 'transformer.6.pre_norm_ffn.1.bias', 'transformer.6.pre_norm_ffn.4.weight', 'transformer.6.pre_norm_ffn.4.bias', 'transformer.7.pre_norm_mha.0.weight', 'transformer.7.pre_norm_mha.0.bias', 'transformer.7.pre_norm_mha.1.qkv_proj.weight', 'transformer.7.pre_norm_mha.1.qkv_proj.bias', 'transformer.7.pre_norm_mha.1.out_proj.weight', 'transformer.7.pre_norm_mha.1.out_proj.bias', 'transformer.7.pre_norm_ffn.0.weight', 'transformer.7.pre_norm_ffn.0.bias', 'transformer.7.pre_norm_ffn.1.weight', 'transformer.7.pre_norm_ffn.1.bias', 'transformer.7.pre_norm_ffn.4.weight', 'transformer.7.pre_norm_ffn.4.bias', 'transformer.8.pre_norm_mha.0.weight', 'transformer.8.pre_norm_mha.0.bias', 'transformer.8.pre_norm_mha.1.qkv_proj.weight', 'transformer.8.pre_norm_mha.1.qkv_proj.bias', 'transformer.8.pre_norm_mha.1.out_proj.weight', 'transformer.8.pre_norm_mha.1.out_proj.bias', 'transformer.8.pre_norm_ffn.0.weight', 'transformer.8.pre_norm_ffn.0.bias', 'transformer.8.pre_norm_ffn.1.weight', 'transformer.8.pre_norm_ffn.1.bias', 'transformer.8.pre_norm_ffn.4.weight', 'transformer.8.pre_norm_ffn.4.bias', 'transformer.9.pre_norm_mha.0.weight', 'transformer.9.pre_norm_mha.0.bias', 'transformer.9.pre_norm_mha.1.qkv_proj.weight', 'transformer.9.pre_norm_mha.1.qkv_proj.bias', 'transformer.9.pre_norm_mha.1.out_proj.weight', 'transformer.9.pre_norm_mha.1.out_proj.bias', 'transformer.9.pre_norm_ffn.0.weight', 'transformer.9.pre_norm_ffn.0.bias', 'transformer.9.pre_norm_ffn.1.weight', 'transformer.9.pre_norm_ffn.1.bias', 'transformer.9.pre_norm_ffn.4.weight', 'transformer.9.pre_norm_ffn.4.bias', 'transformer.10.pre_norm_mha.0.weight', 'transformer.10.pre_norm_mha.0.bias', 'transformer.10.pre_norm_mha.1.qkv_proj.weight', 'transformer.10.pre_norm_mha.1.qkv_proj.bias', 'transformer.10.pre_norm_mha.1.out_proj.weight', 'transformer.10.pre_norm_mha.1.out_proj.bias', 'transformer.10.pre_norm_ffn.0.weight', 'transformer.10.pre_norm_ffn.0.bias', 'transformer.10.pre_norm_ffn.1.weight', 'transformer.10.pre_norm_ffn.1.bias', 'transformer.10.pre_norm_ffn.4.weight', 'transformer.10.pre_norm_ffn.4.bias', 'transformer.11.pre_norm_mha.0.weight', 'transformer.11.pre_norm_mha.0.bias', 'transformer.11.pre_norm_mha.1.qkv_proj.weight', 'transformer.11.pre_norm_mha.1.qkv_proj.bias', 'transformer.11.pre_norm_mha.1.out_proj.weight', 'transformer.11.pre_norm_mha.1.out_proj.bias', 'transformer.11.pre_norm_ffn.0.weight', 'transformer.11.pre_norm_ffn.0.bias', 'transformer.11.pre_norm_ffn.1.weight', 'transformer.11.pre_norm_ffn.1.bias', 'transformer.11.pre_norm_ffn.4.weight', 'transformer.11.pre_norm_ffn.4.bias', 'post_transformer_norm.weight', 'post_transformer_norm.bias', 'classifier.weight', 'classifier.bias']
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - [36mModel[0m
+ByteFormer(
+  (embeddings): Embedding(257, 192, padding_idx=256)
+  (token_reduction_net): Conv1d(192, 192, kernel_size=(32,), stride=(16,), bias=False)
+  (pos_embed): LearnablePositionalEmbedding(num_embeddings=20000, embedding_dim=192, padding_idx=None, sequence_first=False)
+  (emb_dropout): Dropout(p=0.3, inplace=False)
+  (downsamplers): ModuleDict(
+    (downsample_0): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_1): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_3): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_5): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_7): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_9): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (transformer): Sequential(
+    (0): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (1): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (2): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (3): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (4): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (5): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (6): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (7): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (8): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (9): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (10): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (11): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+  )
+  (post_transformer_norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+  (classifier): LinearLayer(in_features=192, out_features=33, bias=True, channel_first=False)
+)
+[31m=================================================================[0m
+                         ByteFormer Summary
+[31m=================================================================[0m
+Total parameters     =   10.859 M
+Total trainable parameters =   10.859 M
+
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - FVCore Analysis:
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - Input sizes: [1, 48564]
+| module                                 | #parameters or shape   | #flops     |
+|:---------------------------------------|:-----------------------|:-----------|
+| model                                  | 10.859M                | 7.718G     |
+|  embeddings                            |  49.344K               |  0         |
+|   embeddings.weight                    |   (257, 192)           |            |
+|  token_reduction_net                   |  1.18M                 |  3.579G    |
+|   token_reduction_net.weight           |   (192, 192, 32)       |            |
+|  pos_embed.pos_embed                   |  3.84M                 |  0         |
+|   pos_embed.pos_embed.pos_embed        |   (1, 1, 20000, 192)   |            |
+|  downsamplers                          |  0.445M                |  0.223G    |
+|   downsamplers.downsample_0            |   74.112K              |   0.113G   |
+|    downsamplers.downsample_0.reduction |    73.728K             |    0.112G  |
+|    downsamplers.downsample_0.norm      |    0.384K              |    1.456M  |
+|   downsamplers.downsample_1            |   74.112K              |   56.688M  |
+|    downsamplers.downsample_1.reduction |    73.728K             |    55.96M  |
+|    downsamplers.downsample_1.norm      |    0.384K              |    0.729M  |
+|   downsamplers.downsample_3            |   74.112K              |   28.381M  |
+|    downsamplers.downsample_3.reduction |    73.728K             |    28.017M |
+|    downsamplers.downsample_3.norm      |    0.384K              |    0.365M  |
+|   downsamplers.downsample_5            |   74.112K              |   14.191M  |
+|    downsamplers.downsample_5.reduction |    73.728K             |    14.008M |
+|    downsamplers.downsample_5.norm      |    0.384K              |    0.182M  |
+|   downsamplers.downsample_7            |   74.112K              |   7.095M   |
+|    downsamplers.downsample_7.reduction |    73.728K             |    7.004M  |
+|    downsamplers.downsample_7.norm      |    0.384K              |    91.2K   |
+|   downsamplers.downsample_9            |   74.112K              |   3.585M   |
+|    downsamplers.downsample_9.reduction |    73.728K             |    3.539M  |
+|    downsamplers.downsample_9.norm      |    0.384K              |    46.08K  |
+|  transformer                           |  5.338M                |  3.916G    |
+|   transformer.0                        |   0.445M               |   1.516G   |
+|    transformer.0.pre_norm_mha          |    0.149M              |    0.607G  |
+|    transformer.0.pre_norm_ffn          |    0.296M              |    0.909G  |
+|   transformer.1                        |   0.445M               |   0.758G   |
+|    transformer.1.pre_norm_mha          |    0.149M              |    0.303G  |
+|    transformer.1.pre_norm_ffn          |    0.296M              |    0.454G  |
+|   transformer.2                        |   0.445M               |   0.379G   |
+|    transformer.2.pre_norm_mha          |    0.149M              |    0.152G  |
+|    transformer.2.pre_norm_ffn          |    0.296M              |    0.227G  |
+|   transformer.3                        |   0.445M               |   0.379G   |
+|    transformer.3.pre_norm_mha          |    0.149M              |    0.152G  |
+|    transformer.3.pre_norm_ffn          |    0.296M              |    0.227G  |
+|   transformer.4                        |   0.445M               |   0.189G   |
+|    transformer.4.pre_norm_mha          |    0.149M              |    75.866M |
+|    transformer.4.pre_norm_ffn          |    0.296M              |    0.114G  |
+|   transformer.5                        |   0.445M               |   0.189G   |
+|    transformer.5.pre_norm_mha          |    0.149M              |    75.866M |
+|    transformer.5.pre_norm_ffn          |    0.296M              |    0.114G  |
+|   transformer.6                        |   0.445M               |   0.126G   |
+|    transformer.6.pre_norm_mha          |    0.149M              |    50.577M |
+|    transformer.6.pre_norm_ffn          |    0.296M              |    75.743M |
+|   transformer.7                        |   0.445M               |   0.126G   |
+|    transformer.7.pre_norm_mha          |    0.149M              |    50.577M |
+|    transformer.7.pre_norm_ffn          |    0.296M              |    75.743M |
+|   transformer.8                        |   0.445M               |   63.16M   |
+|    transformer.8.pre_norm_mha          |    0.149M              |    25.289M |
+|    transformer.8.pre_norm_ffn          |    0.296M              |    37.872M |
+|   transformer.9                        |   0.445M               |   63.16M   |
+|    transformer.9.pre_norm_mha          |    0.149M              |    25.289M |
+|    transformer.9.pre_norm_ffn          |    0.296M              |    37.872M |
+|   transformer.10                       |   0.445M               |   63.16M   |
+|    transformer.10.pre_norm_mha         |    0.149M              |    25.289M |
+|    transformer.10.pre_norm_ffn         |    0.296M              |    37.872M |
+|   transformer.11                       |   0.445M               |   63.16M   |
+|    transformer.11.pre_norm_mha         |    0.149M              |    25.289M |
+|    transformer.11.pre_norm_ffn         |    0.296M              |    37.872M |
+|  post_transformer_norm                 |  0.384K                |  46.08K    |
+|   post_transformer_norm.weight         |   (192,)               |            |
+|   post_transformer_norm.bias           |   (192,)               |            |
+|  classifier                            |  6.369K                |  6.336K    |
+|   classifier.weight                    |   (33, 192)            |            |
+|   classifier.bias                      |   (33,)                |            |
+2025-05-07 06:53:07 - [33m[1mWARNING[0m - 
+** Please be cautious when using the results in papers. Certain operations may or may not be accounted in FLOP computation in FVCore. Therefore, you want to manually ensure that FLOP computation is correct.
+2025-05-07 06:53:07 - [33m[1mWARNING[0m - Uncalled Modules:
+{'transformer.1.drop_path', 'transformer.3.drop_path', 'transformer.0.drop_path', 'transformer.10.drop_path', 'transformer.4.drop_path', 'transformer.6.drop_path', 'transformer.7.drop_path', 'transformer.2.drop_path', 'transformer.11.drop_path', 'transformer.5.drop_path', 'transformer.8.drop_path', 'transformer.9.drop_path'}
+2025-05-07 06:53:07 - [33m[1mWARNING[0m - Unsupported Ops:
+Counter({'aten::mul': 43, 'aten::add': 25, 'aten::pad': 24, 'aten::rsub': 18, 'aten::unfold': 13, 'aten::softmax': 12, 'aten::gelu': 12, 'aten::sum': 2, 'aten::embedding': 1, 'aten::div': 1})
+[31m=================================================================[0m
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - Using DistributedDataParallel.
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - [36mLoss function[0m
+CrossEntropy(
+	 ignore_idx=-1
+	 class_weighting=False
+	 label_smoothing=0.0
+)
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - [36mOptimizer[0m
+AdamWOptimizer (
+	 amsgrad: [False, False]
+	 betas: [(0.9, 0.999), (0.9, 0.999)]
+	 capturable: [False, False]
+	 differentiable: [False, False]
+	 eps: [1e-08, 1e-08]
+	 foreach: [None, None]
+	 fused: [None, None]
+	 lr: [0.1, 0.1]
+	 maximize: [False, False]
+	 weight_decay: [0.05, 0.0]
+)
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - Max. epochs for training: 20
+2025-05-07 06:53:07 - [34m[1mLOGS   [0m - [36mLearning rate scheduler[0m
+CosineScheduler(
+ 	 min_lr=2e-05
+ 	 max_lr=0.001
+ 	 period=20
+ 	 warmup_init_lr=1e-06
+ 	 warmup_iters=7500
+ )
+2025-05-07 06:53:07 - [32m[1mINFO   [0m - Configuration file is stored here: [36mresults/train/config.yaml[0m
+[31m===========================================================================[0m
+2025-05-07 06:53:09 - [32m[1mINFO   [0m - Training epoch 0
+2025-05-07 06:53:44 - [34m[1mLOGS   [0m - Epoch:   0 [       0/10000000], loss: 3.9121, LR: [1e-06, 1e-06], Avg. batch load time: 33.695, Elapsed time: 34.80
+2025-05-07 06:54:10 - [34m[1mLOGS   [0m - Epoch:   0 [      25/10000000], loss: 3.6369, LR: [4e-06, 4e-06], Avg. batch load time: 0.661, Elapsed time: 60.41
+2025-05-07 06:54:35 - [34m[1mLOGS   [0m - Epoch:   0 [      50/10000000], loss: 3.4989, LR: [8e-06, 8e-06], Avg. batch load time: 0.334, Elapsed time: 85.91
+2025-05-07 06:55:01 - [34m[1mLOGS   [0m - Epoch:   0 [      75/10000000], loss: 3.4068, LR: [1.1e-05, 1.1e-05], Avg. batch load time: 0.223, Elapsed time: 111.32
+2025-05-07 06:55:26 - [34m[1mLOGS   [0m - Epoch:   0 [     100/10000000], loss: 3.3262, LR: [1.4e-05, 1.4e-05], Avg. batch load time: 0.168, Elapsed time: 136.70
+2025-05-07 06:55:52 - [34m[1mLOGS   [0m - Epoch:   0 [     125/10000000], loss: 3.2215, LR: [1.8e-05, 1.8e-05], Avg. batch load time: 0.134, Elapsed time: 162.23
+2025-05-07 06:56:17 - [34m[1mLOGS   [0m - Epoch:   0 [     150/10000000], loss: 3.0937, LR: [2.1e-05, 2.1e-05], Avg. batch load time: 0.112, Elapsed time: 187.54
+2025-05-07 06:56:43 - [34m[1mLOGS   [0m - Epoch:   0 [     175/10000000], loss: 2.9545, LR: [2.4e-05, 2.4e-05], Avg. batch load time: 0.096, Elapsed time: 213.16
+2025-05-07 06:57:08 - [34m[1mLOGS   [0m - Epoch:   0 [     200/10000000], loss: 2.825, LR: [2.8e-05, 2.8e-05], Avg. batch load time: 0.084, Elapsed time: 238.69
+2025-05-07 06:57:34 - [34m[1mLOGS   [0m - Epoch:   0 [     225/10000000], loss: 2.7041, LR: [3.1e-05, 3.1e-05], Avg. batch load time: 0.075, Elapsed time: 264.08
+2025-05-07 06:57:59 - [34m[1mLOGS   [0m - Epoch:   0 [     250/10000000], loss: 2.5922, LR: [3.4e-05, 3.4e-05], Avg. batch load time: 0.067, Elapsed time: 289.49
+2025-05-07 06:58:24 - [34m[1mLOGS   [0m - Epoch:   0 [     275/10000000], loss: 2.4889, LR: [3.8e-05, 3.8e-05], Avg. batch load time: 0.061, Elapsed time: 314.87
+2025-05-07 06:58:50 - [34m[1mLOGS   [0m - Epoch:   0 [     300/10000000], loss: 2.3926, LR: [4.1e-05, 4.1e-05], Avg. batch load time: 0.056, Elapsed time: 340.28
+2025-05-07 06:59:15 - [34m[1mLOGS   [0m - Epoch:   0 [     325/10000000], loss: 2.3034, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.052, Elapsed time: 365.83
+2025-05-07 06:59:40 - [34m[1mLOGS   [0m - Epoch:   0 [     350/10000000], loss: 2.217, LR: [4.8e-05, 4.8e-05], Avg. batch load time: 0.048, Elapsed time: 390.75
+2025-05-07 07:00:04 - [34m[1mLOGS   [0m - Epoch:   0 [     375/10000000], loss: 2.1404, LR: [5.1e-05, 5.1e-05], Avg. batch load time: 0.045, Elapsed time: 414.77
+2025-05-07 07:00:28 - [34m[1mLOGS   [0m - Epoch:   0 [     400/10000000], loss: 2.0684, LR: [5.4e-05, 5.4e-05], Avg. batch load time: 0.042, Elapsed time: 438.77
+2025-05-07 07:00:52 - [34m[1mLOGS   [0m - Epoch:   0 [     425/10000000], loss: 1.9995, LR: [5.8e-05, 5.8e-05], Avg. batch load time: 0.040, Elapsed time: 462.67
+2025-05-07 07:01:16 - [34m[1mLOGS   [0m - Epoch:   0 [     450/10000000], loss: 1.9339, LR: [6.1e-05, 6.1e-05], Avg. batch load time: 0.038, Elapsed time: 486.62
+2025-05-07 07:01:40 - [34m[1mLOGS   [0m - Epoch:   0 [     475/10000000], loss: 1.8721, LR: [6.4e-05, 6.4e-05], Avg. batch load time: 0.036, Elapsed time: 510.60
+2025-05-07 07:02:04 - [34m[1mLOGS   [0m - Epoch:   0 [     500/10000000], loss: 1.8116, LR: [6.8e-05, 6.8e-05], Avg. batch load time: 0.034, Elapsed time: 534.54
+2025-05-07 07:02:28 - [34m[1mLOGS   [0m - Epoch:   0 [     525/10000000], loss: 1.7535, LR: [7.1e-05, 7.1e-05], Avg. batch load time: 0.032, Elapsed time: 558.49
+2025-05-07 07:02:52 - [34m[1mLOGS   [0m - Epoch:   0 [     550/10000000], loss: 1.6972, LR: [7.4e-05, 7.4e-05], Avg. batch load time: 0.031, Elapsed time: 582.50
+2025-05-07 07:03:17 - [34m[1mLOGS   [0m - Epoch:   0 [     575/10000000], loss: 1.6427, LR: [7.8e-05, 7.8e-05], Avg. batch load time: 0.030, Elapsed time: 607.67
+2025-05-07 07:03:43 - [34m[1mLOGS   [0m - Epoch:   0 [     600/10000000], loss: 1.5872, LR: [8.1e-05, 8.1e-05], Avg. batch load time: 0.028, Elapsed time: 633.39
+2025-05-07 07:04:08 - [34m[1mLOGS   [0m - Epoch:   0 [     625/10000000], loss: 1.5336, LR: [8.4e-05, 8.4e-05], Avg. batch load time: 0.027, Elapsed time: 658.55
+2025-05-07 07:04:33 - [34m[1mLOGS   [0m - Epoch:   0 [     650/10000000], loss: 1.4842, LR: [8.8e-05, 8.8e-05], Avg. batch load time: 0.026, Elapsed time: 683.15
+2025-05-07 07:04:57 - [34m[1mLOGS   [0m - *** Training summary for epoch 0
+	 loss=1.4396
+[31m===========================================================================[0m
+2025-05-07 07:04:59 - [32m[1mINFO   [0m - Validation epoch 0
+2025-05-07 07:05:23 - [34m[1mLOGS   [0m - Epoch:   0 [     120/   46201], loss: 1.4429, top1: 35.0, top5: 100.0, LR: [9.1e-05, 9.1e-05], Avg. batch load time: 0.000, Elapsed time: 24.29
+2025-05-07 07:05:25 - [34m[1mLOGS   [0m - Epoch:   0 [    6120/   46201], loss: 2.6293, top1: 39.5588, top5: 77.8922, LR: [9.1e-05, 9.1e-05], Avg. batch load time: 0.000, Elapsed time: 26.29
+2025-05-07 07:05:28 - [34m[1mLOGS   [0m - Epoch:   0 [   12120/   46201], loss: 3.6873, top1: 32.665, top5: 58.1353, LR: [9.1e-05, 9.1e-05], Avg. batch load time: 0.000, Elapsed time: 28.64
+2025-05-07 07:05:29 - [34m[1mLOGS   [0m - Epoch:   0 [   18120/   46201], loss: 3.6035, top1: 27.8532, top5: 60.436, LR: [9.1e-05, 9.1e-05], Avg. batch load time: 0.000, Elapsed time: 30.29
+2025-05-07 07:05:32 - [34m[1mLOGS   [0m - Epoch:   0 [   24120/   46201], loss: 3.2904, top1: 30.7836, top5: 65.2239, LR: [9.1e-05, 9.1e-05], Avg. batch load time: 0.000, Elapsed time: 32.77
+2025-05-07 07:05:35 - [34m[1mLOGS   [0m - Epoch:   0 [   30120/   46201], loss: 3.15, top1: 31.3579, top5: 68.7185, LR: [9.1e-05, 9.1e-05], Avg. batch load time: 0.000, Elapsed time: 35.51
+2025-05-07 07:05:38 - [34m[1mLOGS   [0m - Epoch:   0 [   36120/   46201], loss: 2.9808, top1: 32.6523, top5: 70.5897, LR: [9.1e-05, 9.1e-05], Avg. batch load time: 0.000, Elapsed time: 38.97
+2025-05-07 07:05:40 - [34m[1mLOGS   [0m - Epoch:   0 [   42120/   46201], loss: 2.9704, top1: 31.9729, top5: 70.3063, LR: [9.1e-05, 9.1e-05], Avg. batch load time: 0.000, Elapsed time: 41.37
+2025-05-07 07:05:43 - [34m[1mLOGS   [0m - *** Validation summary for epoch 0
+	 loss=3.0758 || top1=30.4814 || top5=66.6408
+2025-05-07 07:05:43 - [34m[1mLOGS   [0m - Best checkpoint with score 30.48 saved at results/train/checkpoint_best.pt
+2025-05-07 07:05:43 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 07:05:43 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-07 07:05:45 - [32m[1mINFO   [0m - Training epoch 1
+2025-05-07 07:06:18 - [34m[1mLOGS   [0m - Epoch:   1 [     674/10000000], loss: 0.1785, LR: [9.1e-05, 9.1e-05], Avg. batch load time: 32.045, Elapsed time: 32.53
+2025-05-07 07:06:42 - [34m[1mLOGS   [0m - Epoch:   1 [     699/10000000], loss: 0.1731, LR: [9.4e-05, 9.4e-05], Avg. batch load time: 0.629, Elapsed time: 56.64
+2025-05-07 07:07:06 - [34m[1mLOGS   [0m - Epoch:   1 [     724/10000000], loss: 0.1582, LR: [9.7e-05, 9.7e-05], Avg. batch load time: 0.318, Elapsed time: 80.92
+2025-05-07 07:07:31 - [34m[1mLOGS   [0m - Epoch:   1 [     749/10000000], loss: 0.1478, LR: [0.000101, 0.000101], Avg. batch load time: 0.212, Elapsed time: 105.32
+2025-05-07 07:07:55 - [34m[1mLOGS   [0m - Epoch:   1 [     774/10000000], loss: 0.1448, LR: [0.000104, 0.000104], Avg. batch load time: 0.160, Elapsed time: 129.26
+2025-05-07 07:08:18 - [34m[1mLOGS   [0m - Epoch:   1 [     799/10000000], loss: 0.1417, LR: [0.000107, 0.000107], Avg. batch load time: 0.128, Elapsed time: 153.17
+2025-05-07 07:08:42 - [34m[1mLOGS   [0m - Epoch:   1 [     824/10000000], loss: 0.1374, LR: [0.000111, 0.000111], Avg. batch load time: 0.107, Elapsed time: 177.08
+2025-05-07 07:09:06 - [34m[1mLOGS   [0m - Epoch:   1 [     849/10000000], loss: 0.1354, LR: [0.000114, 0.000114], Avg. batch load time: 0.092, Elapsed time: 200.98
+2025-05-07 07:09:30 - [34m[1mLOGS   [0m - Epoch:   1 [     874/10000000], loss: 0.13, LR: [0.000117, 0.000117], Avg. batch load time: 0.080, Elapsed time: 224.88
+2025-05-07 07:09:54 - [34m[1mLOGS   [0m - Epoch:   1 [     899/10000000], loss: 0.1264, LR: [0.000121, 0.000121], Avg. batch load time: 0.071, Elapsed time: 248.83
+2025-05-07 07:10:19 - [34m[1mLOGS   [0m - Epoch:   1 [     924/10000000], loss: 0.1233, LR: [0.000124, 0.000124], Avg. batch load time: 0.064, Elapsed time: 273.33
+2025-05-07 07:10:44 - [34m[1mLOGS   [0m - Epoch:   1 [     949/10000000], loss: 0.1199, LR: [0.000127, 0.000127], Avg. batch load time: 0.058, Elapsed time: 298.40
+2025-05-07 07:11:10 - [34m[1mLOGS   [0m - Epoch:   1 [     974/10000000], loss: 0.1164, LR: [0.000131, 0.000131], Avg. batch load time: 0.054, Elapsed time: 324.37
+2025-05-07 07:11:35 - [34m[1mLOGS   [0m - Epoch:   1 [     999/10000000], loss: 0.1123, LR: [0.000134, 0.000134], Avg. batch load time: 0.049, Elapsed time: 349.69
+2025-05-07 07:12:01 - [34m[1mLOGS   [0m - Epoch:   1 [    1024/10000000], loss: 0.1094, LR: [0.000137, 0.000137], Avg. batch load time: 0.046, Elapsed time: 375.24
+2025-05-07 07:12:26 - [34m[1mLOGS   [0m - Epoch:   1 [    1049/10000000], loss: 0.1059, LR: [0.000141, 0.000141], Avg. batch load time: 0.043, Elapsed time: 401.17
+2025-05-07 07:12:52 - [34m[1mLOGS   [0m - Epoch:   1 [    1074/10000000], loss: 0.1039, LR: [0.000144, 0.000144], Avg. batch load time: 0.040, Elapsed time: 426.64
+2025-05-07 07:13:18 - [34m[1mLOGS   [0m - Epoch:   1 [    1099/10000000], loss: 0.1015, LR: [0.000147, 0.000147], Avg. batch load time: 0.038, Elapsed time: 452.56
+2025-05-07 07:13:43 - [34m[1mLOGS   [0m - Epoch:   1 [    1124/10000000], loss: 0.0994, LR: [0.000151, 0.000151], Avg. batch load time: 0.036, Elapsed time: 477.65
+2025-05-07 07:14:08 - [34m[1mLOGS   [0m - Epoch:   1 [    1149/10000000], loss: 0.1022, LR: [0.000154, 0.000154], Avg. batch load time: 0.034, Elapsed time: 503.02
+2025-05-07 07:14:33 - [34m[1mLOGS   [0m - Epoch:   1 [    1174/10000000], loss: 0.1002, LR: [0.000157, 0.000157], Avg. batch load time: 0.032, Elapsed time: 527.48
+2025-05-07 07:14:59 - [34m[1mLOGS   [0m - Epoch:   1 [    1199/10000000], loss: 0.0973, LR: [0.000161, 0.000161], Avg. batch load time: 0.031, Elapsed time: 553.22
+2025-05-07 07:15:23 - [34m[1mLOGS   [0m - Epoch:   1 [    1224/10000000], loss: 0.0945, LR: [0.000164, 0.000164], Avg. batch load time: 0.029, Elapsed time: 577.51
+2025-05-07 07:15:47 - [34m[1mLOGS   [0m - Epoch:   1 [    1249/10000000], loss: 0.0927, LR: [0.000167, 0.000167], Avg. batch load time: 0.028, Elapsed time: 601.81
+2025-05-07 07:16:11 - [34m[1mLOGS   [0m - Epoch:   1 [    1274/10000000], loss: 0.0913, LR: [0.000171, 0.000171], Avg. batch load time: 0.027, Elapsed time: 626.16
+2025-05-07 07:16:36 - [34m[1mLOGS   [0m - Epoch:   1 [    1299/10000000], loss: 0.0895, LR: [0.000174, 0.000174], Avg. batch load time: 0.026, Elapsed time: 650.49
+2025-05-07 07:17:00 - [34m[1mLOGS   [0m - Epoch:   1 [    1324/10000000], loss: 0.0878, LR: [0.000177, 0.000177], Avg. batch load time: 0.025, Elapsed time: 674.95
+2025-05-07 07:17:26 - [34m[1mLOGS   [0m - *** Training summary for epoch 1
+	 loss=0.0857
+[31m===========================================================================[0m
+2025-05-07 07:17:28 - [32m[1mINFO   [0m - Validation epoch 1
+2025-05-07 07:17:53 - [34m[1mLOGS   [0m - Epoch:   1 [     120/   46201], loss: 4.6098, top1: 1.6667, top5: 73.3333, LR: [0.00018, 0.00018], Avg. batch load time: 0.000, Elapsed time: 24.97
+2025-05-07 07:17:55 - [34m[1mLOGS   [0m - Epoch:   1 [    6120/   46201], loss: 2.7211, top1: 38.4967, top5: 84.0523, LR: [0.00018, 0.00018], Avg. batch load time: 0.000, Elapsed time: 27.04
+2025-05-07 07:17:58 - [34m[1mLOGS   [0m - Epoch:   1 [   12120/   46201], loss: 3.3104, top1: 37.5578, top5: 64.2327, LR: [0.00018, 0.00018], Avg. batch load time: 0.000, Elapsed time: 29.75
+2025-05-07 07:18:00 - [34m[1mLOGS   [0m - Epoch:   1 [   18120/   46201], loss: 3.6978, top1: 35.9272, top5: 58.7804, LR: [0.00018, 0.00018], Avg. batch load time: 0.000, Elapsed time: 31.49
+2025-05-07 07:18:02 - [34m[1mLOGS   [0m - Epoch:   1 [   24120/   46201], loss: 2.9425, top1: 47.8109, top5: 68.2297, LR: [0.00018, 0.00018], Avg. batch load time: 0.000, Elapsed time: 34.12
+2025-05-07 07:18:05 - [34m[1mLOGS   [0m - Epoch:   1 [   30120/   46201], loss: 3.1277, top1: 45.4316, top5: 64.1633, LR: [0.00018, 0.00018], Avg. batch load time: 0.000, Elapsed time: 37.15
+2025-05-07 07:18:09 - [34m[1mLOGS   [0m - Epoch:   1 [   36120/   46201], loss: 2.8811, top1: 49.0836, top5: 67.0543, LR: [0.00018, 0.00018], Avg. batch load time: 0.000, Elapsed time: 40.97
+2025-05-07 07:18:12 - [34m[1mLOGS   [0m - Epoch:   1 [   42120/   46201], loss: 2.988, top1: 46.2013, top5: 67.6567, LR: [0.00018, 0.00018], Avg. batch load time: 0.000, Elapsed time: 43.57
+2025-05-07 07:18:14 - [34m[1mLOGS   [0m - *** Validation summary for epoch 1
+	 loss=3.3083 || top1=42.6446 || top5=63.7478
+2025-05-07 07:18:15 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 07:18:15 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-07 07:18:17 - [32m[1mINFO   [0m - Training epoch 2
+2025-05-07 07:18:51 - [34m[1mLOGS   [0m - Epoch:   2 [    1348/10000000], loss: 0.0064, LR: [0.000181, 0.000181], Avg. batch load time: 33.344, Elapsed time: 33.83
+2025-05-07 07:19:16 - [34m[1mLOGS   [0m - Epoch:   2 [    1373/10000000], loss: 0.0188, LR: [0.000184, 0.000184], Avg. batch load time: 0.654, Elapsed time: 58.87

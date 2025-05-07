@@ -1,0 +1,931 @@
+2025-05-06 22:39:12 - [93m[1mDEBUG   [0m - Cannot load internal arguments, skipping.
+2025-05-06 22:39:12 - [34m[1mLOGS   [0m - Random seeds are set to 0
+2025-05-06 22:39:12 - [34m[1mLOGS   [0m - Using PyTorch version 2.3.0+cu121
+2025-05-06 22:39:12 - [34m[1mLOGS   [0m - Available GPUs: 1
+2025-05-06 22:39:12 - [34m[1mLOGS   [0m - CUDNN is enabled
+2025-05-06 22:39:12 - [34m[1mLOGS   [0m - Setting --ddp.world-size the same as the number of available gpus.
+2025-05-06 22:39:12 - [34m[1mLOGS   [0m - Directory created at: results/train
+2025-05-06 22:39:14 - [32m[1mINFO   [0m - distributed init (rank 0): tcp://nebula:30786
+2025-05-06 22:39:15 - [34m[1mLOGS   [0m - Training dataset details are given below
+PCAPTupleDataset(
+	root=/home/jason/data/pcap/pcap_tuples/splits/train 
+	is_training=True 
+	num_samples=115499
+)
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - Validation dataset details are given below
+PCAPTupleDataset(
+	root=/home/jason/data/pcap/pcap_tuples/splits/val 
+	is_training=False 
+	num_samples=33001
+)
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - Training sampler details: BatchSamplerDDP(
+	 num_repeat=1
+	 trunc_rep_aug=False
+	 sharding=False
+	 disable_shuffle_sharding=False
+	base_im_size=(h=256, w=256)
+	base_batch_size=120
+)
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - Validation sampler details: BatchSamplerDDP(
+	 num_repeat=1
+	 trunc_rep_aug=False
+	 sharding=False
+	 disable_shuffle_sharding=False
+	base_im_size=(h=256, w=256)
+	base_batch_size=120
+)
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - Number of data workers: 10
+2025-05-06 22:39:16 - [32m[1mINFO   [0m - Trainable parameters: ['embeddings.weight', 'token_reduction_net.weight', 'pos_embed.pos_embed.pos_embed', 'downsamplers.downsample_0.reduction.weight', 'downsamplers.downsample_0.norm.weight', 'downsamplers.downsample_0.norm.bias', 'downsamplers.downsample_1.reduction.weight', 'downsamplers.downsample_1.norm.weight', 'downsamplers.downsample_1.norm.bias', 'downsamplers.downsample_3.reduction.weight', 'downsamplers.downsample_3.norm.weight', 'downsamplers.downsample_3.norm.bias', 'downsamplers.downsample_5.reduction.weight', 'downsamplers.downsample_5.norm.weight', 'downsamplers.downsample_5.norm.bias', 'downsamplers.downsample_7.reduction.weight', 'downsamplers.downsample_7.norm.weight', 'downsamplers.downsample_7.norm.bias', 'downsamplers.downsample_9.reduction.weight', 'downsamplers.downsample_9.norm.weight', 'downsamplers.downsample_9.norm.bias', 'transformer.0.pre_norm_mha.0.weight', 'transformer.0.pre_norm_mha.0.bias', 'transformer.0.pre_norm_mha.1.qkv_proj.weight', 'transformer.0.pre_norm_mha.1.qkv_proj.bias', 'transformer.0.pre_norm_mha.1.out_proj.weight', 'transformer.0.pre_norm_mha.1.out_proj.bias', 'transformer.0.pre_norm_ffn.0.weight', 'transformer.0.pre_norm_ffn.0.bias', 'transformer.0.pre_norm_ffn.1.weight', 'transformer.0.pre_norm_ffn.1.bias', 'transformer.0.pre_norm_ffn.4.weight', 'transformer.0.pre_norm_ffn.4.bias', 'transformer.1.pre_norm_mha.0.weight', 'transformer.1.pre_norm_mha.0.bias', 'transformer.1.pre_norm_mha.1.qkv_proj.weight', 'transformer.1.pre_norm_mha.1.qkv_proj.bias', 'transformer.1.pre_norm_mha.1.out_proj.weight', 'transformer.1.pre_norm_mha.1.out_proj.bias', 'transformer.1.pre_norm_ffn.0.weight', 'transformer.1.pre_norm_ffn.0.bias', 'transformer.1.pre_norm_ffn.1.weight', 'transformer.1.pre_norm_ffn.1.bias', 'transformer.1.pre_norm_ffn.4.weight', 'transformer.1.pre_norm_ffn.4.bias', 'transformer.2.pre_norm_mha.0.weight', 'transformer.2.pre_norm_mha.0.bias', 'transformer.2.pre_norm_mha.1.qkv_proj.weight', 'transformer.2.pre_norm_mha.1.qkv_proj.bias', 'transformer.2.pre_norm_mha.1.out_proj.weight', 'transformer.2.pre_norm_mha.1.out_proj.bias', 'transformer.2.pre_norm_ffn.0.weight', 'transformer.2.pre_norm_ffn.0.bias', 'transformer.2.pre_norm_ffn.1.weight', 'transformer.2.pre_norm_ffn.1.bias', 'transformer.2.pre_norm_ffn.4.weight', 'transformer.2.pre_norm_ffn.4.bias', 'transformer.3.pre_norm_mha.0.weight', 'transformer.3.pre_norm_mha.0.bias', 'transformer.3.pre_norm_mha.1.qkv_proj.weight', 'transformer.3.pre_norm_mha.1.qkv_proj.bias', 'transformer.3.pre_norm_mha.1.out_proj.weight', 'transformer.3.pre_norm_mha.1.out_proj.bias', 'transformer.3.pre_norm_ffn.0.weight', 'transformer.3.pre_norm_ffn.0.bias', 'transformer.3.pre_norm_ffn.1.weight', 'transformer.3.pre_norm_ffn.1.bias', 'transformer.3.pre_norm_ffn.4.weight', 'transformer.3.pre_norm_ffn.4.bias', 'transformer.4.pre_norm_mha.0.weight', 'transformer.4.pre_norm_mha.0.bias', 'transformer.4.pre_norm_mha.1.qkv_proj.weight', 'transformer.4.pre_norm_mha.1.qkv_proj.bias', 'transformer.4.pre_norm_mha.1.out_proj.weight', 'transformer.4.pre_norm_mha.1.out_proj.bias', 'transformer.4.pre_norm_ffn.0.weight', 'transformer.4.pre_norm_ffn.0.bias', 'transformer.4.pre_norm_ffn.1.weight', 'transformer.4.pre_norm_ffn.1.bias', 'transformer.4.pre_norm_ffn.4.weight', 'transformer.4.pre_norm_ffn.4.bias', 'transformer.5.pre_norm_mha.0.weight', 'transformer.5.pre_norm_mha.0.bias', 'transformer.5.pre_norm_mha.1.qkv_proj.weight', 'transformer.5.pre_norm_mha.1.qkv_proj.bias', 'transformer.5.pre_norm_mha.1.out_proj.weight', 'transformer.5.pre_norm_mha.1.out_proj.bias', 'transformer.5.pre_norm_ffn.0.weight', 'transformer.5.pre_norm_ffn.0.bias', 'transformer.5.pre_norm_ffn.1.weight', 'transformer.5.pre_norm_ffn.1.bias', 'transformer.5.pre_norm_ffn.4.weight', 'transformer.5.pre_norm_ffn.4.bias', 'transformer.6.pre_norm_mha.0.weight', 'transformer.6.pre_norm_mha.0.bias', 'transformer.6.pre_norm_mha.1.qkv_proj.weight', 'transformer.6.pre_norm_mha.1.qkv_proj.bias', 'transformer.6.pre_norm_mha.1.out_proj.weight', 'transformer.6.pre_norm_mha.1.out_proj.bias', 'transformer.6.pre_norm_ffn.0.weight', 'transformer.6.pre_norm_ffn.0.bias', 'transformer.6.pre_norm_ffn.1.weight', 'transformer.6.pre_norm_ffn.1.bias', 'transformer.6.pre_norm_ffn.4.weight', 'transformer.6.pre_norm_ffn.4.bias', 'transformer.7.pre_norm_mha.0.weight', 'transformer.7.pre_norm_mha.0.bias', 'transformer.7.pre_norm_mha.1.qkv_proj.weight', 'transformer.7.pre_norm_mha.1.qkv_proj.bias', 'transformer.7.pre_norm_mha.1.out_proj.weight', 'transformer.7.pre_norm_mha.1.out_proj.bias', 'transformer.7.pre_norm_ffn.0.weight', 'transformer.7.pre_norm_ffn.0.bias', 'transformer.7.pre_norm_ffn.1.weight', 'transformer.7.pre_norm_ffn.1.bias', 'transformer.7.pre_norm_ffn.4.weight', 'transformer.7.pre_norm_ffn.4.bias', 'transformer.8.pre_norm_mha.0.weight', 'transformer.8.pre_norm_mha.0.bias', 'transformer.8.pre_norm_mha.1.qkv_proj.weight', 'transformer.8.pre_norm_mha.1.qkv_proj.bias', 'transformer.8.pre_norm_mha.1.out_proj.weight', 'transformer.8.pre_norm_mha.1.out_proj.bias', 'transformer.8.pre_norm_ffn.0.weight', 'transformer.8.pre_norm_ffn.0.bias', 'transformer.8.pre_norm_ffn.1.weight', 'transformer.8.pre_norm_ffn.1.bias', 'transformer.8.pre_norm_ffn.4.weight', 'transformer.8.pre_norm_ffn.4.bias', 'transformer.9.pre_norm_mha.0.weight', 'transformer.9.pre_norm_mha.0.bias', 'transformer.9.pre_norm_mha.1.qkv_proj.weight', 'transformer.9.pre_norm_mha.1.qkv_proj.bias', 'transformer.9.pre_norm_mha.1.out_proj.weight', 'transformer.9.pre_norm_mha.1.out_proj.bias', 'transformer.9.pre_norm_ffn.0.weight', 'transformer.9.pre_norm_ffn.0.bias', 'transformer.9.pre_norm_ffn.1.weight', 'transformer.9.pre_norm_ffn.1.bias', 'transformer.9.pre_norm_ffn.4.weight', 'transformer.9.pre_norm_ffn.4.bias', 'transformer.10.pre_norm_mha.0.weight', 'transformer.10.pre_norm_mha.0.bias', 'transformer.10.pre_norm_mha.1.qkv_proj.weight', 'transformer.10.pre_norm_mha.1.qkv_proj.bias', 'transformer.10.pre_norm_mha.1.out_proj.weight', 'transformer.10.pre_norm_mha.1.out_proj.bias', 'transformer.10.pre_norm_ffn.0.weight', 'transformer.10.pre_norm_ffn.0.bias', 'transformer.10.pre_norm_ffn.1.weight', 'transformer.10.pre_norm_ffn.1.bias', 'transformer.10.pre_norm_ffn.4.weight', 'transformer.10.pre_norm_ffn.4.bias', 'transformer.11.pre_norm_mha.0.weight', 'transformer.11.pre_norm_mha.0.bias', 'transformer.11.pre_norm_mha.1.qkv_proj.weight', 'transformer.11.pre_norm_mha.1.qkv_proj.bias', 'transformer.11.pre_norm_mha.1.out_proj.weight', 'transformer.11.pre_norm_mha.1.out_proj.bias', 'transformer.11.pre_norm_ffn.0.weight', 'transformer.11.pre_norm_ffn.0.bias', 'transformer.11.pre_norm_ffn.1.weight', 'transformer.11.pre_norm_ffn.1.bias', 'transformer.11.pre_norm_ffn.4.weight', 'transformer.11.pre_norm_ffn.4.bias', 'post_transformer_norm.weight', 'post_transformer_norm.bias', 'classifier.weight', 'classifier.bias']
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - [36mModel[0m
+ByteFormer(
+  (embeddings): Embedding(257, 192, padding_idx=256)
+  (token_reduction_net): Conv1d(192, 192, kernel_size=(32,), stride=(16,), bias=False)
+  (pos_embed): LearnablePositionalEmbedding(num_embeddings=20000, embedding_dim=192, padding_idx=None, sequence_first=False)
+  (emb_dropout): Dropout(p=0.3, inplace=False)
+  (downsamplers): ModuleDict(
+    (downsample_0): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_1): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_3): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_5): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_7): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_9): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (transformer): Sequential(
+    (0): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (1): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (2): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (3): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (4): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (5): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (6): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (7): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (8): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (9): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (10): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (11): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+  )
+  (post_transformer_norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+  (classifier): LinearLayer(in_features=192, out_features=33, bias=True, channel_first=False)
+)
+[31m=================================================================[0m
+                         ByteFormer Summary
+[31m=================================================================[0m
+Total parameters     =   10.859 M
+Total trainable parameters =   10.859 M
+
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - FVCore Analysis:
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - Input sizes: [1, 48564]
+| module                                 | #parameters or shape   | #flops     |
+|:---------------------------------------|:-----------------------|:-----------|
+| model                                  | 10.859M                | 7.718G     |
+|  embeddings                            |  49.344K               |  0         |
+|   embeddings.weight                    |   (257, 192)           |            |
+|  token_reduction_net                   |  1.18M                 |  3.579G    |
+|   token_reduction_net.weight           |   (192, 192, 32)       |            |
+|  pos_embed.pos_embed                   |  3.84M                 |  0         |
+|   pos_embed.pos_embed.pos_embed        |   (1, 1, 20000, 192)   |            |
+|  downsamplers                          |  0.445M                |  0.223G    |
+|   downsamplers.downsample_0            |   74.112K              |   0.113G   |
+|    downsamplers.downsample_0.reduction |    73.728K             |    0.112G  |
+|    downsamplers.downsample_0.norm      |    0.384K              |    1.456M  |
+|   downsamplers.downsample_1            |   74.112K              |   56.688M  |
+|    downsamplers.downsample_1.reduction |    73.728K             |    55.96M  |
+|    downsamplers.downsample_1.norm      |    0.384K              |    0.729M  |
+|   downsamplers.downsample_3            |   74.112K              |   28.381M  |
+|    downsamplers.downsample_3.reduction |    73.728K             |    28.017M |
+|    downsamplers.downsample_3.norm      |    0.384K              |    0.365M  |
+|   downsamplers.downsample_5            |   74.112K              |   14.191M  |
+|    downsamplers.downsample_5.reduction |    73.728K             |    14.008M |
+|    downsamplers.downsample_5.norm      |    0.384K              |    0.182M  |
+|   downsamplers.downsample_7            |   74.112K              |   7.095M   |
+|    downsamplers.downsample_7.reduction |    73.728K             |    7.004M  |
+|    downsamplers.downsample_7.norm      |    0.384K              |    91.2K   |
+|   downsamplers.downsample_9            |   74.112K              |   3.585M   |
+|    downsamplers.downsample_9.reduction |    73.728K             |    3.539M  |
+|    downsamplers.downsample_9.norm      |    0.384K              |    46.08K  |
+|  transformer                           |  5.338M                |  3.916G    |
+|   transformer.0                        |   0.445M               |   1.516G   |
+|    transformer.0.pre_norm_mha          |    0.149M              |    0.607G  |
+|    transformer.0.pre_norm_ffn          |    0.296M              |    0.909G  |
+|   transformer.1                        |   0.445M               |   0.758G   |
+|    transformer.1.pre_norm_mha          |    0.149M              |    0.303G  |
+|    transformer.1.pre_norm_ffn          |    0.296M              |    0.454G  |
+|   transformer.2                        |   0.445M               |   0.379G   |
+|    transformer.2.pre_norm_mha          |    0.149M              |    0.152G  |
+|    transformer.2.pre_norm_ffn          |    0.296M              |    0.227G  |
+|   transformer.3                        |   0.445M               |   0.379G   |
+|    transformer.3.pre_norm_mha          |    0.149M              |    0.152G  |
+|    transformer.3.pre_norm_ffn          |    0.296M              |    0.227G  |
+|   transformer.4                        |   0.445M               |   0.189G   |
+|    transformer.4.pre_norm_mha          |    0.149M              |    75.866M |
+|    transformer.4.pre_norm_ffn          |    0.296M              |    0.114G  |
+|   transformer.5                        |   0.445M               |   0.189G   |
+|    transformer.5.pre_norm_mha          |    0.149M              |    75.866M |
+|    transformer.5.pre_norm_ffn          |    0.296M              |    0.114G  |
+|   transformer.6                        |   0.445M               |   0.126G   |
+|    transformer.6.pre_norm_mha          |    0.149M              |    50.577M |
+|    transformer.6.pre_norm_ffn          |    0.296M              |    75.743M |
+|   transformer.7                        |   0.445M               |   0.126G   |
+|    transformer.7.pre_norm_mha          |    0.149M              |    50.577M |
+|    transformer.7.pre_norm_ffn          |    0.296M              |    75.743M |
+|   transformer.8                        |   0.445M               |   63.16M   |
+|    transformer.8.pre_norm_mha          |    0.149M              |    25.289M |
+|    transformer.8.pre_norm_ffn          |    0.296M              |    37.872M |
+|   transformer.9                        |   0.445M               |   63.16M   |
+|    transformer.9.pre_norm_mha          |    0.149M              |    25.289M |
+|    transformer.9.pre_norm_ffn          |    0.296M              |    37.872M |
+|   transformer.10                       |   0.445M               |   63.16M   |
+|    transformer.10.pre_norm_mha         |    0.149M              |    25.289M |
+|    transformer.10.pre_norm_ffn         |    0.296M              |    37.872M |
+|   transformer.11                       |   0.445M               |   63.16M   |
+|    transformer.11.pre_norm_mha         |    0.149M              |    25.289M |
+|    transformer.11.pre_norm_ffn         |    0.296M              |    37.872M |
+|  post_transformer_norm                 |  0.384K                |  46.08K    |
+|   post_transformer_norm.weight         |   (192,)               |            |
+|   post_transformer_norm.bias           |   (192,)               |            |
+|  classifier                            |  6.369K                |  6.336K    |
+|   classifier.weight                    |   (33, 192)            |            |
+|   classifier.bias                      |   (33,)                |            |
+2025-05-06 22:39:16 - [33m[1mWARNING[0m - 
+** Please be cautious when using the results in papers. Certain operations may or may not be accounted in FLOP computation in FVCore. Therefore, you want to manually ensure that FLOP computation is correct.
+2025-05-06 22:39:16 - [33m[1mWARNING[0m - Uncalled Modules:
+{'transformer.2.drop_path', 'transformer.4.drop_path', 'transformer.5.drop_path', 'transformer.1.drop_path', 'transformer.9.drop_path', 'transformer.3.drop_path', 'transformer.0.drop_path', 'transformer.6.drop_path', 'transformer.10.drop_path', 'transformer.11.drop_path', 'transformer.7.drop_path', 'transformer.8.drop_path'}
+2025-05-06 22:39:16 - [33m[1mWARNING[0m - Unsupported Ops:
+Counter({'aten::mul': 43, 'aten::add': 25, 'aten::pad': 24, 'aten::rsub': 18, 'aten::unfold': 13, 'aten::softmax': 12, 'aten::gelu': 12, 'aten::sum': 2, 'aten::embedding': 1, 'aten::div': 1})
+[31m=================================================================[0m
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - Using DistributedDataParallel.
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - [36mLoss function[0m
+CrossEntropy(
+	 ignore_idx=-1
+	 class_weighting=False
+	 label_smoothing=0.0
+)
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - [36mOptimizer[0m
+AdamWOptimizer (
+	 amsgrad: [False, False]
+	 betas: [(0.9, 0.999), (0.9, 0.999)]
+	 capturable: [False, False]
+	 differentiable: [False, False]
+	 eps: [1e-08, 1e-08]
+	 foreach: [None, None]
+	 fused: [None, None]
+	 lr: [0.1, 0.1]
+	 maximize: [False, False]
+	 weight_decay: [0.05, 0.0]
+)
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - Max. epochs for training: 20
+2025-05-06 22:39:16 - [34m[1mLOGS   [0m - [36mLearning rate scheduler[0m
+CosineScheduler(
+ 	 min_lr=2e-05
+ 	 max_lr=0.001
+ 	 period=20
+ 	 warmup_init_lr=1e-06
+ 	 warmup_iters=7500
+ )
+2025-05-06 22:39:16 - [32m[1mINFO   [0m - Configuration file is stored here: [36mresults/train/config.yaml[0m
+[31m===========================================================================[0m
+2025-05-06 22:39:18 - [32m[1mINFO   [0m - Training epoch 0
+2025-05-06 22:39:48 - [34m[1mLOGS   [0m - Epoch:   0 [       0/10000000], loss: 3.7781, LR: [1e-06, 1e-06], Avg. batch load time: 29.135, Elapsed time: 29.99
+2025-05-06 22:40:05 - [34m[1mLOGS   [0m - Epoch:   0 [      25/10000000], loss: 3.6038, LR: [4e-06, 4e-06], Avg. batch load time: 0.572, Elapsed time: 47.19
+2025-05-06 22:40:22 - [34m[1mLOGS   [0m - Epoch:   0 [      50/10000000], loss: 3.4758, LR: [8e-06, 8e-06], Avg. batch load time: 0.289, Elapsed time: 63.89
+2025-05-06 22:40:38 - [34m[1mLOGS   [0m - Epoch:   0 [      75/10000000], loss: 3.3812, LR: [1.1e-05, 1.1e-05], Avg. batch load time: 0.193, Elapsed time: 80.20
+2025-05-06 22:40:54 - [34m[1mLOGS   [0m - Epoch:   0 [     100/10000000], loss: 3.3048, LR: [1.4e-05, 1.4e-05], Avg. batch load time: 0.145, Elapsed time: 96.37
+2025-05-06 22:41:12 - [34m[1mLOGS   [0m - Epoch:   0 [     125/10000000], loss: 3.2276, LR: [1.8e-05, 1.8e-05], Avg. batch load time: 0.116, Elapsed time: 113.59
+2025-05-06 22:41:28 - [34m[1mLOGS   [0m - Epoch:   0 [     150/10000000], loss: 3.1274, LR: [2.1e-05, 2.1e-05], Avg. batch load time: 0.097, Elapsed time: 130.46
+2025-05-06 22:41:45 - [34m[1mLOGS   [0m - Epoch:   0 [     175/10000000], loss: 2.9975, LR: [2.4e-05, 2.4e-05], Avg. batch load time: 0.083, Elapsed time: 147.17
+2025-05-06 22:42:01 - [34m[1mLOGS   [0m - Epoch:   0 [     200/10000000], loss: 2.8752, LR: [2.8e-05, 2.8e-05], Avg. batch load time: 0.073, Elapsed time: 163.40
+2025-05-06 22:42:17 - [34m[1mLOGS   [0m - Epoch:   0 [     225/10000000], loss: 2.7658, LR: [3.1e-05, 3.1e-05], Avg. batch load time: 0.065, Elapsed time: 179.34
+2025-05-06 22:42:33 - [34m[1mLOGS   [0m - Epoch:   0 [     250/10000000], loss: 2.6624, LR: [3.4e-05, 3.4e-05], Avg. batch load time: 0.058, Elapsed time: 195.27
+2025-05-06 22:42:49 - [34m[1mLOGS   [0m - Epoch:   0 [     275/10000000], loss: 2.565, LR: [3.8e-05, 3.8e-05], Avg. batch load time: 0.053, Elapsed time: 211.21
+2025-05-06 22:43:05 - [34m[1mLOGS   [0m - Epoch:   0 [     300/10000000], loss: 2.4712, LR: [4.1e-05, 4.1e-05], Avg. batch load time: 0.049, Elapsed time: 227.12
+2025-05-06 22:43:21 - [34m[1mLOGS   [0m - Epoch:   0 [     325/10000000], loss: 2.3836, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.045, Elapsed time: 243.02
+2025-05-06 22:43:37 - [34m[1mLOGS   [0m - Epoch:   0 [     350/10000000], loss: 2.3022, LR: [4.8e-05, 4.8e-05], Avg. batch load time: 0.042, Elapsed time: 258.93
+2025-05-06 22:43:53 - [34m[1mLOGS   [0m - Epoch:   0 [     375/10000000], loss: 2.2236, LR: [5.1e-05, 5.1e-05], Avg. batch load time: 0.039, Elapsed time: 274.88
+2025-05-06 22:44:09 - [34m[1mLOGS   [0m - Epoch:   0 [     400/10000000], loss: 2.1533, LR: [5.4e-05, 5.4e-05], Avg. batch load time: 0.037, Elapsed time: 290.73
+2025-05-06 22:44:25 - [34m[1mLOGS   [0m - Epoch:   0 [     425/10000000], loss: 2.085, LR: [5.8e-05, 5.8e-05], Avg. batch load time: 0.034, Elapsed time: 306.95
+2025-05-06 22:44:41 - [34m[1mLOGS   [0m - Epoch:   0 [     450/10000000], loss: 2.0185, LR: [6.1e-05, 6.1e-05], Avg. batch load time: 0.033, Elapsed time: 323.18
+2025-05-06 22:44:57 - [34m[1mLOGS   [0m - Epoch:   0 [     475/10000000], loss: 1.9515, LR: [6.4e-05, 6.4e-05], Avg. batch load time: 0.031, Elapsed time: 339.52
+2025-05-06 22:45:03 - [34m[1mLOGS   [0m - *** Training summary for epoch 0
+	 loss=1.9359
+[31m===========================================================================[0m
+2025-05-06 22:45:05 - [32m[1mINFO   [0m - Validation epoch 0
+2025-05-06 22:45:28 - [34m[1mLOGS   [0m - Epoch:   0 [     120/   33001], loss: 3.5185, top1: 0.0, top5: 57.5, LR: [6.5e-05, 6.5e-05], Avg. batch load time: 0.000, Elapsed time: 23.20
+2025-05-06 22:45:30 - [34m[1mLOGS   [0m - Epoch:   0 [    6120/   33001], loss: 3.1367, top1: 34.4771, top5: 58.3987, LR: [6.5e-05, 6.5e-05], Avg. batch load time: 0.000, Elapsed time: 25.30
+2025-05-06 22:45:32 - [34m[1mLOGS   [0m - Epoch:   0 [   12120/   33001], loss: 3.8932, top1: 26.4686, top5: 47.9125, LR: [6.5e-05, 6.5e-05], Avg. batch load time: 0.000, Elapsed time: 26.76
+2025-05-06 22:45:34 - [34m[1mLOGS   [0m - Epoch:   0 [   18120/   33001], loss: 3.7827, top1: 24.426, top5: 52.7207, LR: [6.5e-05, 6.5e-05], Avg. batch load time: 0.000, Elapsed time: 28.71
+2025-05-06 22:45:36 - [34m[1mLOGS   [0m - Epoch:   0 [   24120/   33001], loss: 3.6887, top1: 25.3358, top5: 56.8905, LR: [6.5e-05, 6.5e-05], Avg. batch load time: 0.000, Elapsed time: 31.17
+2025-05-06 22:45:39 - [34m[1mLOGS   [0m - Epoch:   0 [   30120/   33001], loss: 3.7938, top1: 24.4754, top5: 52.842, LR: [6.5e-05, 6.5e-05], Avg. batch load time: 0.000, Elapsed time: 33.62
+2025-05-06 22:45:41 - [34m[1mLOGS   [0m - *** Validation summary for epoch 0
+	 loss=3.79 || top1=24.8551 || top5=51.2742
+2025-05-06 22:45:41 - [34m[1mLOGS   [0m - Best checkpoint with score 24.86 saved at results/train/checkpoint_best.pt
+2025-05-06 22:45:41 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 22:45:41 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 22:45:43 - [32m[1mINFO   [0m - Training epoch 1
+2025-05-06 22:46:13 - [34m[1mLOGS   [0m - Epoch:   1 [     481/10000000], loss: 0.6705, LR: [6.5e-05, 6.5e-05], Avg. batch load time: 29.129, Elapsed time: 29.46
+2025-05-06 22:46:29 - [34m[1mLOGS   [0m - Epoch:   1 [     506/10000000], loss: 0.6077, LR: [6.8e-05, 6.8e-05], Avg. batch load time: 0.571, Elapsed time: 45.43
+2025-05-06 22:46:45 - [34m[1mLOGS   [0m - Epoch:   1 [     531/10000000], loss: 0.562, LR: [7.2e-05, 7.2e-05], Avg. batch load time: 0.289, Elapsed time: 61.41
+2025-05-06 22:47:01 - [34m[1mLOGS   [0m - Epoch:   1 [     556/10000000], loss: 0.5503, LR: [7.5e-05, 7.5e-05], Avg. batch load time: 0.193, Elapsed time: 77.38
+2025-05-06 22:47:17 - [34m[1mLOGS   [0m - Epoch:   1 [     581/10000000], loss: 0.5208, LR: [7.8e-05, 7.8e-05], Avg. batch load time: 0.145, Elapsed time: 93.37
+2025-05-06 22:47:33 - [34m[1mLOGS   [0m - Epoch:   1 [     606/10000000], loss: 0.4964, LR: [8.2e-05, 8.2e-05], Avg. batch load time: 0.116, Elapsed time: 109.34
+2025-05-06 22:47:49 - [34m[1mLOGS   [0m - Epoch:   1 [     631/10000000], loss: 0.4713, LR: [8.5e-05, 8.5e-05], Avg. batch load time: 0.097, Elapsed time: 125.34
+2025-05-06 22:48:05 - [34m[1mLOGS   [0m - Epoch:   1 [     656/10000000], loss: 0.4528, LR: [8.8e-05, 8.8e-05], Avg. batch load time: 0.083, Elapsed time: 141.34
+2025-05-06 22:48:21 - [34m[1mLOGS   [0m - Epoch:   1 [     681/10000000], loss: 0.4295, LR: [9.2e-05, 9.2e-05], Avg. batch load time: 0.073, Elapsed time: 157.31
+2025-05-06 22:48:37 - [34m[1mLOGS   [0m - Epoch:   1 [     706/10000000], loss: 0.4074, LR: [9.5e-05, 9.5e-05], Avg. batch load time: 0.065, Elapsed time: 173.27
+2025-05-06 22:48:53 - [34m[1mLOGS   [0m - Epoch:   1 [     731/10000000], loss: 0.3877, LR: [9.8e-05, 9.8e-05], Avg. batch load time: 0.058, Elapsed time: 189.26
+2025-05-06 22:49:08 - [34m[1mLOGS   [0m - Epoch:   1 [     756/10000000], loss: 0.3707, LR: [0.000102, 0.000102], Avg. batch load time: 0.053, Elapsed time: 205.22
+2025-05-06 22:49:24 - [34m[1mLOGS   [0m - Epoch:   1 [     781/10000000], loss: 0.3534, LR: [0.000105, 0.000105], Avg. batch load time: 0.049, Elapsed time: 221.16
+2025-05-06 22:49:40 - [34m[1mLOGS   [0m - Epoch:   1 [     806/10000000], loss: 0.3392, LR: [0.000108, 0.000108], Avg. batch load time: 0.045, Elapsed time: 237.13
+2025-05-06 22:49:56 - [34m[1mLOGS   [0m - Epoch:   1 [     831/10000000], loss: 0.3259, LR: [0.000112, 0.000112], Avg. batch load time: 0.042, Elapsed time: 253.07
+2025-05-06 22:50:12 - [34m[1mLOGS   [0m - Epoch:   1 [     856/10000000], loss: 0.3138, LR: [0.000115, 0.000115], Avg. batch load time: 0.039, Elapsed time: 269.01
+2025-05-06 22:50:28 - [34m[1mLOGS   [0m - Epoch:   1 [     881/10000000], loss: 0.302, LR: [0.000118, 0.000118], Avg. batch load time: 0.037, Elapsed time: 285.03
+2025-05-06 22:50:44 - [34m[1mLOGS   [0m - Epoch:   1 [     906/10000000], loss: 0.2903, LR: [0.000122, 0.000122], Avg. batch load time: 0.034, Elapsed time: 301.00
+2025-05-06 22:51:00 - [34m[1mLOGS   [0m - Epoch:   1 [     931/10000000], loss: 0.2799, LR: [0.000125, 0.000125], Avg. batch load time: 0.033, Elapsed time: 316.91
+2025-05-06 22:51:16 - [34m[1mLOGS   [0m - Epoch:   1 [     956/10000000], loss: 0.2705, LR: [0.000128, 0.000128], Avg. batch load time: 0.031, Elapsed time: 332.89
+2025-05-06 22:51:21 - [34m[1mLOGS   [0m - *** Training summary for epoch 1
+	 loss=0.2682
+[31m===========================================================================[0m
+2025-05-06 22:51:24 - [32m[1mINFO   [0m - Validation epoch 1
+2025-05-06 22:51:46 - [34m[1mLOGS   [0m - Epoch:   1 [     120/   33001], loss: 1.1703, top1: 50.8333, top5: 99.1667, LR: [0.000129, 0.000129], Avg. batch load time: 0.000, Elapsed time: 22.76
+2025-05-06 22:51:48 - [34m[1mLOGS   [0m - Epoch:   1 [    6120/   33001], loss: 1.5767, top1: 65.4412, top5: 81.1438, LR: [0.000129, 0.000129], Avg. batch load time: 0.000, Elapsed time: 24.83
+2025-05-06 22:51:50 - [34m[1mLOGS   [0m - Epoch:   1 [   12120/   33001], loss: 2.8905, top1: 43.4901, top5: 58.1023, LR: [0.000129, 0.000129], Avg. batch load time: 0.000, Elapsed time: 26.30
+2025-05-06 22:51:52 - [34m[1mLOGS   [0m - Epoch:   1 [   18120/   33001], loss: 2.8498, top1: 40.6788, top5: 65.2152, LR: [0.000129, 0.000129], Avg. batch load time: 0.000, Elapsed time: 28.18
+2025-05-06 22:51:54 - [34m[1mLOGS   [0m - Epoch:   1 [   24120/   33001], loss: 2.823, top1: 42.1352, top5: 66.6335, LR: [0.000129, 0.000129], Avg. batch load time: 0.000, Elapsed time: 30.58
+2025-05-06 22:51:57 - [34m[1mLOGS   [0m - Epoch:   1 [   30120/   33001], loss: 3.1007, top1: 40.83, top5: 63.1839, LR: [0.000129, 0.000129], Avg. batch load time: 0.000, Elapsed time: 32.93
+2025-05-06 22:51:58 - [34m[1mLOGS   [0m - *** Validation summary for epoch 1
+	 loss=3.1707 || top1=39.9728 || top5=62.346
+2025-05-06 22:51:59 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 22:51:59 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 22:52:01 - [32m[1mINFO   [0m - Training epoch 2
+2025-05-06 22:52:30 - [34m[1mLOGS   [0m - Epoch:   2 [     962/10000000], loss: 0.0992, LR: [0.000129, 0.000129], Avg. batch load time: 28.745, Elapsed time: 29.07
+2025-05-06 22:52:46 - [34m[1mLOGS   [0m - Epoch:   2 [     987/10000000], loss: 0.0748, LR: [0.000132, 0.000132], Avg. batch load time: 0.564, Elapsed time: 45.01
+2025-05-06 22:53:02 - [34m[1mLOGS   [0m - Epoch:   2 [    1012/10000000], loss: 0.0683, LR: [0.000136, 0.000136], Avg. batch load time: 0.285, Elapsed time: 60.97
+2025-05-06 22:53:18 - [34m[1mLOGS   [0m - Epoch:   2 [    1037/10000000], loss: 0.0678, LR: [0.000139, 0.000139], Avg. batch load time: 0.191, Elapsed time: 76.95
+2025-05-06 22:53:34 - [34m[1mLOGS   [0m - Epoch:   2 [    1062/10000000], loss: 0.0664, LR: [0.000142, 0.000142], Avg. batch load time: 0.143, Elapsed time: 92.88
+2025-05-06 22:53:50 - [34m[1mLOGS   [0m - Epoch:   2 [    1087/10000000], loss: 0.0651, LR: [0.000146, 0.000146], Avg. batch load time: 0.115, Elapsed time: 108.83
+2025-05-06 22:54:06 - [34m[1mLOGS   [0m - Epoch:   2 [    1112/10000000], loss: 0.0653, LR: [0.000149, 0.000149], Avg. batch load time: 0.096, Elapsed time: 124.83
+2025-05-06 22:54:22 - [34m[1mLOGS   [0m - Epoch:   2 [    1137/10000000], loss: 0.0627, LR: [0.000152, 0.000152], Avg. batch load time: 0.082, Elapsed time: 140.78
+2025-05-06 22:54:38 - [34m[1mLOGS   [0m - Epoch:   2 [    1162/10000000], loss: 0.0612, LR: [0.000156, 0.000156], Avg. batch load time: 0.072, Elapsed time: 156.74
+2025-05-06 22:54:54 - [34m[1mLOGS   [0m - Epoch:   2 [    1187/10000000], loss: 0.061, LR: [0.000159, 0.000159], Avg. batch load time: 0.064, Elapsed time: 172.71
+2025-05-06 22:55:10 - [34m[1mLOGS   [0m - Epoch:   2 [    1212/10000000], loss: 0.0616, LR: [0.000162, 0.000162], Avg. batch load time: 0.058, Elapsed time: 188.70
+2025-05-06 22:55:26 - [34m[1mLOGS   [0m - Epoch:   2 [    1237/10000000], loss: 0.0614, LR: [0.000166, 0.000166], Avg. batch load time: 0.052, Elapsed time: 204.69
+2025-05-06 22:55:42 - [34m[1mLOGS   [0m - Epoch:   2 [    1262/10000000], loss: 0.0594, LR: [0.000169, 0.000169], Avg. batch load time: 0.048, Elapsed time: 220.64
+2025-05-06 22:55:58 - [34m[1mLOGS   [0m - Epoch:   2 [    1287/10000000], loss: 0.0571, LR: [0.000172, 0.000172], Avg. batch load time: 0.044, Elapsed time: 236.58
+2025-05-06 22:56:14 - [34m[1mLOGS   [0m - Epoch:   2 [    1312/10000000], loss: 0.0565, LR: [0.000176, 0.000176], Avg. batch load time: 0.041, Elapsed time: 252.55
+2025-05-06 22:56:30 - [34m[1mLOGS   [0m - Epoch:   2 [    1337/10000000], loss: 0.0557, LR: [0.000179, 0.000179], Avg. batch load time: 0.039, Elapsed time: 268.51
+2025-05-06 22:56:46 - [34m[1mLOGS   [0m - Epoch:   2 [    1362/10000000], loss: 0.0553, LR: [0.000182, 0.000182], Avg. batch load time: 0.036, Elapsed time: 284.48
+2025-05-06 22:57:02 - [34m[1mLOGS   [0m - Epoch:   2 [    1387/10000000], loss: 0.0558, LR: [0.000186, 0.000186], Avg. batch load time: 0.034, Elapsed time: 300.47
+2025-05-06 22:57:17 - [34m[1mLOGS   [0m - Epoch:   2 [    1412/10000000], loss: 0.0558, LR: [0.000189, 0.000189], Avg. batch load time: 0.032, Elapsed time: 316.43
+2025-05-06 22:57:33 - [34m[1mLOGS   [0m - Epoch:   2 [    1437/10000000], loss: 0.0546, LR: [0.000192, 0.000192], Avg. batch load time: 0.030, Elapsed time: 332.35
+2025-05-06 22:57:39 - [34m[1mLOGS   [0m - *** Training summary for epoch 2
+	 loss=0.0543
+[31m===========================================================================[0m
+2025-05-06 22:57:41 - [32m[1mINFO   [0m - Validation epoch 2
+2025-05-06 22:58:03 - [34m[1mLOGS   [0m - Epoch:   2 [     120/   33001], loss: 0.4957, top1: 81.6667, top5: 100.0, LR: [0.000193, 0.000193], Avg. batch load time: 0.000, Elapsed time: 22.58
+2025-05-06 22:58:06 - [34m[1mLOGS   [0m - Epoch:   2 [    6120/   33001], loss: 0.8906, top1: 78.1046, top5: 87.5327, LR: [0.000193, 0.000193], Avg. batch load time: 0.000, Elapsed time: 24.65
+2025-05-06 22:58:07 - [34m[1mLOGS   [0m - Epoch:   2 [   12120/   33001], loss: 3.1635, top1: 49.7442, top5: 61.2046, LR: [0.000193, 0.000193], Avg. batch load time: 0.000, Elapsed time: 26.11
+2025-05-06 22:58:09 - [34m[1mLOGS   [0m - Epoch:   2 [   18120/   33001], loss: 2.7734, top1: 54.5475, top5: 68.4879, LR: [0.000193, 0.000193], Avg. batch load time: 0.000, Elapsed time: 27.98
+2025-05-06 22:58:11 - [34m[1mLOGS   [0m - Epoch:   2 [   24120/   33001], loss: 2.5699, top1: 57.7985, top5: 70.6177, LR: [0.000193, 0.000193], Avg. batch load time: 0.000, Elapsed time: 30.38
+2025-05-06 22:58:14 - [34m[1mLOGS   [0m - Epoch:   2 [   30120/   33001], loss: 2.9252, top1: 53.4628, top5: 65.8931, LR: [0.000193, 0.000193], Avg. batch load time: 0.000, Elapsed time: 32.73
+2025-05-06 22:58:15 - [34m[1mLOGS   [0m - *** Validation summary for epoch 2
+	 loss=3.1275 || top1=51.4885 || top5=63.7107
+2025-05-06 22:58:16 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 22:58:16 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 22:58:18 - [32m[1mINFO   [0m - Training epoch 3
+2025-05-06 22:58:47 - [34m[1mLOGS   [0m - Epoch:   3 [    1443/10000000], loss: 0.008, LR: [0.000193, 0.000193], Avg. batch load time: 28.709, Elapsed time: 29.03
+2025-05-06 22:59:03 - [34m[1mLOGS   [0m - Epoch:   3 [    1468/10000000], loss: 0.0183, LR: [0.000197, 0.000197], Avg. batch load time: 0.563, Elapsed time: 44.99
+2025-05-06 22:59:19 - [34m[1mLOGS   [0m - Epoch:   3 [    1493/10000000], loss: 0.0212, LR: [0.0002, 0.0002], Avg. batch load time: 0.284, Elapsed time: 60.97
+2025-05-06 22:59:35 - [34m[1mLOGS   [0m - Epoch:   3 [    1518/10000000], loss: 0.0212, LR: [0.000203, 0.000203], Avg. batch load time: 0.190, Elapsed time: 76.90
+2025-05-06 22:59:51 - [34m[1mLOGS   [0m - Epoch:   3 [    1543/10000000], loss: 0.0255, LR: [0.000207, 0.000207], Avg. batch load time: 0.143, Elapsed time: 92.87
+2025-05-06 23:00:07 - [34m[1mLOGS   [0m - Epoch:   3 [    1568/10000000], loss: 0.0368, LR: [0.00021, 0.00021], Avg. batch load time: 0.115, Elapsed time: 108.83
+2025-05-06 23:00:23 - [34m[1mLOGS   [0m - Epoch:   3 [    1593/10000000], loss: 0.0532, LR: [0.000213, 0.000213], Avg. batch load time: 0.096, Elapsed time: 124.80
+2025-05-06 23:00:39 - [34m[1mLOGS   [0m - Epoch:   3 [    1618/10000000], loss: 0.0542, LR: [0.000217, 0.000217], Avg. batch load time: 0.082, Elapsed time: 140.76
+2025-05-06 23:00:55 - [34m[1mLOGS   [0m - Epoch:   3 [    1643/10000000], loss: 0.0525, LR: [0.00022, 0.00022], Avg. batch load time: 0.072, Elapsed time: 156.73
+2025-05-06 23:01:11 - [34m[1mLOGS   [0m - Epoch:   3 [    1668/10000000], loss: 0.0496, LR: [0.000223, 0.000223], Avg. batch load time: 0.064, Elapsed time: 172.72
+2025-05-06 23:01:27 - [34m[1mLOGS   [0m - Epoch:   3 [    1693/10000000], loss: 0.0478, LR: [0.000227, 0.000227], Avg. batch load time: 0.058, Elapsed time: 188.68
+2025-05-06 23:01:43 - [34m[1mLOGS   [0m - Epoch:   3 [    1718/10000000], loss: 0.0459, LR: [0.00023, 0.00023], Avg. batch load time: 0.052, Elapsed time: 204.66
+2025-05-06 23:01:59 - [34m[1mLOGS   [0m - Epoch:   3 [    1743/10000000], loss: 0.0437, LR: [0.000233, 0.000233], Avg. batch load time: 0.048, Elapsed time: 220.63
+2025-05-06 23:02:15 - [34m[1mLOGS   [0m - Epoch:   3 [    1768/10000000], loss: 0.0416, LR: [0.000237, 0.000237], Avg. batch load time: 0.044, Elapsed time: 236.60
+2025-05-06 23:02:31 - [34m[1mLOGS   [0m - Epoch:   3 [    1793/10000000], loss: 0.0403, LR: [0.00024, 0.00024], Avg. batch load time: 0.041, Elapsed time: 252.60
+2025-05-06 23:02:47 - [34m[1mLOGS   [0m - Epoch:   3 [    1818/10000000], loss: 0.0395, LR: [0.000243, 0.000243], Avg. batch load time: 0.038, Elapsed time: 268.59
+2025-05-06 23:03:03 - [34m[1mLOGS   [0m - Epoch:   3 [    1843/10000000], loss: 0.038, LR: [0.000246, 0.000246], Avg. batch load time: 0.036, Elapsed time: 284.57
+2025-05-06 23:03:19 - [34m[1mLOGS   [0m - Epoch:   3 [    1868/10000000], loss: 0.0378, LR: [0.00025, 0.00025], Avg. batch load time: 0.034, Elapsed time: 300.65
+2025-05-06 23:03:35 - [34m[1mLOGS   [0m - Epoch:   3 [    1893/10000000], loss: 0.037, LR: [0.000253, 0.000253], Avg. batch load time: 0.032, Elapsed time: 316.58
+2025-05-06 23:03:50 - [34m[1mLOGS   [0m - Epoch:   3 [    1918/10000000], loss: 0.0377, LR: [0.000256, 0.000256], Avg. batch load time: 0.030, Elapsed time: 331.98
+2025-05-06 23:03:55 - [34m[1mLOGS   [0m - *** Training summary for epoch 3
+	 loss=0.0376
+[31m===========================================================================[0m
+2025-05-06 23:03:57 - [32m[1mINFO   [0m - Validation epoch 3
+2025-05-06 23:04:20 - [34m[1mLOGS   [0m - Epoch:   3 [     120/   33001], loss: 4.897, top1: 3.3333, top5: 100.0, LR: [0.000257, 0.000257], Avg. batch load time: 0.000, Elapsed time: 22.52
+2025-05-06 23:04:22 - [34m[1mLOGS   [0m - Epoch:   3 [    6120/   33001], loss: 1.6791, top1: 59.951, top5: 97.8595, LR: [0.000257, 0.000257], Avg. batch load time: 0.000, Elapsed time: 24.54
+2025-05-06 23:04:23 - [34m[1mLOGS   [0m - Epoch:   3 [   12120/   33001], loss: 3.7675, top1: 41.8977, top5: 67.0545, LR: [0.000257, 0.000257], Avg. batch load time: 0.000, Elapsed time: 25.93
+2025-05-06 23:04:25 - [34m[1mLOGS   [0m - Epoch:   3 [   18120/   33001], loss: 3.1642, top1: 51.0486, top5: 72.2682, LR: [0.000257, 0.000257], Avg. batch load time: 0.000, Elapsed time: 27.74
+2025-05-06 23:04:27 - [34m[1mLOGS   [0m - Epoch:   3 [   24120/   33001], loss: 2.9914, top1: 53.9552, top5: 73.1882, LR: [0.000257, 0.000257], Avg. batch load time: 0.000, Elapsed time: 30.08
+2025-05-06 23:04:30 - [34m[1mLOGS   [0m - Epoch:   3 [   30120/   33001], loss: 3.0569, top1: 51.0591, top5: 70.3154, LR: [0.000257, 0.000257], Avg. batch load time: 0.000, Elapsed time: 32.33
+2025-05-06 23:04:31 - [34m[1mLOGS   [0m - *** Validation summary for epoch 3
+	 loss=3.2383 || top1=48.7289 || top5=69.4565
+2025-05-06 23:04:32 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 23:04:32 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 23:04:34 - [32m[1mINFO   [0m - Training epoch 4
+2025-05-06 23:05:03 - [34m[1mLOGS   [0m - Epoch:   4 [    1924/10000000], loss: 0.0476, LR: [0.000257, 0.000257], Avg. batch load time: 28.771, Elapsed time: 29.08
+2025-05-06 23:05:19 - [34m[1mLOGS   [0m - Epoch:   4 [    1949/10000000], loss: 0.0287, LR: [0.000261, 0.000261], Avg. batch load time: 0.564, Elapsed time: 44.43
+2025-05-06 23:05:34 - [34m[1mLOGS   [0m - Epoch:   4 [    1974/10000000], loss: 0.0227, LR: [0.000264, 0.000264], Avg. batch load time: 0.285, Elapsed time: 59.78
+2025-05-06 23:05:49 - [34m[1mLOGS   [0m - Epoch:   4 [    1999/10000000], loss: 0.0213, LR: [0.000267, 0.000267], Avg. batch load time: 0.191, Elapsed time: 75.18
+2025-05-06 23:06:05 - [34m[1mLOGS   [0m - Epoch:   4 [    2024/10000000], loss: 0.0218, LR: [0.000271, 0.000271], Avg. batch load time: 0.143, Elapsed time: 90.54
+2025-05-06 23:06:20 - [34m[1mLOGS   [0m - Epoch:   4 [    2049/10000000], loss: 0.0205, LR: [0.000274, 0.000274], Avg. batch load time: 0.115, Elapsed time: 105.94
+2025-05-06 23:06:35 - [34m[1mLOGS   [0m - Epoch:   4 [    2074/10000000], loss: 0.021, LR: [0.000277, 0.000277], Avg. batch load time: 0.096, Elapsed time: 121.31
+2025-05-06 23:06:51 - [34m[1mLOGS   [0m - Epoch:   4 [    2099/10000000], loss: 0.0214, LR: [0.000281, 0.000281], Avg. batch load time: 0.082, Elapsed time: 136.67
+2025-05-06 23:07:06 - [34m[1mLOGS   [0m - Epoch:   4 [    2124/10000000], loss: 0.0215, LR: [0.000284, 0.000284], Avg. batch load time: 0.072, Elapsed time: 152.06
+2025-05-06 23:07:22 - [34m[1mLOGS   [0m - Epoch:   4 [    2149/10000000], loss: 0.0249, LR: [0.000287, 0.000287], Avg. batch load time: 0.064, Elapsed time: 167.43
+2025-05-06 23:07:37 - [34m[1mLOGS   [0m - Epoch:   4 [    2174/10000000], loss: 0.0248, LR: [0.000291, 0.000291], Avg. batch load time: 0.058, Elapsed time: 182.81
+2025-05-06 23:07:52 - [34m[1mLOGS   [0m - Epoch:   4 [    2199/10000000], loss: 0.0246, LR: [0.000294, 0.000294], Avg. batch load time: 0.052, Elapsed time: 198.19
+2025-05-06 23:08:08 - [34m[1mLOGS   [0m - Epoch:   4 [    2224/10000000], loss: 0.0247, LR: [0.000297, 0.000297], Avg. batch load time: 0.048, Elapsed time: 213.59
+2025-05-06 23:08:23 - [34m[1mLOGS   [0m - Epoch:   4 [    2249/10000000], loss: 0.0243, LR: [0.000301, 0.000301], Avg. batch load time: 0.044, Elapsed time: 228.96
+2025-05-06 23:08:38 - [34m[1mLOGS   [0m - Epoch:   4 [    2274/10000000], loss: 0.024, LR: [0.000304, 0.000304], Avg. batch load time: 0.041, Elapsed time: 244.35
+2025-05-06 23:08:54 - [34m[1mLOGS   [0m - Epoch:   4 [    2299/10000000], loss: 0.0239, LR: [0.000307, 0.000307], Avg. batch load time: 0.039, Elapsed time: 259.71
+2025-05-06 23:09:09 - [34m[1mLOGS   [0m - Epoch:   4 [    2324/10000000], loss: 0.0261, LR: [0.000311, 0.000311], Avg. batch load time: 0.036, Elapsed time: 275.07
+2025-05-06 23:09:24 - [34m[1mLOGS   [0m - Epoch:   4 [    2349/10000000], loss: 0.0369, LR: [0.000314, 0.000314], Avg. batch load time: 0.034, Elapsed time: 290.39
+2025-05-06 23:09:40 - [34m[1mLOGS   [0m - Epoch:   4 [    2374/10000000], loss: 0.0378, LR: [0.000317, 0.000317], Avg. batch load time: 0.032, Elapsed time: 305.78
+2025-05-06 23:09:55 - [34m[1mLOGS   [0m - Epoch:   4 [    2399/10000000], loss: 0.0389, LR: [0.000321, 0.000321], Avg. batch load time: 0.030, Elapsed time: 321.16
+2025-05-06 23:10:00 - [34m[1mLOGS   [0m - *** Training summary for epoch 4
+	 loss=0.0397
+[31m===========================================================================[0m
+2025-05-06 23:10:03 - [32m[1mINFO   [0m - Validation epoch 4
+2025-05-06 23:10:25 - [34m[1mLOGS   [0m - Epoch:   4 [     120/   33001], loss: 1.2676, top1: 40.0, top5: 100.0, LR: [0.000321, 0.000321], Avg. batch load time: 0.000, Elapsed time: 22.47
+2025-05-06 23:10:27 - [34m[1mLOGS   [0m - Epoch:   4 [    6120/   33001], loss: 0.6014, top1: 81.6013, top5: 99.5588, LR: [0.000321, 0.000321], Avg. batch load time: 0.000, Elapsed time: 24.49
+2025-05-06 23:10:28 - [34m[1mLOGS   [0m - Epoch:   4 [   12120/   33001], loss: 2.8788, top1: 52.6898, top5: 86.1386, LR: [0.000321, 0.000321], Avg. batch load time: 0.000, Elapsed time: 25.89
+2025-05-06 23:10:30 - [34m[1mLOGS   [0m - Epoch:   4 [   18120/   33001], loss: 2.7156, top1: 55.7064, top5: 84.6965, LR: [0.000321, 0.000321], Avg. batch load time: 0.000, Elapsed time: 27.71
+2025-05-06 23:10:33 - [34m[1mLOGS   [0m - Epoch:   4 [   24120/   33001], loss: 2.1797, top1: 62.3632, top5: 88.4411, LR: [0.000321, 0.000321], Avg. batch load time: 0.000, Elapsed time: 30.03
+2025-05-06 23:10:35 - [34m[1mLOGS   [0m - Epoch:   4 [   30120/   33001], loss: 2.4413, top1: 59.3127, top5: 84.1932, LR: [0.000321, 0.000321], Avg. batch load time: 0.000, Elapsed time: 32.30
+2025-05-06 23:10:37 - [34m[1mLOGS   [0m - *** Validation summary for epoch 4
+	 loss=2.4604 || top1=57.3128 || top5=83.1431
+2025-05-06 23:10:37 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 23:10:37 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 23:10:39 - [32m[1mINFO   [0m - Training epoch 5
+2025-05-06 23:11:08 - [34m[1mLOGS   [0m - Epoch:   5 [    2405/10000000], loss: 0.0776, LR: [0.000321, 0.000321], Avg. batch load time: 28.583, Elapsed time: 28.89
+2025-05-06 23:11:24 - [34m[1mLOGS   [0m - Epoch:   5 [    2430/10000000], loss: 0.0958, LR: [0.000325, 0.000325], Avg. batch load time: 0.561, Elapsed time: 44.28
+2025-05-06 23:11:39 - [34m[1mLOGS   [0m - Epoch:   5 [    2455/10000000], loss: 0.0646, LR: [0.000328, 0.000328], Avg. batch load time: 0.283, Elapsed time: 59.69
+2025-05-06 23:11:54 - [34m[1mLOGS   [0m - Epoch:   5 [    2480/10000000], loss: 0.0493, LR: [0.000331, 0.000331], Avg. batch load time: 0.190, Elapsed time: 75.09
+2025-05-06 23:12:10 - [34m[1mLOGS   [0m - Epoch:   5 [    2505/10000000], loss: 0.0431, LR: [0.000335, 0.000335], Avg. batch load time: 0.142, Elapsed time: 90.50
+2025-05-06 23:12:25 - [34m[1mLOGS   [0m - Epoch:   5 [    2530/10000000], loss: 0.0405, LR: [0.000338, 0.000338], Avg. batch load time: 0.114, Elapsed time: 105.90
+2025-05-06 23:12:41 - [34m[1mLOGS   [0m - Epoch:   5 [    2555/10000000], loss: 0.039, LR: [0.000341, 0.000341], Avg. batch load time: 0.095, Elapsed time: 121.29
+2025-05-06 23:12:56 - [34m[1mLOGS   [0m - Epoch:   5 [    2580/10000000], loss: 0.0357, LR: [0.000345, 0.000345], Avg. batch load time: 0.082, Elapsed time: 136.70
+2025-05-06 23:13:11 - [34m[1mLOGS   [0m - Epoch:   5 [    2605/10000000], loss: 0.0341, LR: [0.000348, 0.000348], Avg. batch load time: 0.072, Elapsed time: 152.15
+2025-05-06 23:13:27 - [34m[1mLOGS   [0m - Epoch:   5 [    2630/10000000], loss: 0.0316, LR: [0.000351, 0.000351], Avg. batch load time: 0.064, Elapsed time: 167.58
+2025-05-06 23:13:42 - [34m[1mLOGS   [0m - Epoch:   5 [    2655/10000000], loss: 0.0295, LR: [0.000355, 0.000355], Avg. batch load time: 0.057, Elapsed time: 182.97
+2025-05-06 23:13:58 - [34m[1mLOGS   [0m - Epoch:   5 [    2680/10000000], loss: 0.0275, LR: [0.000358, 0.000358], Avg. batch load time: 0.052, Elapsed time: 198.38
+2025-05-06 23:14:13 - [34m[1mLOGS   [0m - Epoch:   5 [    2705/10000000], loss: 0.0263, LR: [0.000361, 0.000361], Avg. batch load time: 0.048, Elapsed time: 213.78
+2025-05-06 23:14:29 - [34m[1mLOGS   [0m - Epoch:   5 [    2730/10000000], loss: 0.0252, LR: [0.000365, 0.000365], Avg. batch load time: 0.044, Elapsed time: 229.20
+2025-05-06 23:14:44 - [34m[1mLOGS   [0m - Epoch:   5 [    2755/10000000], loss: 0.0241, LR: [0.000368, 0.000368], Avg. batch load time: 0.041, Elapsed time: 244.63
+2025-05-06 23:14:59 - [34m[1mLOGS   [0m - Epoch:   5 [    2780/10000000], loss: 0.0237, LR: [0.000371, 0.000371], Avg. batch load time: 0.038, Elapsed time: 260.06
+2025-05-06 23:15:15 - [34m[1mLOGS   [0m - Epoch:   5 [    2805/10000000], loss: 0.0236, LR: [0.000375, 0.000375], Avg. batch load time: 0.036, Elapsed time: 275.48
+2025-05-06 23:15:30 - [34m[1mLOGS   [0m - Epoch:   5 [    2830/10000000], loss: 0.0241, LR: [0.000378, 0.000378], Avg. batch load time: 0.034, Elapsed time: 290.86
+2025-05-06 23:15:46 - [34m[1mLOGS   [0m - Epoch:   5 [    2855/10000000], loss: 0.026, LR: [0.000381, 0.000381], Avg. batch load time: 0.032, Elapsed time: 306.26
+2025-05-06 23:16:01 - [34m[1mLOGS   [0m - Epoch:   5 [    2880/10000000], loss: 0.0291, LR: [0.000385, 0.000385], Avg. batch load time: 0.030, Elapsed time: 321.66
+2025-05-06 23:16:06 - [34m[1mLOGS   [0m - *** Training summary for epoch 5
+	 loss=0.0315
+[31m===========================================================================[0m
+2025-05-06 23:16:08 - [32m[1mINFO   [0m - Validation epoch 5
+2025-05-06 23:16:31 - [34m[1mLOGS   [0m - Epoch:   5 [     120/   33001], loss: 1.129, top1: 62.5, top5: 100.0, LR: [0.000385, 0.000385], Avg. batch load time: 0.000, Elapsed time: 22.56
+2025-05-06 23:16:33 - [34m[1mLOGS   [0m - Epoch:   5 [    6120/   33001], loss: 0.7736, top1: 79.1667, top5: 97.1732, LR: [0.000385, 0.000385], Avg. batch load time: 0.000, Elapsed time: 24.57
+2025-05-06 23:16:34 - [34m[1mLOGS   [0m - Epoch:   5 [   12120/   33001], loss: 3.1866, top1: 58.2261, top5: 75.0743, LR: [0.000385, 0.000385], Avg. batch load time: 0.000, Elapsed time: 25.96
+2025-05-06 23:16:36 - [34m[1mLOGS   [0m - Epoch:   5 [   18120/   33001], loss: 3.2421, top1: 58.3885, top5: 73.0905, LR: [0.000385, 0.000385], Avg. batch load time: 0.000, Elapsed time: 27.77
+2025-05-06 23:16:38 - [34m[1mLOGS   [0m - Epoch:   5 [   24120/   33001], loss: 2.6038, top1: 64.005, top5: 79.4776, LR: [0.000385, 0.000385], Avg. batch load time: 0.000, Elapsed time: 30.10
+2025-05-06 23:16:41 - [34m[1mLOGS   [0m - Epoch:   5 [   30120/   33001], loss: 2.6543, top1: 62.3938, top5: 78.5425, LR: [0.000385, 0.000385], Avg. batch load time: 0.000, Elapsed time: 32.37
+2025-05-06 23:16:42 - [34m[1mLOGS   [0m - *** Validation summary for epoch 5
+	 loss=2.709 || top1=61.4372 || top5=77.6932
+2025-05-06 23:16:43 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 23:16:43 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 23:16:45 - [32m[1mINFO   [0m - Training epoch 6
+2025-05-06 23:17:14 - [34m[1mLOGS   [0m - Epoch:   6 [    2886/10000000], loss: 0.1933, LR: [0.000385, 0.000385], Avg. batch load time: 28.834, Elapsed time: 29.14
+2025-05-06 23:17:30 - [34m[1mLOGS   [0m - Epoch:   6 [    2911/10000000], loss: 0.08, LR: [0.000389, 0.000389], Avg. batch load time: 0.566, Elapsed time: 44.51
+2025-05-06 23:17:45 - [34m[1mLOGS   [0m - Epoch:   6 [    2936/10000000], loss: 0.0487, LR: [0.000392, 0.000392], Avg. batch load time: 0.286, Elapsed time: 59.88
+2025-05-06 23:18:00 - [34m[1mLOGS   [0m - Epoch:   6 [    2961/10000000], loss: 0.0388, LR: [0.000395, 0.000395], Avg. batch load time: 0.191, Elapsed time: 75.26
+2025-05-06 23:18:16 - [34m[1mLOGS   [0m - Epoch:   6 [    2986/10000000], loss: 0.0329, LR: [0.000399, 0.000399], Avg. batch load time: 0.144, Elapsed time: 90.64
+2025-05-06 23:18:31 - [34m[1mLOGS   [0m - Epoch:   6 [    3011/10000000], loss: 0.028, LR: [0.000402, 0.000402], Avg. batch load time: 0.115, Elapsed time: 106.02
+2025-05-06 23:18:46 - [34m[1mLOGS   [0m - Epoch:   6 [    3036/10000000], loss: 0.0279, LR: [0.000405, 0.000405], Avg. batch load time: 0.096, Elapsed time: 121.42
+2025-05-06 23:19:02 - [34m[1mLOGS   [0m - Epoch:   6 [    3061/10000000], loss: 0.029, LR: [0.000409, 0.000409], Avg. batch load time: 0.082, Elapsed time: 136.82
+2025-05-06 23:19:17 - [34m[1mLOGS   [0m - Epoch:   6 [    3086/10000000], loss: 0.0275, LR: [0.000412, 0.000412], Avg. batch load time: 0.072, Elapsed time: 152.22
+2025-05-06 23:19:33 - [34m[1mLOGS   [0m - Epoch:   6 [    3111/10000000], loss: 0.0285, LR: [0.000415, 0.000415], Avg. batch load time: 0.064, Elapsed time: 167.64
+2025-05-06 23:19:48 - [34m[1mLOGS   [0m - Epoch:   6 [    3136/10000000], loss: 0.0271, LR: [0.000419, 0.000419], Avg. batch load time: 0.058, Elapsed time: 183.06
+2025-05-06 23:20:04 - [34m[1mLOGS   [0m - Epoch:   6 [    3161/10000000], loss: 0.026, LR: [0.000422, 0.000422], Avg. batch load time: 0.053, Elapsed time: 198.44
+2025-05-06 23:20:19 - [34m[1mLOGS   [0m - Epoch:   6 [    3186/10000000], loss: 0.0261, LR: [0.000425, 0.000425], Avg. batch load time: 0.048, Elapsed time: 213.85
+2025-05-06 23:20:34 - [34m[1mLOGS   [0m - Epoch:   6 [    3211/10000000], loss: 0.0258, LR: [0.000429, 0.000429], Avg. batch load time: 0.045, Elapsed time: 229.25
+2025-05-06 23:20:50 - [34m[1mLOGS   [0m - Epoch:   6 [    3236/10000000], loss: 0.0365, LR: [0.000432, 0.000432], Avg. batch load time: 0.041, Elapsed time: 244.64
+2025-05-06 23:21:05 - [34m[1mLOGS   [0m - Epoch:   6 [    3261/10000000], loss: 0.0374, LR: [0.000435, 0.000435], Avg. batch load time: 0.039, Elapsed time: 260.04
+2025-05-06 23:21:20 - [34m[1mLOGS   [0m - Epoch:   6 [    3286/10000000], loss: 0.0386, LR: [0.000439, 0.000439], Avg. batch load time: 0.036, Elapsed time: 275.42
+2025-05-06 23:21:36 - [34m[1mLOGS   [0m - Epoch:   6 [    3311/10000000], loss: 0.0384, LR: [0.000442, 0.000442], Avg. batch load time: 0.034, Elapsed time: 290.78
+2025-05-06 23:21:51 - [34m[1mLOGS   [0m - Epoch:   6 [    3336/10000000], loss: 0.0373, LR: [0.000445, 0.000445], Avg. batch load time: 0.032, Elapsed time: 306.17
+2025-05-06 23:22:07 - [34m[1mLOGS   [0m - Epoch:   6 [    3361/10000000], loss: 0.0399, LR: [0.000449, 0.000449], Avg. batch load time: 0.031, Elapsed time: 321.56
+2025-05-06 23:22:12 - [34m[1mLOGS   [0m - *** Training summary for epoch 6
+	 loss=0.0413
+[31m===========================================================================[0m
+2025-05-06 23:22:14 - [32m[1mINFO   [0m - Validation epoch 6
+2025-05-06 23:22:37 - [34m[1mLOGS   [0m - Epoch:   6 [     120/   33001], loss: 3.8216, top1: 0.0, top5: 100.0, LR: [0.000449, 0.000449], Avg. batch load time: 0.000, Elapsed time: 22.59
+2025-05-06 23:22:39 - [34m[1mLOGS   [0m - Epoch:   6 [    6120/   33001], loss: 1.8284, top1: 57.9575, top5: 99.2157, LR: [0.000449, 0.000449], Avg. batch load time: 0.000, Elapsed time: 24.75
+2025-05-06 23:22:40 - [34m[1mLOGS   [0m - Epoch:   6 [   12120/   33001], loss: 3.0832, top1: 54.0429, top5: 90.6766, LR: [0.000449, 0.000449], Avg. batch load time: 0.000, Elapsed time: 26.30
+2025-05-06 23:22:42 - [34m[1mLOGS   [0m - Epoch:   6 [   18120/   33001], loss: 2.8321, top1: 59.5695, top5: 85.3863, LR: [0.000449, 0.000449], Avg. batch load time: 0.000, Elapsed time: 28.28
+2025-05-06 23:22:45 - [34m[1mLOGS   [0m - Epoch:   6 [   24120/   33001], loss: 2.5174, top1: 65.3856, top5: 85.2861, LR: [0.000449, 0.000449], Avg. batch load time: 0.000, Elapsed time: 30.76
+2025-05-06 23:22:47 - [34m[1mLOGS   [0m - Epoch:   6 [   30120/   33001], loss: 2.1328, top1: 68.5425, top5: 88.1607, LR: [0.000449, 0.000449], Avg. batch load time: 0.000, Elapsed time: 33.19
+2025-05-06 23:22:49 - [34m[1mLOGS   [0m - *** Validation summary for epoch 6
+	 loss=2.0137 || top1=69.1244 || top5=89.1516
+2025-05-06 23:22:50 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 23:22:50 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 23:22:52 - [32m[1mINFO   [0m - Training epoch 7
+2025-05-06 23:23:21 - [34m[1mLOGS   [0m - Epoch:   7 [    3367/10000000], loss: 0.1557, LR: [0.000449, 0.000449], Avg. batch load time: 28.728, Elapsed time: 29.05
+2025-05-06 23:23:37 - [34m[1mLOGS   [0m - Epoch:   7 [    3392/10000000], loss: 0.1362, LR: [0.000453, 0.000453], Avg. batch load time: 0.564, Elapsed time: 45.02
+2025-05-06 23:23:53 - [34m[1mLOGS   [0m - Epoch:   7 [    3417/10000000], loss: 0.0929, LR: [0.000456, 0.000456], Avg. batch load time: 0.285, Elapsed time: 61.02
+2025-05-06 23:24:09 - [34m[1mLOGS   [0m - Epoch:   7 [    3442/10000000], loss: 0.0688, LR: [0.000459, 0.000459], Avg. batch load time: 0.191, Elapsed time: 77.02
+2025-05-06 23:24:25 - [34m[1mLOGS   [0m - Epoch:   7 [    3467/10000000], loss: 0.0573, LR: [0.000463, 0.000463], Avg. batch load time: 0.143, Elapsed time: 93.00
+2025-05-06 23:24:41 - [34m[1mLOGS   [0m - Epoch:   7 [    3492/10000000], loss: 0.0536, LR: [0.000466, 0.000466], Avg. batch load time: 0.115, Elapsed time: 108.98
+2025-05-06 23:24:57 - [34m[1mLOGS   [0m - Epoch:   7 [    3517/10000000], loss: 0.0644, LR: [0.000469, 0.000469], Avg. batch load time: 0.096, Elapsed time: 124.99
+2025-05-06 23:25:13 - [34m[1mLOGS   [0m - Epoch:   7 [    3542/10000000], loss: 0.0597, LR: [0.000473, 0.000473], Avg. batch load time: 0.082, Elapsed time: 141.04
+2025-05-06 23:25:29 - [34m[1mLOGS   [0m - Epoch:   7 [    3567/10000000], loss: 0.0562, LR: [0.000476, 0.000476], Avg. batch load time: 0.072, Elapsed time: 157.04
+2025-05-06 23:25:45 - [34m[1mLOGS   [0m - Epoch:   7 [    3592/10000000], loss: 0.0516, LR: [0.000479, 0.000479], Avg. batch load time: 0.064, Elapsed time: 173.04
+2025-05-06 23:26:01 - [34m[1mLOGS   [0m - Epoch:   7 [    3617/10000000], loss: 0.0505, LR: [0.000483, 0.000483], Avg. batch load time: 0.058, Elapsed time: 189.06
+2025-05-06 23:26:17 - [34m[1mLOGS   [0m - Epoch:   7 [    3642/10000000], loss: 0.0508, LR: [0.000486, 0.000486], Avg. batch load time: 0.052, Elapsed time: 205.06
+2025-05-06 23:26:33 - [34m[1mLOGS   [0m - Epoch:   7 [    3667/10000000], loss: 0.0514, LR: [0.000489, 0.000489], Avg. batch load time: 0.048, Elapsed time: 221.06
+2025-05-06 23:26:49 - [34m[1mLOGS   [0m - Epoch:   7 [    3692/10000000], loss: 0.0493, LR: [0.000493, 0.000493], Avg. batch load time: 0.044, Elapsed time: 237.09
+2025-05-06 23:27:05 - [34m[1mLOGS   [0m - Epoch:   7 [    3717/10000000], loss: 0.0469, LR: [0.000496, 0.000496], Avg. batch load time: 0.041, Elapsed time: 253.12
+2025-05-06 23:27:21 - [34m[1mLOGS   [0m - Epoch:   7 [    3742/10000000], loss: 0.0451, LR: [0.000499, 0.000499], Avg. batch load time: 0.039, Elapsed time: 269.13
+2025-05-06 23:27:37 - [34m[1mLOGS   [0m - Epoch:   7 [    3767/10000000], loss: 0.0475, LR: [0.000503, 0.000503], Avg. batch load time: 0.036, Elapsed time: 285.15
+2025-05-06 23:27:53 - [34m[1mLOGS   [0m - Epoch:   7 [    3792/10000000], loss: 0.0468, LR: [0.000506, 0.000506], Avg. batch load time: 0.034, Elapsed time: 301.15
+2025-05-06 23:28:09 - [34m[1mLOGS   [0m - Epoch:   7 [    3817/10000000], loss: 0.0457, LR: [0.000509, 0.000509], Avg. batch load time: 0.032, Elapsed time: 317.19
+2025-05-06 23:28:25 - [34m[1mLOGS   [0m - Epoch:   7 [    3842/10000000], loss: 0.0452, LR: [0.000513, 0.000513], Avg. batch load time: 0.031, Elapsed time: 333.19
+2025-05-06 23:28:30 - [34m[1mLOGS   [0m - *** Training summary for epoch 7
+	 loss=0.0449
+[31m===========================================================================[0m
+2025-05-06 23:28:32 - [32m[1mINFO   [0m - Validation epoch 7
+2025-05-06 23:28:55 - [34m[1mLOGS   [0m - Epoch:   7 [     120/   33001], loss: 0.0153, top1: 100.0, top5: 100.0, LR: [0.000514, 0.000514], Avg. batch load time: 0.000, Elapsed time: 22.69
+2025-05-06 23:28:57 - [34m[1mLOGS   [0m - Epoch:   7 [    6120/   33001], loss: 0.5671, top1: 93.1209, top5: 97.9085, LR: [0.000514, 0.000514], Avg. batch load time: 0.000, Elapsed time: 24.87
+2025-05-06 23:28:59 - [34m[1mLOGS   [0m - Epoch:   7 [   12120/   33001], loss: 2.4986, top1: 62.9373, top5: 90.5281, LR: [0.000514, 0.000514], Avg. batch load time: 0.000, Elapsed time: 26.43
+2025-05-06 23:29:01 - [34m[1mLOGS   [0m - Epoch:   7 [   18120/   33001], loss: 1.8302, top1: 70.3587, top5: 93.223, LR: [0.000514, 0.000514], Avg. batch load time: 0.000, Elapsed time: 28.42
+2025-05-06 23:29:03 - [34m[1mLOGS   [0m - Epoch:   7 [   24120/   33001], loss: 1.4361, top1: 75.0498, top5: 94.9005, LR: [0.000514, 0.000514], Avg. batch load time: 0.000, Elapsed time: 30.90
+2025-05-06 23:29:06 - [34m[1mLOGS   [0m - Epoch:   7 [   30120/   33001], loss: 1.2323, top1: 77.8718, top5: 95.7039, LR: [0.000514, 0.000514], Avg. batch load time: 0.000, Elapsed time: 33.32
+2025-05-06 23:29:08 - [34m[1mLOGS   [0m - *** Validation summary for epoch 7
+	 loss=1.1594 || top1=78.8587 || top5=95.9722
+2025-05-06 23:29:08 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 23:29:08 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 23:29:10 - [32m[1mINFO   [0m - Training epoch 8
+2025-05-06 23:29:39 - [34m[1mLOGS   [0m - Epoch:   8 [    3848/10000000], loss: 0.0168, LR: [0.000514, 0.000514], Avg. batch load time: 28.610, Elapsed time: 28.93
+2025-05-06 23:29:55 - [34m[1mLOGS   [0m - Epoch:   8 [    3873/10000000], loss: 0.0343, LR: [0.000517, 0.000517], Avg. batch load time: 0.561, Elapsed time: 44.96
+2025-05-06 23:30:11 - [34m[1mLOGS   [0m - Epoch:   8 [    3898/10000000], loss: 0.0643, LR: [0.00052, 0.00052], Avg. batch load time: 0.284, Elapsed time: 61.00
+2025-05-06 23:30:27 - [34m[1mLOGS   [0m - Epoch:   8 [    3923/10000000], loss: 0.0968, LR: [0.000524, 0.000524], Avg. batch load time: 0.190, Elapsed time: 77.02
+2025-05-06 23:30:43 - [34m[1mLOGS   [0m - Epoch:   8 [    3948/10000000], loss: 0.0932, LR: [0.000527, 0.000527], Avg. batch load time: 0.143, Elapsed time: 93.02
+2025-05-06 23:30:59 - [34m[1mLOGS   [0m - Epoch:   8 [    3973/10000000], loss: 0.0824, LR: [0.00053, 0.00053], Avg. batch load time: 0.114, Elapsed time: 109.00
+2025-05-06 23:31:15 - [34m[1mLOGS   [0m - Epoch:   8 [    3998/10000000], loss: 0.0759, LR: [0.000534, 0.000534], Avg. batch load time: 0.095, Elapsed time: 125.02
+2025-05-06 23:31:31 - [34m[1mLOGS   [0m - Epoch:   8 [    4023/10000000], loss: 0.0673, LR: [0.000537, 0.000537], Avg. batch load time: 0.082, Elapsed time: 141.01
+2025-05-06 23:31:47 - [34m[1mLOGS   [0m - Epoch:   8 [    4048/10000000], loss: 0.0659, LR: [0.00054, 0.00054], Avg. batch load time: 0.072, Elapsed time: 157.03
+2025-05-06 23:32:03 - [34m[1mLOGS   [0m - Epoch:   8 [    4073/10000000], loss: 0.0664, LR: [0.000544, 0.000544], Avg. batch load time: 0.064, Elapsed time: 173.05
+2025-05-06 23:32:19 - [34m[1mLOGS   [0m - Epoch:   8 [    4098/10000000], loss: 0.0716, LR: [0.000547, 0.000547], Avg. batch load time: 0.057, Elapsed time: 189.06
+2025-05-06 23:32:35 - [34m[1mLOGS   [0m - Epoch:   8 [    4123/10000000], loss: 0.0734, LR: [0.00055, 0.00055], Avg. batch load time: 0.052, Elapsed time: 205.05
+2025-05-06 23:32:51 - [34m[1mLOGS   [0m - Epoch:   8 [    4148/10000000], loss: 0.0689, LR: [0.000554, 0.000554], Avg. batch load time: 0.048, Elapsed time: 221.05
+2025-05-06 23:33:07 - [34m[1mLOGS   [0m - Epoch:   8 [    4173/10000000], loss: 0.0664, LR: [0.000557, 0.000557], Avg. batch load time: 0.044, Elapsed time: 237.04
+2025-05-06 23:33:23 - [34m[1mLOGS   [0m - Epoch:   8 [    4198/10000000], loss: 0.0641, LR: [0.00056, 0.00056], Avg. batch load time: 0.041, Elapsed time: 253.04
+2025-05-06 23:33:39 - [34m[1mLOGS   [0m - Epoch:   8 [    4223/10000000], loss: 0.0621, LR: [0.000563, 0.000563], Avg. batch load time: 0.038, Elapsed time: 269.04
+2025-05-06 23:33:55 - [34m[1mLOGS   [0m - Epoch:   8 [    4248/10000000], loss: 0.0702, LR: [0.000567, 0.000567], Avg. batch load time: 0.036, Elapsed time: 285.03
+2025-05-06 23:34:11 - [34m[1mLOGS   [0m - Epoch:   8 [    4273/10000000], loss: 0.0706, LR: [0.00057, 0.00057], Avg. batch load time: 0.034, Elapsed time: 301.05
+2025-05-06 23:34:27 - [34m[1mLOGS   [0m - Epoch:   8 [    4298/10000000], loss: 0.0711, LR: [0.000573, 0.000573], Avg. batch load time: 0.032, Elapsed time: 317.01
+2025-05-06 23:34:43 - [34m[1mLOGS   [0m - Epoch:   8 [    4323/10000000], loss: 0.0707, LR: [0.000577, 0.000577], Avg. batch load time: 0.030, Elapsed time: 333.02
+2025-05-06 23:34:48 - [34m[1mLOGS   [0m - *** Training summary for epoch 8
+	 loss=0.0706
+[31m===========================================================================[0m
+2025-05-06 23:34:51 - [32m[1mINFO   [0m - Validation epoch 8
+2025-05-06 23:35:13 - [34m[1mLOGS   [0m - Epoch:   8 [     120/   33001], loss: 3.2671, top1: 20.8333, top5: 100.0, LR: [0.000578, 0.000578], Avg. batch load time: 0.000, Elapsed time: 22.51
+2025-05-06 23:35:15 - [34m[1mLOGS   [0m - Epoch:   8 [    6120/   33001], loss: 1.1009, top1: 71.6993, top5: 99.8366, LR: [0.000578, 0.000578], Avg. batch load time: 0.000, Elapsed time: 24.68
+2025-05-06 23:35:17 - [34m[1mLOGS   [0m - Epoch:   8 [   12120/   33001], loss: 2.2714, top1: 63.9356, top5: 89.1832, LR: [0.000578, 0.000578], Avg. batch load time: 0.000, Elapsed time: 26.24
+2025-05-06 23:35:19 - [34m[1mLOGS   [0m - Epoch:   8 [   18120/   33001], loss: 1.9712, top1: 66.3079, top5: 88.979, LR: [0.000578, 0.000578], Avg. batch load time: 0.000, Elapsed time: 28.22
+2025-05-06 23:35:21 - [34m[1mLOGS   [0m - Epoch:   8 [   24120/   33001], loss: 1.5839, top1: 71.8076, top5: 91.4386, LR: [0.000578, 0.000578], Avg. batch load time: 0.000, Elapsed time: 30.71
+2025-05-06 23:35:24 - [34m[1mLOGS   [0m - Epoch:   8 [   30120/   33001], loss: 1.6189, top1: 70.4515, top5: 89.7776, LR: [0.000578, 0.000578], Avg. batch load time: 0.000, Elapsed time: 33.13
+2025-05-06 23:35:26 - [34m[1mLOGS   [0m - *** Validation summary for epoch 8
+	 loss=2.1139 || top1=66.3134 || top5=85.465
+2025-05-06 23:35:26 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 23:35:26 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 23:35:28 - [32m[1mINFO   [0m - Training epoch 9
+2025-05-06 23:35:57 - [34m[1mLOGS   [0m - Epoch:   9 [    4329/10000000], loss: 0.0146, LR: [0.000578, 0.000578], Avg. batch load time: 28.545, Elapsed time: 28.87
+2025-05-06 23:36:13 - [34m[1mLOGS   [0m - Epoch:   9 [    4354/10000000], loss: 0.0179, LR: [0.000581, 0.000581], Avg. batch load time: 0.560, Elapsed time: 44.87
+2025-05-06 23:36:29 - [34m[1mLOGS   [0m - Epoch:   9 [    4379/10000000], loss: 0.0162, LR: [0.000584, 0.000584], Avg. batch load time: 0.283, Elapsed time: 60.87
+2025-05-06 23:36:45 - [34m[1mLOGS   [0m - Epoch:   9 [    4404/10000000], loss: 0.0158, LR: [0.000588, 0.000588], Avg. batch load time: 0.189, Elapsed time: 76.86
+2025-05-06 23:37:01 - [34m[1mLOGS   [0m - Epoch:   9 [    4429/10000000], loss: 0.016, LR: [0.000591, 0.000591], Avg. batch load time: 0.142, Elapsed time: 92.88
+2025-05-06 23:37:17 - [34m[1mLOGS   [0m - Epoch:   9 [    4454/10000000], loss: 0.0141, LR: [0.000594, 0.000594], Avg. batch load time: 0.114, Elapsed time: 108.87
+2025-05-06 23:37:33 - [34m[1mLOGS   [0m - Epoch:   9 [    4479/10000000], loss: 0.0131, LR: [0.000598, 0.000598], Avg. batch load time: 0.095, Elapsed time: 124.91
+2025-05-06 23:37:49 - [34m[1mLOGS   [0m - Epoch:   9 [    4504/10000000], loss: 0.0128, LR: [0.000601, 0.000601], Avg. batch load time: 0.082, Elapsed time: 140.93
+2025-05-06 23:38:05 - [34m[1mLOGS   [0m - Epoch:   9 [    4529/10000000], loss: 0.0123, LR: [0.000604, 0.000604], Avg. batch load time: 0.071, Elapsed time: 156.96
+2025-05-06 23:38:21 - [34m[1mLOGS   [0m - Epoch:   9 [    4554/10000000], loss: 0.0116, LR: [0.000608, 0.000608], Avg. batch load time: 0.064, Elapsed time: 172.95
+2025-05-06 23:38:37 - [34m[1mLOGS   [0m - Epoch:   9 [    4579/10000000], loss: 0.0116, LR: [0.000611, 0.000611], Avg. batch load time: 0.057, Elapsed time: 188.93
+2025-05-06 23:38:53 - [34m[1mLOGS   [0m - Epoch:   9 [    4604/10000000], loss: 0.012, LR: [0.000614, 0.000614], Avg. batch load time: 0.052, Elapsed time: 204.91
+2025-05-06 23:39:09 - [34m[1mLOGS   [0m - Epoch:   9 [    4629/10000000], loss: 0.0127, LR: [0.000618, 0.000618], Avg. batch load time: 0.048, Elapsed time: 220.92
+2025-05-06 23:39:25 - [34m[1mLOGS   [0m - Epoch:   9 [    4654/10000000], loss: 0.0133, LR: [0.000621, 0.000621], Avg. batch load time: 0.044, Elapsed time: 236.90
+2025-05-06 23:39:41 - [34m[1mLOGS   [0m - Epoch:   9 [    4679/10000000], loss: 0.0148, LR: [0.000624, 0.000624], Avg. batch load time: 0.041, Elapsed time: 252.89
+2025-05-06 23:39:57 - [34m[1mLOGS   [0m - Epoch:   9 [    4704/10000000], loss: 0.0163, LR: [0.000628, 0.000628], Avg. batch load time: 0.038, Elapsed time: 268.89
+2025-05-06 23:40:13 - [34m[1mLOGS   [0m - Epoch:   9 [    4729/10000000], loss: 0.0159, LR: [0.000631, 0.000631], Avg. batch load time: 0.036, Elapsed time: 284.88
+2025-05-06 23:40:29 - [34m[1mLOGS   [0m - Epoch:   9 [    4754/10000000], loss: 0.0156, LR: [0.000634, 0.000634], Avg. batch load time: 0.034, Elapsed time: 300.85
+2025-05-06 23:40:45 - [34m[1mLOGS   [0m - Epoch:   9 [    4779/10000000], loss: 0.0159, LR: [0.000638, 0.000638], Avg. batch load time: 0.032, Elapsed time: 316.86
+2025-05-06 23:41:01 - [34m[1mLOGS   [0m - Epoch:   9 [    4804/10000000], loss: 0.0166, LR: [0.000641, 0.000641], Avg. batch load time: 0.030, Elapsed time: 332.86
+2025-05-06 23:41:06 - [34m[1mLOGS   [0m - *** Training summary for epoch 9
+	 loss=0.0166
+[31m===========================================================================[0m
+2025-05-06 23:41:09 - [32m[1mINFO   [0m - Validation epoch 9
+2025-05-06 23:41:31 - [34m[1mLOGS   [0m - Epoch:   9 [     120/   33001], loss: 0.0662, top1: 100.0, top5: 100.0, LR: [0.000642, 0.000642], Avg. batch load time: 0.000, Elapsed time: 22.44
+2025-05-06 23:41:33 - [34m[1mLOGS   [0m - Epoch:   9 [    6120/   33001], loss: 0.3162, top1: 94.9673, top5: 99.6569, LR: [0.000642, 0.000642], Avg. batch load time: 0.000, Elapsed time: 24.61
+2025-05-06 23:41:35 - [34m[1mLOGS   [0m - Epoch:   9 [   12120/   33001], loss: 1.4727, top1: 79.2327, top5: 95.495, LR: [0.000642, 0.000642], Avg. batch load time: 0.000, Elapsed time: 26.17
+2025-05-06 23:41:37 - [34m[1mLOGS   [0m - Epoch:   9 [   18120/   33001], loss: 1.2333, top1: 79.6247, top5: 94.4812, LR: [0.000642, 0.000642], Avg. batch load time: 0.000, Elapsed time: 28.14
+2025-05-06 23:41:39 - [34m[1mLOGS   [0m - Epoch:   9 [   24120/   33001], loss: 0.9473, top1: 84.034, top5: 95.8541, LR: [0.000642, 0.000642], Avg. batch load time: 0.000, Elapsed time: 30.62
+2025-05-06 23:41:42 - [34m[1mLOGS   [0m - Epoch:   9 [   30120/   33001], loss: 0.7652, top1: 87.0551, top5: 96.6733, LR: [0.000642, 0.000642], Avg. batch load time: 0.000, Elapsed time: 33.04
+2025-05-06 23:41:44 - [34m[1mLOGS   [0m - *** Validation summary for epoch 9
+	 loss=0.7418 || top1=87.2403 || top5=96.8539
+2025-05-06 23:41:44 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 23:41:44 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 23:41:46 - [32m[1mINFO   [0m - Training epoch 10
+2025-05-06 23:42:15 - [34m[1mLOGS   [0m - Epoch:  10 [    4810/10000000], loss: 0.0061, LR: [0.000642, 0.000642], Avg. batch load time: 28.555, Elapsed time: 28.87
+2025-05-06 23:42:31 - [34m[1mLOGS   [0m - Epoch:  10 [    4835/10000000], loss: 0.0211, LR: [0.000645, 0.000645], Avg. batch load time: 0.560, Elapsed time: 44.84
+2025-05-06 23:42:47 - [34m[1mLOGS   [0m - Epoch:  10 [    4860/10000000], loss: 0.1581, LR: [0.000648, 0.000648], Avg. batch load time: 0.283, Elapsed time: 60.79
+2025-05-06 23:43:03 - [34m[1mLOGS   [0m - Epoch:  10 [    4885/10000000], loss: 0.1756, LR: [0.000652, 0.000652], Avg. batch load time: 0.189, Elapsed time: 76.78
+2025-05-06 23:43:19 - [34m[1mLOGS   [0m - Epoch:  10 [    4910/10000000], loss: 0.1463, LR: [0.000655, 0.000655], Avg. batch load time: 0.142, Elapsed time: 92.78
+2025-05-06 23:43:35 - [34m[1mLOGS   [0m - Epoch:  10 [    4935/10000000], loss: 0.1251, LR: [0.000658, 0.000658], Avg. batch load time: 0.114, Elapsed time: 108.79
+2025-05-06 23:43:51 - [34m[1mLOGS   [0m - Epoch:  10 [    4960/10000000], loss: 0.1067, LR: [0.000662, 0.000662], Avg. batch load time: 0.095, Elapsed time: 124.79
+2025-05-06 23:44:07 - [34m[1mLOGS   [0m - Epoch:  10 [    4985/10000000], loss: 0.0938, LR: [0.000665, 0.000665], Avg. batch load time: 0.082, Elapsed time: 140.81
+2025-05-06 23:44:23 - [34m[1mLOGS   [0m - Epoch:  10 [    5010/10000000], loss: 0.087, LR: [0.000668, 0.000668], Avg. batch load time: 0.071, Elapsed time: 156.80
+2025-05-06 23:44:39 - [34m[1mLOGS   [0m - Epoch:  10 [    5035/10000000], loss: 0.0912, LR: [0.000672, 0.000672], Avg. batch load time: 0.064, Elapsed time: 172.79
+2025-05-06 23:44:55 - [34m[1mLOGS   [0m - Epoch:  10 [    5060/10000000], loss: 0.0866, LR: [0.000675, 0.000675], Avg. batch load time: 0.057, Elapsed time: 188.79
+2025-05-06 23:45:11 - [34m[1mLOGS   [0m - Epoch:  10 [    5085/10000000], loss: 0.0808, LR: [0.000678, 0.000678], Avg. batch load time: 0.052, Elapsed time: 204.80
+2025-05-06 23:45:27 - [34m[1mLOGS   [0m - Epoch:  10 [    5110/10000000], loss: 0.0779, LR: [0.000682, 0.000682], Avg. batch load time: 0.048, Elapsed time: 220.81
+2025-05-06 23:45:43 - [34m[1mLOGS   [0m - Epoch:  10 [    5135/10000000], loss: 0.0743, LR: [0.000685, 0.000685], Avg. batch load time: 0.044, Elapsed time: 236.82
+2025-05-06 23:45:59 - [34m[1mLOGS   [0m - Epoch:  10 [    5160/10000000], loss: 0.0954, LR: [0.000688, 0.000688], Avg. batch load time: 0.041, Elapsed time: 252.82
+2025-05-06 23:46:15 - [34m[1mLOGS   [0m - Epoch:  10 [    5185/10000000], loss: 0.0953, LR: [0.000692, 0.000692], Avg. batch load time: 0.038, Elapsed time: 268.86
+2025-05-06 23:46:31 - [34m[1mLOGS   [0m - Epoch:  10 [    5210/10000000], loss: 0.0919, LR: [0.000695, 0.000695], Avg. batch load time: 0.036, Elapsed time: 284.88
+2025-05-06 23:46:47 - [34m[1mLOGS   [0m - Epoch:  10 [    5235/10000000], loss: 0.088, LR: [0.000698, 0.000698], Avg. batch load time: 0.034, Elapsed time: 300.90
+2025-05-06 23:47:03 - [34m[1mLOGS   [0m - Epoch:  10 [    5260/10000000], loss: 0.0843, LR: [0.000702, 0.000702], Avg. batch load time: 0.032, Elapsed time: 316.95
+2025-05-06 23:47:19 - [34m[1mLOGS   [0m - Epoch:  10 [    5285/10000000], loss: 0.0807, LR: [0.000705, 0.000705], Avg. batch load time: 0.030, Elapsed time: 332.95
+2025-05-06 23:47:24 - [34m[1mLOGS   [0m - *** Training summary for epoch 10
+	 loss=0.08
+[31m===========================================================================[0m
+2025-05-06 23:47:27 - [32m[1mINFO   [0m - Validation epoch 10
+2025-05-06 23:47:49 - [34m[1mLOGS   [0m - Epoch:  10 [     120/   33001], loss: 11.1853, top1: 0.0, top5: 1.6667, LR: [0.000706, 0.000706], Avg. batch load time: 0.000, Elapsed time: 22.57
+2025-05-06 23:47:51 - [34m[1mLOGS   [0m - Epoch:  10 [    6120/   33001], loss: 2.144, top1: 66.5196, top5: 84.3301, LR: [0.000706, 0.000706], Avg. batch load time: 0.000, Elapsed time: 24.73
+2025-05-06 23:47:53 - [34m[1mLOGS   [0m - Epoch:  10 [   12120/   33001], loss: 2.6725, top1: 64.1337, top5: 81.8234, LR: [0.000706, 0.000706], Avg. batch load time: 0.000, Elapsed time: 26.29
+2025-05-06 23:47:55 - [34m[1mLOGS   [0m - Epoch:  10 [   18120/   33001], loss: 2.7468, top1: 64.9117, top5: 78.6203, LR: [0.000706, 0.000706], Avg. batch load time: 0.000, Elapsed time: 28.26
+2025-05-06 23:47:57 - [34m[1mLOGS   [0m - Epoch:  10 [   24120/   33001], loss: 2.0884, top1: 73.1551, top5: 83.8599, LR: [0.000706, 0.000706], Avg. batch load time: 0.000, Elapsed time: 30.75
+2025-05-06 23:48:00 - [34m[1mLOGS   [0m - Epoch:  10 [   30120/   33001], loss: 1.7087, top1: 77.656, top5: 87.0651, LR: [0.000706, 0.000706], Avg. batch load time: 0.000, Elapsed time: 33.18
+2025-05-06 23:48:02 - [34m[1mLOGS   [0m - *** Validation summary for epoch 10
+	 loss=1.6187 || top1=78.6383 || top5=87.8593
+2025-05-06 23:48:02 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 23:48:02 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 23:48:04 - [32m[1mINFO   [0m - Training epoch 11
+2025-05-06 23:48:33 - [34m[1mLOGS   [0m - Epoch:  11 [    5291/10000000], loss: 0.0026, LR: [0.000706, 0.000706], Avg. batch load time: 28.566, Elapsed time: 28.89
+2025-05-06 23:48:49 - [34m[1mLOGS   [0m - Epoch:  11 [    5316/10000000], loss: 0.0152, LR: [0.000709, 0.000709], Avg. batch load time: 0.560, Elapsed time: 44.86
+2025-05-06 23:49:05 - [34m[1mLOGS   [0m - Epoch:  11 [    5341/10000000], loss: 0.017, LR: [0.000712, 0.000712], Avg. batch load time: 0.283, Elapsed time: 60.85
+2025-05-06 23:49:21 - [34m[1mLOGS   [0m - Epoch:  11 [    5366/10000000], loss: 0.0162, LR: [0.000716, 0.000716], Avg. batch load time: 0.189, Elapsed time: 76.83
+2025-05-06 23:49:37 - [34m[1mLOGS   [0m - Epoch:  11 [    5391/10000000], loss: 0.0201, LR: [0.000719, 0.000719], Avg. batch load time: 0.142, Elapsed time: 92.83
+2025-05-06 23:49:53 - [34m[1mLOGS   [0m - Epoch:  11 [    5416/10000000], loss: 0.0235, LR: [0.000722, 0.000722], Avg. batch load time: 0.114, Elapsed time: 108.84
+2025-05-06 23:50:09 - [34m[1mLOGS   [0m - Epoch:  11 [    5441/10000000], loss: 0.0225, LR: [0.000726, 0.000726], Avg. batch load time: 0.095, Elapsed time: 124.86
+2025-05-06 23:50:25 - [34m[1mLOGS   [0m - Epoch:  11 [    5466/10000000], loss: 0.021, LR: [0.000729, 0.000729], Avg. batch load time: 0.082, Elapsed time: 140.86
+2025-05-06 23:50:41 - [34m[1mLOGS   [0m - Epoch:  11 [    5491/10000000], loss: 0.0202, LR: [0.000732, 0.000732], Avg. batch load time: 0.071, Elapsed time: 156.86
+2025-05-06 23:50:57 - [34m[1mLOGS   [0m - Epoch:  11 [    5516/10000000], loss: 0.02, LR: [0.000736, 0.000736], Avg. batch load time: 0.064, Elapsed time: 172.88
+2025-05-06 23:51:13 - [34m[1mLOGS   [0m - Epoch:  11 [    5541/10000000], loss: 0.0211, LR: [0.000739, 0.000739], Avg. batch load time: 0.057, Elapsed time: 188.91
+2025-05-06 23:51:29 - [34m[1mLOGS   [0m - Epoch:  11 [    5566/10000000], loss: 0.0211, LR: [0.000742, 0.000742], Avg. batch load time: 0.052, Elapsed time: 204.92
+2025-05-06 23:51:45 - [34m[1mLOGS   [0m - Epoch:  11 [    5591/10000000], loss: 0.0204, LR: [0.000746, 0.000746], Avg. batch load time: 0.048, Elapsed time: 220.90
+2025-05-06 23:52:01 - [34m[1mLOGS   [0m - Epoch:  11 [    5616/10000000], loss: 0.0208, LR: [0.000749, 0.000749], Avg. batch load time: 0.044, Elapsed time: 236.98
+2025-05-06 23:52:17 - [34m[1mLOGS   [0m - Epoch:  11 [    5641/10000000], loss: 0.0212, LR: [0.000752, 0.000752], Avg. batch load time: 0.041, Elapsed time: 252.99
+2025-05-06 23:52:33 - [34m[1mLOGS   [0m - Epoch:  11 [    5666/10000000], loss: 0.0221, LR: [0.000756, 0.000756], Avg. batch load time: 0.038, Elapsed time: 268.99
+2025-05-06 23:52:49 - [34m[1mLOGS   [0m - Epoch:  11 [    5691/10000000], loss: 0.0219, LR: [0.000759, 0.000759], Avg. batch load time: 0.036, Elapsed time: 284.99
+2025-05-06 23:53:05 - [34m[1mLOGS   [0m - Epoch:  11 [    5716/10000000], loss: 0.0219, LR: [0.000762, 0.000762], Avg. batch load time: 0.034, Elapsed time: 301.00
+2025-05-06 23:53:21 - [34m[1mLOGS   [0m - Epoch:  11 [    5741/10000000], loss: 0.0218, LR: [0.000766, 0.000766], Avg. batch load time: 0.032, Elapsed time: 316.97
+2025-05-06 23:53:37 - [34m[1mLOGS   [0m - Epoch:  11 [    5766/10000000], loss: 0.0236, LR: [0.000769, 0.000769], Avg. batch load time: 0.030, Elapsed time: 333.00
+2025-05-06 23:53:42 - [34m[1mLOGS   [0m - *** Training summary for epoch 11
+	 loss=0.0255
+[31m===========================================================================[0m
+2025-05-06 23:53:45 - [32m[1mINFO   [0m - Validation epoch 11
+2025-05-06 23:54:07 - [34m[1mLOGS   [0m - Epoch:  11 [     120/   33001], loss: 10.6029, top1: 10.8333, top5: 45.8333, LR: [0.00077, 0.00077], Avg. batch load time: 0.000, Elapsed time: 22.51
+2025-05-06 23:54:09 - [34m[1mLOGS   [0m - Epoch:  11 [    6120/   33001], loss: 2.1833, top1: 76.7157, top5: 92.5163, LR: [0.00077, 0.00077], Avg. batch load time: 0.000, Elapsed time: 24.68
+2025-05-06 23:54:11 - [34m[1mLOGS   [0m - Epoch:  11 [   12120/   33001], loss: 2.569, top1: 69.1089, top5: 94.5545, LR: [0.00077, 0.00077], Avg. batch load time: 0.000, Elapsed time: 26.23
+2025-05-06 23:54:13 - [34m[1mLOGS   [0m - Epoch:  11 [   18120/   33001], loss: 2.4087, top1: 68.7804, top5: 91.0817, LR: [0.00077, 0.00077], Avg. batch load time: 0.000, Elapsed time: 28.22
+2025-05-06 23:54:15 - [34m[1mLOGS   [0m - Epoch:  11 [   24120/   33001], loss: 1.9454, top1: 70.7504, top5: 93.3002, LR: [0.00077, 0.00077], Avg. batch load time: 0.000, Elapsed time: 30.71
+2025-05-06 23:54:18 - [34m[1mLOGS   [0m - Epoch:  11 [   30120/   33001], loss: 1.8145, top1: 71.2384, top5: 92.7092, LR: [0.00077, 0.00077], Avg. batch load time: 0.000, Elapsed time: 33.12
+2025-05-06 23:54:20 - [34m[1mLOGS   [0m - *** Validation summary for epoch 11
+	 loss=1.9143 || top1=69.8188 || top5=92.9197
+2025-05-06 23:54:20 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-06 23:54:20 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-06 23:54:22 - [32m[1mINFO   [0m - Training epoch 12
+2025-05-06 23:54:51 - [34m[1mLOGS   [0m - Epoch:  12 [    5772/10000000], loss: 0.2169, LR: [0.00077, 0.00077], Avg. batch load time: 28.609, Elapsed time: 28.93
+2025-05-06 23:55:07 - [34m[1mLOGS   [0m - Epoch:  12 [    5797/10000000], loss: 0.1445, LR: [0.000773, 0.000773], Avg. batch load time: 0.561, Elapsed time: 44.96
+2025-05-06 23:55:23 - [34m[1mLOGS   [0m - Epoch:  12 [    5822/10000000], loss: 0.148, LR: [0.000776, 0.000776], Avg. batch load time: 0.283, Elapsed time: 60.95
+2025-05-06 23:55:39 - [34m[1mLOGS   [0m - Epoch:  12 [    5847/10000000], loss: 0.1717, LR: [0.00078, 0.00078], Avg. batch load time: 0.190, Elapsed time: 76.95
+2025-05-06 23:55:55 - [34m[1mLOGS   [0m - Epoch:  12 [    5872/10000000], loss: 0.1771, LR: [0.000783, 0.000783], Avg. batch load time: 0.143, Elapsed time: 92.95
+2025-05-06 23:56:11 - [34m[1mLOGS   [0m - Epoch:  12 [    5897/10000000], loss: 0.1503, LR: [0.000786, 0.000786], Avg. batch load time: 0.114, Elapsed time: 108.93
+2025-05-06 23:56:27 - [34m[1mLOGS   [0m - Epoch:  12 [    5922/10000000], loss: 0.1308, LR: [0.00079, 0.00079], Avg. batch load time: 0.095, Elapsed time: 124.92
+2025-05-06 23:56:43 - [34m[1mLOGS   [0m - Epoch:  12 [    5947/10000000], loss: 0.116, LR: [0.000793, 0.000793], Avg. batch load time: 0.082, Elapsed time: 140.94
+2025-05-06 23:56:59 - [34m[1mLOGS   [0m - Epoch:  12 [    5972/10000000], loss: 0.1032, LR: [0.000796, 0.000796], Avg. batch load time: 0.072, Elapsed time: 156.94
+2025-05-06 23:57:15 - [34m[1mLOGS   [0m - Epoch:  12 [    5997/10000000], loss: 0.0952, LR: [0.0008, 0.0008], Avg. batch load time: 0.064, Elapsed time: 172.94
+2025-05-06 23:57:31 - [34m[1mLOGS   [0m - Epoch:  12 [    6022/10000000], loss: 0.0887, LR: [0.000803, 0.000803], Avg. batch load time: 0.057, Elapsed time: 188.93
+2025-05-06 23:57:47 - [34m[1mLOGS   [0m - Epoch:  12 [    6047/10000000], loss: 0.0826, LR: [0.000806, 0.000806], Avg. batch load time: 0.052, Elapsed time: 204.92
+2025-05-06 23:58:03 - [34m[1mLOGS   [0m - Epoch:  12 [    6072/10000000], loss: 0.0771, LR: [0.00081, 0.00081], Avg. batch load time: 0.048, Elapsed time: 220.90
+2025-05-06 23:58:19 - [34m[1mLOGS   [0m - Epoch:  12 [    6097/10000000], loss: 0.0721, LR: [0.000813, 0.000813], Avg. batch load time: 0.044, Elapsed time: 236.90
+2025-05-06 23:58:35 - [34m[1mLOGS   [0m - Epoch:  12 [    6122/10000000], loss: 0.0677, LR: [0.000816, 0.000816], Avg. batch load time: 0.041, Elapsed time: 252.91
+2025-05-06 23:58:51 - [34m[1mLOGS   [0m - Epoch:  12 [    6147/10000000], loss: 0.0635, LR: [0.00082, 0.00082], Avg. batch load time: 0.038, Elapsed time: 268.89
+2025-05-06 23:59:07 - [34m[1mLOGS   [0m - Epoch:  12 [    6172/10000000], loss: 0.0655, LR: [0.000823, 0.000823], Avg. batch load time: 0.036, Elapsed time: 284.87
+2025-05-06 23:59:23 - [34m[1mLOGS   [0m - Epoch:  12 [    6197/10000000], loss: 0.066, LR: [0.000826, 0.000826], Avg. batch load time: 0.034, Elapsed time: 300.87
+2025-05-06 23:59:39 - [34m[1mLOGS   [0m - Epoch:  12 [    6222/10000000], loss: 0.0658, LR: [0.00083, 0.00083], Avg. batch load time: 0.032, Elapsed time: 316.87
+2025-05-06 23:59:55 - [34m[1mLOGS   [0m - Epoch:  12 [    6247/10000000], loss: 0.065, LR: [0.000833, 0.000833], Avg. batch load time: 0.030, Elapsed time: 332.88
+2025-05-07 00:00:00 - [34m[1mLOGS   [0m - *** Training summary for epoch 12
+	 loss=0.0648
+[31m===========================================================================[0m
+2025-05-07 00:00:03 - [32m[1mINFO   [0m - Validation epoch 12
+2025-05-07 00:00:25 - [34m[1mLOGS   [0m - Epoch:  12 [     120/   33001], loss: 7.9746, top1: 0.0, top5: 100.0, LR: [0.000834, 0.000834], Avg. batch load time: 0.000, Elapsed time: 22.61
+2025-05-07 00:00:27 - [34m[1mLOGS   [0m - Epoch:  12 [    6120/   33001], loss: 1.7593, top1: 70.9641, top5: 99.9183, LR: [0.000834, 0.000834], Avg. batch load time: 0.000, Elapsed time: 24.79
+2025-05-07 00:00:29 - [34m[1mLOGS   [0m - Epoch:  12 [   12120/   33001], loss: 3.1976, top1: 66.8812, top5: 94.0182, LR: [0.000834, 0.000834], Avg. batch load time: 0.000, Elapsed time: 26.35
+2025-05-07 00:00:31 - [34m[1mLOGS   [0m - Epoch:  12 [   18120/   33001], loss: 2.5446, top1: 70.4856, top5: 95.6788, LR: [0.000834, 0.000834], Avg. batch load time: 0.000, Elapsed time: 28.32
+2025-05-07 00:00:33 - [34m[1mLOGS   [0m - Epoch:  12 [   24120/   33001], loss: 2.225, top1: 73.2836, top5: 96.7289, LR: [0.000834, 0.000834], Avg. batch load time: 0.000, Elapsed time: 30.80
+2025-05-07 00:00:36 - [34m[1mLOGS   [0m - Epoch:  12 [   30120/   33001], loss: 1.8667, top1: 74.5916, top5: 97.2078, LR: [0.000834, 0.000834], Avg. batch load time: 0.000, Elapsed time: 33.23
+2025-05-07 00:00:38 - [34m[1mLOGS   [0m - *** Validation summary for epoch 12
+	 loss=2.3396 || top1=71.0175 || top5=95.5857
+2025-05-07 00:00:38 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 00:00:38 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-07 00:00:40 - [32m[1mINFO   [0m - Training epoch 13
+2025-05-07 00:01:09 - [34m[1mLOGS   [0m - Epoch:  13 [    6253/10000000], loss: 0.0349, LR: [0.000834, 0.000834], Avg. batch load time: 28.632, Elapsed time: 28.95
+2025-05-07 00:01:25 - [34m[1mLOGS   [0m - Epoch:  13 [    6278/10000000], loss: 0.0401, LR: [0.000837, 0.000837], Avg. batch load time: 0.562, Elapsed time: 44.93
+2025-05-07 00:01:41 - [34m[1mLOGS   [0m - Epoch:  13 [    6303/10000000], loss: 0.0369, LR: [0.000841, 0.000841], Avg. batch load time: 0.284, Elapsed time: 60.92
+2025-05-07 00:01:57 - [34m[1mLOGS   [0m - Epoch:  13 [    6328/10000000], loss: 0.035, LR: [0.000844, 0.000844], Avg. batch load time: 0.190, Elapsed time: 76.89
+2025-05-07 00:02:13 - [34m[1mLOGS   [0m - Epoch:  13 [    6353/10000000], loss: 0.0408, LR: [0.000847, 0.000847], Avg. batch load time: 0.143, Elapsed time: 92.87
+2025-05-07 00:02:29 - [34m[1mLOGS   [0m - Epoch:  13 [    6378/10000000], loss: 0.0428, LR: [0.000851, 0.000851], Avg. batch load time: 0.114, Elapsed time: 108.86
+2025-05-07 00:02:45 - [34m[1mLOGS   [0m - Epoch:  13 [    6403/10000000], loss: 0.0453, LR: [0.000854, 0.000854], Avg. batch load time: 0.095, Elapsed time: 124.83
+2025-05-07 00:03:01 - [34m[1mLOGS   [0m - Epoch:  13 [    6428/10000000], loss: 0.0459, LR: [0.000857, 0.000857], Avg. batch load time: 0.082, Elapsed time: 140.83
+2025-05-07 00:03:17 - [34m[1mLOGS   [0m - Epoch:  13 [    6453/10000000], loss: 0.0509, LR: [0.000861, 0.000861], Avg. batch load time: 0.072, Elapsed time: 156.82
+2025-05-07 00:03:33 - [34m[1mLOGS   [0m - Epoch:  13 [    6478/10000000], loss: 0.0532, LR: [0.000864, 0.000864], Avg. batch load time: 0.064, Elapsed time: 172.82
+2025-05-07 00:03:49 - [34m[1mLOGS   [0m - Epoch:  13 [    6503/10000000], loss: 0.0534, LR: [0.000867, 0.000867], Avg. batch load time: 0.057, Elapsed time: 188.80
+2025-05-07 00:04:05 - [34m[1mLOGS   [0m - Epoch:  13 [    6528/10000000], loss: 0.0526, LR: [0.000871, 0.000871], Avg. batch load time: 0.052, Elapsed time: 204.81
+2025-05-07 00:04:21 - [34m[1mLOGS   [0m - Epoch:  13 [    6553/10000000], loss: 0.052, LR: [0.000874, 0.000874], Avg. batch load time: 0.048, Elapsed time: 220.81
+2025-05-07 00:04:37 - [34m[1mLOGS   [0m - Epoch:  13 [    6578/10000000], loss: 0.0521, LR: [0.000877, 0.000877], Avg. batch load time: 0.044, Elapsed time: 236.81
+2025-05-07 00:04:53 - [34m[1mLOGS   [0m - Epoch:  13 [    6603/10000000], loss: 0.051, LR: [0.000881, 0.000881], Avg. batch load time: 0.041, Elapsed time: 252.81
+2025-05-07 00:05:09 - [34m[1mLOGS   [0m - Epoch:  13 [    6628/10000000], loss: 0.0504, LR: [0.000884, 0.000884], Avg. batch load time: 0.038, Elapsed time: 268.82
+2025-05-07 00:05:25 - [34m[1mLOGS   [0m - Epoch:  13 [    6653/10000000], loss: 0.0499, LR: [0.000887, 0.000887], Avg. batch load time: 0.036, Elapsed time: 284.82
+2025-05-07 00:05:41 - [34m[1mLOGS   [0m - Epoch:  13 [    6678/10000000], loss: 0.0507, LR: [0.000891, 0.000891], Avg. batch load time: 0.034, Elapsed time: 300.82
+2025-05-07 00:05:57 - [34m[1mLOGS   [0m - Epoch:  13 [    6703/10000000], loss: 0.0529, LR: [0.000894, 0.000894], Avg. batch load time: 0.032, Elapsed time: 316.81
+2025-05-07 00:06:13 - [34m[1mLOGS   [0m - Epoch:  13 [    6728/10000000], loss: 0.054, LR: [0.000897, 0.000897], Avg. batch load time: 0.030, Elapsed time: 332.82
+2025-05-07 00:06:18 - [34m[1mLOGS   [0m - *** Training summary for epoch 13
+	 loss=0.0545
+[31m===========================================================================[0m
+2025-05-07 00:06:21 - [32m[1mINFO   [0m - Validation epoch 13
+2025-05-07 00:06:43 - [34m[1mLOGS   [0m - Epoch:  13 [     120/   33001], loss: 11.5281, top1: 0.8333, top5: 100.0, LR: [0.000898, 0.000898], Avg. batch load time: 0.000, Elapsed time: 22.54
+2025-05-07 00:06:45 - [34m[1mLOGS   [0m - Epoch:  13 [    6120/   33001], loss: 2.1697, top1: 80.6863, top5: 97.8268, LR: [0.000898, 0.000898], Avg. batch load time: 0.000, Elapsed time: 24.71
+2025-05-07 00:06:47 - [34m[1mLOGS   [0m - Epoch:  13 [   12120/   33001], loss: 2.5903, top1: 74.2987, top5: 88.2178, LR: [0.000898, 0.000898], Avg. batch load time: 0.000, Elapsed time: 26.26
+2025-05-07 00:06:49 - [34m[1mLOGS   [0m - Epoch:  13 [   18120/   33001], loss: 2.4076, top1: 73.3775, top5: 87.6435, LR: [0.000898, 0.000898], Avg. batch load time: 0.000, Elapsed time: 28.23
+2025-05-07 00:06:51 - [34m[1mLOGS   [0m - Epoch:  13 [   24120/   33001], loss: 2.0429, top1: 75.8914, top5: 90.5804, LR: [0.000898, 0.000898], Avg. batch load time: 0.000, Elapsed time: 30.72
+2025-05-07 00:06:54 - [34m[1mLOGS   [0m - Epoch:  13 [   30120/   33001], loss: 1.8286, top1: 76.8061, top5: 91.9157, LR: [0.000898, 0.000898], Avg. batch load time: 0.000, Elapsed time: 33.13
+2025-05-07 00:06:56 - [34m[1mLOGS   [0m - *** Validation summary for epoch 13
+	 loss=1.7608 || top1=76.9777 || top5=92.5
+2025-05-07 00:06:56 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 00:06:56 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-07 00:06:58 - [32m[1mINFO   [0m - Training epoch 14
+2025-05-07 00:07:27 - [34m[1mLOGS   [0m - Epoch:  14 [    6734/10000000], loss: 0.2191, LR: [0.000898, 0.000898], Avg. batch load time: 28.727, Elapsed time: 29.05
+2025-05-07 00:07:43 - [34m[1mLOGS   [0m - Epoch:  14 [    6759/10000000], loss: 0.0461, LR: [0.000901, 0.000901], Avg. batch load time: 0.563, Elapsed time: 45.05
+2025-05-07 00:07:59 - [34m[1mLOGS   [0m - Epoch:  14 [    6784/10000000], loss: 0.0409, LR: [0.000905, 0.000905], Avg. batch load time: 0.285, Elapsed time: 61.03
+2025-05-07 00:08:15 - [34m[1mLOGS   [0m - Epoch:  14 [    6809/10000000], loss: 0.0387, LR: [0.000908, 0.000908], Avg. batch load time: 0.190, Elapsed time: 77.02
+2025-05-07 00:08:31 - [34m[1mLOGS   [0m - Epoch:  14 [    6834/10000000], loss: 0.0441, LR: [0.000911, 0.000911], Avg. batch load time: 0.143, Elapsed time: 92.99
+2025-05-07 00:08:47 - [34m[1mLOGS   [0m - Epoch:  14 [    6859/10000000], loss: 0.0437, LR: [0.000915, 0.000915], Avg. batch load time: 0.115, Elapsed time: 108.96
+2025-05-07 00:09:03 - [34m[1mLOGS   [0m - Epoch:  14 [    6884/10000000], loss: 0.0474, LR: [0.000918, 0.000918], Avg. batch load time: 0.096, Elapsed time: 124.95
+2025-05-07 00:09:19 - [34m[1mLOGS   [0m - Epoch:  14 [    6909/10000000], loss: 0.0578, LR: [0.000921, 0.000921], Avg. batch load time: 0.082, Elapsed time: 140.94
+2025-05-07 00:09:35 - [34m[1mLOGS   [0m - Epoch:  14 [    6934/10000000], loss: 0.0661, LR: [0.000925, 0.000925], Avg. batch load time: 0.072, Elapsed time: 156.94
+2025-05-07 00:09:51 - [34m[1mLOGS   [0m - Epoch:  14 [    6959/10000000], loss: 0.0676, LR: [0.000928, 0.000928], Avg. batch load time: 0.064, Elapsed time: 172.94
+2025-05-07 00:10:07 - [34m[1mLOGS   [0m - Epoch:  14 [    6984/10000000], loss: 0.0679, LR: [0.000931, 0.000931], Avg. batch load time: 0.058, Elapsed time: 188.95
+2025-05-07 00:10:23 - [34m[1mLOGS   [0m - Epoch:  14 [    7009/10000000], loss: 0.0669, LR: [0.000935, 0.000935], Avg. batch load time: 0.052, Elapsed time: 204.94
+2025-05-07 00:10:39 - [34m[1mLOGS   [0m - Epoch:  14 [    7034/10000000], loss: 0.0666, LR: [0.000938, 0.000938], Avg. batch load time: 0.048, Elapsed time: 220.93
+2025-05-07 00:10:55 - [34m[1mLOGS   [0m - Epoch:  14 [    7059/10000000], loss: 0.0648, LR: [0.000941, 0.000941], Avg. batch load time: 0.044, Elapsed time: 236.91
+2025-05-07 00:11:11 - [34m[1mLOGS   [0m - Epoch:  14 [    7084/10000000], loss: 0.0635, LR: [0.000945, 0.000945], Avg. batch load time: 0.041, Elapsed time: 252.92
+2025-05-07 00:11:27 - [34m[1mLOGS   [0m - Epoch:  14 [    7109/10000000], loss: 0.0643, LR: [0.000948, 0.000948], Avg. batch load time: 0.039, Elapsed time: 268.91
+2025-05-07 00:11:43 - [34m[1mLOGS   [0m - Epoch:  14 [    7134/10000000], loss: 0.0627, LR: [0.000951, 0.000951], Avg. batch load time: 0.036, Elapsed time: 284.93
+2025-05-07 00:11:59 - [34m[1mLOGS   [0m - Epoch:  14 [    7159/10000000], loss: 0.062, LR: [0.000955, 0.000955], Avg. batch load time: 0.034, Elapsed time: 300.92
+2025-05-07 00:12:15 - [34m[1mLOGS   [0m - Epoch:  14 [    7184/10000000], loss: 0.0692, LR: [0.000958, 0.000958], Avg. batch load time: 0.032, Elapsed time: 316.93
+2025-05-07 00:12:31 - [34m[1mLOGS   [0m - Epoch:  14 [    7209/10000000], loss: 0.0732, LR: [0.000961, 0.000961], Avg. batch load time: 0.030, Elapsed time: 332.93
+2025-05-07 00:12:37 - [34m[1mLOGS   [0m - *** Training summary for epoch 14
+	 loss=0.0732
+[31m===========================================================================[0m
+2025-05-07 00:12:39 - [32m[1mINFO   [0m - Validation epoch 14
+2025-05-07 00:13:01 - [34m[1mLOGS   [0m - Epoch:  14 [     120/   33001], loss: 0.1526, top1: 92.5, top5: 100.0, LR: [0.000962, 0.000962], Avg. batch load time: 0.000, Elapsed time: 22.57
+2025-05-07 00:13:03 - [34m[1mLOGS   [0m - Epoch:  14 [    6120/   33001], loss: 0.4178, top1: 95.2941, top5: 97.9902, LR: [0.000962, 0.000962], Avg. batch load time: 0.000, Elapsed time: 24.73
+2025-05-07 00:13:05 - [34m[1mLOGS   [0m - Epoch:  14 [   12120/   33001], loss: 1.9331, top1: 84.3812, top5: 89.9752, LR: [0.000962, 0.000962], Avg. batch load time: 0.000, Elapsed time: 26.28
+2025-05-07 00:13:07 - [34m[1mLOGS   [0m - Epoch:  14 [   18120/   33001], loss: 1.6424, top1: 78.6589, top5: 92.66, LR: [0.000962, 0.000962], Avg. batch load time: 0.000, Elapsed time: 28.25
+2025-05-07 00:13:09 - [34m[1mLOGS   [0m - Epoch:  14 [   24120/   33001], loss: 1.2817, top1: 82.6783, top5: 94.4113, LR: [0.000962, 0.000962], Avg. batch load time: 0.000, Elapsed time: 30.75
+2025-05-07 00:13:12 - [34m[1mLOGS   [0m - Epoch:  14 [   30120/   33001], loss: 2.0797, top1: 79.6481, top5: 89.3592, LR: [0.000962, 0.000962], Avg. batch load time: 0.000, Elapsed time: 33.17
+2025-05-07 00:13:14 - [34m[1mLOGS   [0m - *** Validation summary for epoch 14
+	 loss=1.9055 || top1=81.1806 || top5=90.2838
+2025-05-07 00:13:14 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 00:13:14 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-07 00:13:16 - [32m[1mINFO   [0m - Training epoch 15
+2025-05-07 00:13:45 - [34m[1mLOGS   [0m - Epoch:  15 [    7215/10000000], loss: 0.0109, LR: [0.000962, 0.000962], Avg. batch load time: 28.548, Elapsed time: 28.87
+2025-05-07 00:14:01 - [34m[1mLOGS   [0m - Epoch:  15 [    7240/10000000], loss: 0.0684, LR: [0.000965, 0.000965], Avg. batch load time: 0.560, Elapsed time: 44.85
+2025-05-07 00:14:17 - [34m[1mLOGS   [0m - Epoch:  15 [    7265/10000000], loss: 0.0682, LR: [0.000969, 0.000969], Avg. batch load time: 0.283, Elapsed time: 60.84
+2025-05-07 00:14:33 - [34m[1mLOGS   [0m - Epoch:  15 [    7290/10000000], loss: 0.0668, LR: [0.000972, 0.000972], Avg. batch load time: 0.189, Elapsed time: 76.82
+2025-05-07 00:14:49 - [34m[1mLOGS   [0m - Epoch:  15 [    7315/10000000], loss: 0.0635, LR: [0.000975, 0.000975], Avg. batch load time: 0.142, Elapsed time: 92.78
+2025-05-07 00:15:05 - [34m[1mLOGS   [0m - Epoch:  15 [    7340/10000000], loss: 0.0584, LR: [0.000979, 0.000979], Avg. batch load time: 0.114, Elapsed time: 108.77
+2025-05-07 00:15:21 - [34m[1mLOGS   [0m - Epoch:  15 [    7365/10000000], loss: 0.0535, LR: [0.000982, 0.000982], Avg. batch load time: 0.095, Elapsed time: 124.77
+2025-05-07 00:15:37 - [34m[1mLOGS   [0m - Epoch:  15 [    7390/10000000], loss: 0.0502, LR: [0.000985, 0.000985], Avg. batch load time: 0.082, Elapsed time: 140.66
+2025-05-07 00:15:53 - [34m[1mLOGS   [0m - Epoch:  15 [    7415/10000000], loss: 0.0471, LR: [0.000989, 0.000989], Avg. batch load time: 0.071, Elapsed time: 156.65
+2025-05-07 00:16:09 - [34m[1mLOGS   [0m - Epoch:  15 [    7440/10000000], loss: 0.0444, LR: [0.000992, 0.000992], Avg. batch load time: 0.064, Elapsed time: 172.66
+2025-05-07 00:16:25 - [34m[1mLOGS   [0m - Epoch:  15 [    7465/10000000], loss: 0.0413, LR: [0.000995, 0.000995], Avg. batch load time: 0.057, Elapsed time: 188.66
+2025-05-07 00:16:41 - [34m[1mLOGS   [0m - Epoch:  15 [    7490/10000000], loss: 0.0401, LR: [0.000999, 0.000999], Avg. batch load time: 0.052, Elapsed time: 204.63
+2025-05-07 00:16:57 - [34m[1mLOGS   [0m - Epoch:  15 [    7515/10000000], loss: 0.0391, LR: [0.000164, 0.000164], Avg. batch load time: 0.048, Elapsed time: 220.63
+2025-05-07 00:17:13 - [34m[1mLOGS   [0m - Epoch:  15 [    7540/10000000], loss: 0.0374, LR: [0.000164, 0.000164], Avg. batch load time: 0.044, Elapsed time: 236.62
+2025-05-07 00:17:29 - [34m[1mLOGS   [0m - Epoch:  15 [    7565/10000000], loss: 0.0356, LR: [0.000164, 0.000164], Avg. batch load time: 0.041, Elapsed time: 252.62
+2025-05-07 00:17:45 - [34m[1mLOGS   [0m - Epoch:  15 [    7590/10000000], loss: 0.0343, LR: [0.000164, 0.000164], Avg. batch load time: 0.038, Elapsed time: 268.62
+2025-05-07 00:18:01 - [34m[1mLOGS   [0m - Epoch:  15 [    7615/10000000], loss: 0.0327, LR: [0.000164, 0.000164], Avg. batch load time: 0.036, Elapsed time: 284.62
+2025-05-07 00:18:17 - [34m[1mLOGS   [0m - Epoch:  15 [    7640/10000000], loss: 0.0313, LR: [0.000164, 0.000164], Avg. batch load time: 0.034, Elapsed time: 300.63
+2025-05-07 00:18:33 - [34m[1mLOGS   [0m - Epoch:  15 [    7665/10000000], loss: 0.03, LR: [0.000164, 0.000164], Avg. batch load time: 0.032, Elapsed time: 316.62
+2025-05-07 00:18:49 - [34m[1mLOGS   [0m - Epoch:  15 [    7690/10000000], loss: 0.0288, LR: [0.000164, 0.000164], Avg. batch load time: 0.030, Elapsed time: 332.63
+2025-05-07 00:18:54 - [34m[1mLOGS   [0m - *** Training summary for epoch 15
+	 loss=0.0285
+[31m===========================================================================[0m
+2025-05-07 00:18:56 - [32m[1mINFO   [0m - Validation epoch 15
+2025-05-07 00:19:19 - [34m[1mLOGS   [0m - Epoch:  15 [     120/   33001], loss: 2.3028, top1: 19.1667, top5: 100.0, LR: [0.000164, 0.000164], Avg. batch load time: 0.000, Elapsed time: 22.58
+2025-05-07 00:19:21 - [34m[1mLOGS   [0m - Epoch:  15 [    6120/   33001], loss: 0.6444, top1: 85.098, top5: 100.0, LR: [0.000164, 0.000164], Avg. batch load time: 0.000, Elapsed time: 24.77
+2025-05-07 00:19:23 - [34m[1mLOGS   [0m - Epoch:  15 [   12120/   33001], loss: 1.3327, top1: 84.8515, top5: 99.9587, LR: [0.000164, 0.000164], Avg. batch load time: 0.000, Elapsed time: 26.32
+2025-05-07 00:19:25 - [34m[1mLOGS   [0m - Epoch:  15 [   18120/   33001], loss: 0.9581, top1: 88.372, top5: 99.9227, LR: [0.000164, 0.000164], Avg. batch load time: 0.000, Elapsed time: 28.29
+2025-05-07 00:19:27 - [34m[1mLOGS   [0m - Epoch:  15 [   24120/   33001], loss: 0.7221, top1: 91.2106, top5: 99.9378, LR: [0.000164, 0.000164], Avg. batch load time: 0.000, Elapsed time: 30.78
+2025-05-07 00:19:30 - [34m[1mLOGS   [0m - Epoch:  15 [   30120/   33001], loss: 0.7626, top1: 89.5916, top5: 99.9137, LR: [0.000164, 0.000164], Avg. batch load time: 0.000, Elapsed time: 33.20
+2025-05-07 00:19:32 - [34m[1mLOGS   [0m - *** Validation summary for epoch 15
+	 loss=0.7114 || top1=89.8521 || top5=99.9215
+2025-05-07 00:19:32 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 00:19:32 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-07 00:19:34 - [32m[1mINFO   [0m - Training epoch 16
+2025-05-07 00:20:03 - [34m[1mLOGS   [0m - Epoch:  16 [    7696/10000000], loss: 0.0015, LR: [0.000114, 0.000114], Avg. batch load time: 28.551, Elapsed time: 28.87
+2025-05-07 00:20:19 - [34m[1mLOGS   [0m - Epoch:  16 [    7721/10000000], loss: 0.0032, LR: [0.000114, 0.000114], Avg. batch load time: 0.560, Elapsed time: 44.87
+2025-05-07 00:20:35 - [34m[1mLOGS   [0m - Epoch:  16 [    7746/10000000], loss: 0.0039, LR: [0.000114, 0.000114], Avg. batch load time: 0.283, Elapsed time: 60.86
+2025-05-07 00:20:51 - [34m[1mLOGS   [0m - Epoch:  16 [    7771/10000000], loss: 0.0054, LR: [0.000114, 0.000114], Avg. batch load time: 0.189, Elapsed time: 76.86
+2025-05-07 00:21:07 - [34m[1mLOGS   [0m - Epoch:  16 [    7796/10000000], loss: 0.0055, LR: [0.000114, 0.000114], Avg. batch load time: 0.142, Elapsed time: 92.88
+2025-05-07 00:21:23 - [34m[1mLOGS   [0m - Epoch:  16 [    7821/10000000], loss: 0.0051, LR: [0.000114, 0.000114], Avg. batch load time: 0.114, Elapsed time: 108.88
+2025-05-07 00:21:39 - [34m[1mLOGS   [0m - Epoch:  16 [    7846/10000000], loss: 0.005, LR: [0.000114, 0.000114], Avg. batch load time: 0.095, Elapsed time: 124.87
+2025-05-07 00:21:55 - [34m[1mLOGS   [0m - Epoch:  16 [    7871/10000000], loss: 0.0053, LR: [0.000114, 0.000114], Avg. batch load time: 0.082, Elapsed time: 140.88
+2025-05-07 00:22:11 - [34m[1mLOGS   [0m - Epoch:  16 [    7896/10000000], loss: 0.0053, LR: [0.000114, 0.000114], Avg. batch load time: 0.071, Elapsed time: 156.88
+2025-05-07 00:22:27 - [34m[1mLOGS   [0m - Epoch:  16 [    7921/10000000], loss: 0.0053, LR: [0.000114, 0.000114], Avg. batch load time: 0.064, Elapsed time: 172.91
+2025-05-07 00:22:43 - [34m[1mLOGS   [0m - Epoch:  16 [    7946/10000000], loss: 0.0054, LR: [0.000114, 0.000114], Avg. batch load time: 0.057, Elapsed time: 188.91
+2025-05-07 00:22:59 - [34m[1mLOGS   [0m - Epoch:  16 [    7971/10000000], loss: 0.0053, LR: [0.000114, 0.000114], Avg. batch load time: 0.052, Elapsed time: 204.93
+2025-05-07 00:23:15 - [34m[1mLOGS   [0m - Epoch:  16 [    7996/10000000], loss: 0.0052, LR: [0.000114, 0.000114], Avg. batch load time: 0.048, Elapsed time: 220.87
+2025-05-07 00:23:31 - [34m[1mLOGS   [0m - Epoch:  16 [    8021/10000000], loss: 0.0053, LR: [0.000114, 0.000114], Avg. batch load time: 0.044, Elapsed time: 236.92
+2025-05-07 00:23:47 - [34m[1mLOGS   [0m - Epoch:  16 [    8046/10000000], loss: 0.0055, LR: [0.000114, 0.000114], Avg. batch load time: 0.041, Elapsed time: 252.94
+2025-05-07 00:24:03 - [34m[1mLOGS   [0m - Epoch:  16 [    8071/10000000], loss: 0.0054, LR: [0.000114, 0.000114], Avg. batch load time: 0.038, Elapsed time: 268.97
+2025-05-07 00:24:19 - [34m[1mLOGS   [0m - Epoch:  16 [    8096/10000000], loss: 0.0056, LR: [0.000114, 0.000114], Avg. batch load time: 0.036, Elapsed time: 284.96
+2025-05-07 00:24:35 - [34m[1mLOGS   [0m - Epoch:  16 [    8121/10000000], loss: 0.0055, LR: [0.000114, 0.000114], Avg. batch load time: 0.034, Elapsed time: 300.96
+2025-05-07 00:24:51 - [34m[1mLOGS   [0m - Epoch:  16 [    8146/10000000], loss: 0.0054, LR: [0.000114, 0.000114], Avg. batch load time: 0.032, Elapsed time: 316.98
+2025-05-07 00:25:07 - [34m[1mLOGS   [0m - Epoch:  16 [    8171/10000000], loss: 0.0054, LR: [0.000114, 0.000114], Avg. batch load time: 0.030, Elapsed time: 332.99
+2025-05-07 00:25:12 - [34m[1mLOGS   [0m - *** Training summary for epoch 16
+	 loss=0.0053
+[31m===========================================================================[0m
+2025-05-07 00:25:15 - [32m[1mINFO   [0m - Validation epoch 16
+2025-05-07 00:25:37 - [34m[1mLOGS   [0m - Epoch:  16 [     120/   33001], loss: 1.2021, top1: 45.8333, top5: 100.0, LR: [0.000114, 0.000114], Avg. batch load time: 0.000, Elapsed time: 22.51
+2025-05-07 00:25:39 - [34m[1mLOGS   [0m - Epoch:  16 [    6120/   33001], loss: 0.4595, top1: 89.1993, top5: 100.0, LR: [0.000114, 0.000114], Avg. batch load time: 0.000, Elapsed time: 24.66
+2025-05-07 00:25:41 - [34m[1mLOGS   [0m - Epoch:  16 [   12120/   33001], loss: 1.236, top1: 86.9802, top5: 99.9505, LR: [0.000114, 0.000114], Avg. batch load time: 0.000, Elapsed time: 26.21
+2025-05-07 00:25:43 - [34m[1mLOGS   [0m - Epoch:  16 [   18120/   33001], loss: 0.907, top1: 89.5033, top5: 99.9062, LR: [0.000114, 0.000114], Avg. batch load time: 0.000, Elapsed time: 28.18
+2025-05-07 00:25:45 - [34m[1mLOGS   [0m - Epoch:  16 [   24120/   33001], loss: 0.6878, top1: 91.9942, top5: 99.9129, LR: [0.000114, 0.000114], Avg. batch load time: 0.000, Elapsed time: 30.67
+2025-05-07 00:25:48 - [34m[1mLOGS   [0m - Epoch:  16 [   30120/   33001], loss: 0.7209, top1: 90.2556, top5: 99.9303, LR: [0.000114, 0.000114], Avg. batch load time: 0.000, Elapsed time: 33.09
+2025-05-07 00:25:50 - [34m[1mLOGS   [0m - *** Validation summary for epoch 16
+	 loss=0.6664 || top1=90.6854 || top5=99.9366
+2025-05-07 00:25:50 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 00:25:50 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-07 00:25:52 - [32m[1mINFO   [0m - Training epoch 17
+2025-05-07 00:26:21 - [34m[1mLOGS   [0m - Epoch:  17 [    8177/10000000], loss: 0.0012, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 28.638, Elapsed time: 28.96
+2025-05-07 00:26:37 - [34m[1mLOGS   [0m - Epoch:  17 [    8202/10000000], loss: 0.0056, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.562, Elapsed time: 44.95
+2025-05-07 00:26:53 - [34m[1mLOGS   [0m - Epoch:  17 [    8227/10000000], loss: 0.0049, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.284, Elapsed time: 60.96
+2025-05-07 00:27:09 - [34m[1mLOGS   [0m - Epoch:  17 [    8252/10000000], loss: 0.0048, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.190, Elapsed time: 76.98
+2025-05-07 00:27:25 - [34m[1mLOGS   [0m - Epoch:  17 [    8277/10000000], loss: 0.0042, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.143, Elapsed time: 92.99
+2025-05-07 00:27:41 - [34m[1mLOGS   [0m - Epoch:  17 [    8302/10000000], loss: 0.0039, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.114, Elapsed time: 108.97
+2025-05-07 00:27:57 - [34m[1mLOGS   [0m - Epoch:  17 [    8327/10000000], loss: 0.0039, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.095, Elapsed time: 124.92
+2025-05-07 00:28:13 - [34m[1mLOGS   [0m - Epoch:  17 [    8352/10000000], loss: 0.0036, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.082, Elapsed time: 140.95
+2025-05-07 00:28:29 - [34m[1mLOGS   [0m - Epoch:  17 [    8377/10000000], loss: 0.0038, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.072, Elapsed time: 156.98
+2025-05-07 00:28:45 - [34m[1mLOGS   [0m - Epoch:  17 [    8402/10000000], loss: 0.0038, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.064, Elapsed time: 172.97
+2025-05-07 00:29:01 - [34m[1mLOGS   [0m - Epoch:  17 [    8427/10000000], loss: 0.0037, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.057, Elapsed time: 188.97
+2025-05-07 00:29:17 - [34m[1mLOGS   [0m - Epoch:  17 [    8452/10000000], loss: 0.0035, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.052, Elapsed time: 204.99
+2025-05-07 00:29:33 - [34m[1mLOGS   [0m - Epoch:  17 [    8477/10000000], loss: 0.0038, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.048, Elapsed time: 221.00
+2025-05-07 00:29:49 - [34m[1mLOGS   [0m - Epoch:  17 [    8502/10000000], loss: 0.0037, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.044, Elapsed time: 236.99
+2025-05-07 00:30:05 - [34m[1mLOGS   [0m - Epoch:  17 [    8527/10000000], loss: 0.0035, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.041, Elapsed time: 253.05
+2025-05-07 00:30:21 - [34m[1mLOGS   [0m - Epoch:  17 [    8552/10000000], loss: 0.0035, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.038, Elapsed time: 269.08
+2025-05-07 00:30:37 - [34m[1mLOGS   [0m - Epoch:  17 [    8577/10000000], loss: 0.0034, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.036, Elapsed time: 285.11
+2025-05-07 00:30:53 - [34m[1mLOGS   [0m - Epoch:  17 [    8602/10000000], loss: 0.0033, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.034, Elapsed time: 301.20
+2025-05-07 00:31:09 - [34m[1mLOGS   [0m - Epoch:  17 [    8627/10000000], loss: 0.0033, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.032, Elapsed time: 317.23
+2025-05-07 00:31:25 - [34m[1mLOGS   [0m - Epoch:  17 [    8652/10000000], loss: 0.0032, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.030, Elapsed time: 333.24
+2025-05-07 00:31:31 - [34m[1mLOGS   [0m - *** Training summary for epoch 17
+	 loss=0.0032
+[31m===========================================================================[0m
+2025-05-07 00:31:33 - [32m[1mINFO   [0m - Validation epoch 17
+2025-05-07 00:31:56 - [34m[1mLOGS   [0m - Epoch:  17 [     120/   33001], loss: 1.3146, top1: 42.5, top5: 100.0, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.000, Elapsed time: 22.64
+2025-05-07 00:31:58 - [34m[1mLOGS   [0m - Epoch:  17 [    6120/   33001], loss: 0.4783, top1: 88.2843, top5: 100.0, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.000, Elapsed time: 24.83
+2025-05-07 00:31:59 - [34m[1mLOGS   [0m - Epoch:  17 [   12120/   33001], loss: 1.2576, top1: 86.4356, top5: 99.9422, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.000, Elapsed time: 26.39
+2025-05-07 00:32:01 - [34m[1mLOGS   [0m - Epoch:  17 [   18120/   33001], loss: 0.9075, top1: 89.5143, top5: 99.8951, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.000, Elapsed time: 28.38
+2025-05-07 00:32:04 - [34m[1mLOGS   [0m - Epoch:  17 [   24120/   33001], loss: 0.6875, top1: 92.0232, top5: 99.9046, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.000, Elapsed time: 30.87
+2025-05-07 00:32:06 - [34m[1mLOGS   [0m - Epoch:  17 [   30120/   33001], loss: 0.7166, top1: 90.2722, top5: 99.9236, LR: [7.3e-05, 7.3e-05], Avg. batch load time: 0.000, Elapsed time: 33.29
+2025-05-07 00:32:08 - [34m[1mLOGS   [0m - *** Validation summary for epoch 17
+	 loss=0.6746 || top1=90.0634 || top5=99.9306
+2025-05-07 00:32:09 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 00:32:09 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-07 00:32:11 - [32m[1mINFO   [0m - Training epoch 18
+2025-05-07 00:32:40 - [34m[1mLOGS   [0m - Epoch:  18 [    8658/10000000], loss: 0.0116, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 28.599, Elapsed time: 28.92
+2025-05-07 00:32:56 - [34m[1mLOGS   [0m - Epoch:  18 [    8683/10000000], loss: 0.0041, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.561, Elapsed time: 44.90
+2025-05-07 00:33:12 - [34m[1mLOGS   [0m - Epoch:  18 [    8708/10000000], loss: 0.0032, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.283, Elapsed time: 60.86
+2025-05-07 00:33:28 - [34m[1mLOGS   [0m - Epoch:  18 [    8733/10000000], loss: 0.0038, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.190, Elapsed time: 76.86
+2025-05-07 00:33:44 - [34m[1mLOGS   [0m - Epoch:  18 [    8758/10000000], loss: 0.0036, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.143, Elapsed time: 92.86
+2025-05-07 00:34:00 - [34m[1mLOGS   [0m - Epoch:  18 [    8783/10000000], loss: 0.0034, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.114, Elapsed time: 108.84
+2025-05-07 00:34:16 - [34m[1mLOGS   [0m - Epoch:  18 [    8808/10000000], loss: 0.0032, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.095, Elapsed time: 124.82
+2025-05-07 00:34:31 - [34m[1mLOGS   [0m - Epoch:  18 [    8833/10000000], loss: 0.0029, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.082, Elapsed time: 140.79
+2025-05-07 00:34:47 - [34m[1mLOGS   [0m - Epoch:  18 [    8858/10000000], loss: 0.0027, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.072, Elapsed time: 156.77
+2025-05-07 00:35:03 - [34m[1mLOGS   [0m - Epoch:  18 [    8883/10000000], loss: 0.0027, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.064, Elapsed time: 172.75
+2025-05-07 00:35:19 - [34m[1mLOGS   [0m - Epoch:  18 [    8908/10000000], loss: 0.0027, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.057, Elapsed time: 188.73
+2025-05-07 00:35:35 - [34m[1mLOGS   [0m - Epoch:  18 [    8933/10000000], loss: 0.0027, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.052, Elapsed time: 204.70
+2025-05-07 00:35:51 - [34m[1mLOGS   [0m - Epoch:  18 [    8958/10000000], loss: 0.0026, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.048, Elapsed time: 220.69
+2025-05-07 00:36:07 - [34m[1mLOGS   [0m - Epoch:  18 [    8983/10000000], loss: 0.0026, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.044, Elapsed time: 236.66
+2025-05-07 00:36:23 - [34m[1mLOGS   [0m - Epoch:  18 [    9008/10000000], loss: 0.0026, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.041, Elapsed time: 252.65
+2025-05-07 00:36:39 - [34m[1mLOGS   [0m - Epoch:  18 [    9033/10000000], loss: 0.0027, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.038, Elapsed time: 268.65
+2025-05-07 00:36:55 - [34m[1mLOGS   [0m - Epoch:  18 [    9058/10000000], loss: 0.0027, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.036, Elapsed time: 284.66
+2025-05-07 00:37:11 - [34m[1mLOGS   [0m - Epoch:  18 [    9083/10000000], loss: 0.0026, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.034, Elapsed time: 300.68
+2025-05-07 00:37:27 - [34m[1mLOGS   [0m - Epoch:  18 [    9108/10000000], loss: 0.0026, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.032, Elapsed time: 316.68
+2025-05-07 00:37:43 - [34m[1mLOGS   [0m - Epoch:  18 [    9133/10000000], loss: 0.0025, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.030, Elapsed time: 332.65
+2025-05-07 00:37:49 - [34m[1mLOGS   [0m - *** Training summary for epoch 18
+	 loss=0.0025
+[31m===========================================================================[0m
+2025-05-07 00:37:51 - [32m[1mINFO   [0m - Validation epoch 18
+2025-05-07 00:38:13 - [34m[1mLOGS   [0m - Epoch:  18 [     120/   33001], loss: 1.5143, top1: 36.6667, top5: 100.0, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.000, Elapsed time: 22.58
+2025-05-07 00:38:16 - [34m[1mLOGS   [0m - Epoch:  18 [    6120/   33001], loss: 0.5169, top1: 87.4837, top5: 100.0, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.000, Elapsed time: 24.77
+2025-05-07 00:38:17 - [34m[1mLOGS   [0m - Epoch:  18 [   12120/   33001], loss: 1.29, top1: 85.9901, top5: 99.967, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.000, Elapsed time: 26.33
+2025-05-07 00:38:19 - [34m[1mLOGS   [0m - Epoch:  18 [   18120/   33001], loss: 0.9268, top1: 89.2439, top5: 99.9062, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.000, Elapsed time: 28.31
+2025-05-07 00:38:22 - [34m[1mLOGS   [0m - Epoch:  18 [   24120/   33001], loss: 0.7004, top1: 91.8532, top5: 99.9212, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.000, Elapsed time: 30.79
+2025-05-07 00:38:24 - [34m[1mLOGS   [0m - Epoch:  18 [   30120/   33001], loss: 0.7245, top1: 90.1527, top5: 99.9369, LR: [4.4e-05, 4.4e-05], Avg. batch load time: 0.000, Elapsed time: 33.22
+2025-05-07 00:38:26 - [34m[1mLOGS   [0m - *** Validation summary for epoch 18
+	 loss=0.679 || top1=90.1781 || top5=99.9426
+2025-05-07 00:38:27 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 00:38:27 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+[31m===========================================================================[0m
+2025-05-07 00:38:29 - [32m[1mINFO   [0m - Training epoch 19
+2025-05-07 00:38:57 - [34m[1mLOGS   [0m - Epoch:  19 [    9139/10000000], loss: 0.0005, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 28.529, Elapsed time: 28.85
+2025-05-07 00:39:13 - [34m[1mLOGS   [0m - Epoch:  19 [    9164/10000000], loss: 0.0034, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.560, Elapsed time: 44.85
+2025-05-07 00:39:29 - [34m[1mLOGS   [0m - Epoch:  19 [    9189/10000000], loss: 0.003, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.283, Elapsed time: 60.85
+2025-05-07 00:39:45 - [34m[1mLOGS   [0m - Epoch:  19 [    9214/10000000], loss: 0.003, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.189, Elapsed time: 76.88
+2025-05-07 00:40:01 - [34m[1mLOGS   [0m - Epoch:  19 [    9239/10000000], loss: 0.0028, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.142, Elapsed time: 92.91
+2025-05-07 00:40:17 - [34m[1mLOGS   [0m - Epoch:  19 [    9264/10000000], loss: 0.0028, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.114, Elapsed time: 108.92
+2025-05-07 00:40:34 - [34m[1mLOGS   [0m - Epoch:  19 [    9289/10000000], loss: 0.0027, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.095, Elapsed time: 124.97
+2025-05-07 00:40:50 - [34m[1mLOGS   [0m - Epoch:  19 [    9314/10000000], loss: 0.0025, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.082, Elapsed time: 141.01
+2025-05-07 00:41:06 - [34m[1mLOGS   [0m - Epoch:  19 [    9339/10000000], loss: 0.0024, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.071, Elapsed time: 157.06
+2025-05-07 00:41:22 - [34m[1mLOGS   [0m - Epoch:  19 [    9364/10000000], loss: 0.0024, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.064, Elapsed time: 173.09
+2025-05-07 00:41:38 - [34m[1mLOGS   [0m - Epoch:  19 [    9389/10000000], loss: 0.0024, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.057, Elapsed time: 189.15
+2025-05-07 00:41:54 - [34m[1mLOGS   [0m - Epoch:  19 [    9414/10000000], loss: 0.0023, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.052, Elapsed time: 205.17
+2025-05-07 00:42:10 - [34m[1mLOGS   [0m - Epoch:  19 [    9439/10000000], loss: 0.0023, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.048, Elapsed time: 221.20
+2025-05-07 00:42:26 - [34m[1mLOGS   [0m - Epoch:  19 [    9464/10000000], loss: 0.0024, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.044, Elapsed time: 237.23
+2025-05-07 00:42:42 - [34m[1mLOGS   [0m - Epoch:  19 [    9489/10000000], loss: 0.0024, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.041, Elapsed time: 253.27
+2025-05-07 00:42:58 - [34m[1mLOGS   [0m - Epoch:  19 [    9514/10000000], loss: 0.0024, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.038, Elapsed time: 269.30
+2025-05-07 00:43:14 - [34m[1mLOGS   [0m - Epoch:  19 [    9539/10000000], loss: 0.0024, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.036, Elapsed time: 285.35
+2025-05-07 00:43:30 - [34m[1mLOGS   [0m - Epoch:  19 [    9564/10000000], loss: 0.0023, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.034, Elapsed time: 301.43
+2025-05-07 00:43:46 - [34m[1mLOGS   [0m - Epoch:  19 [    9589/10000000], loss: 0.0022, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.032, Elapsed time: 317.46
+2025-05-07 00:44:02 - [34m[1mLOGS   [0m - Epoch:  19 [    9614/10000000], loss: 0.0022, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.030, Elapsed time: 333.54
+2025-05-07 00:44:07 - [34m[1mLOGS   [0m - *** Training summary for epoch 19
+	 loss=0.0022
+[31m===========================================================================[0m
+2025-05-07 00:44:10 - [32m[1mINFO   [0m - Validation epoch 19
+2025-05-07 00:44:32 - [34m[1mLOGS   [0m - Epoch:  19 [     120/   33001], loss: 1.5579, top1: 34.1667, top5: 100.0, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.000, Elapsed time: 22.57
+2025-05-07 00:44:34 - [34m[1mLOGS   [0m - Epoch:  19 [    6120/   33001], loss: 0.5237, top1: 87.2222, top5: 100.0, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.000, Elapsed time: 24.75
+2025-05-07 00:44:36 - [34m[1mLOGS   [0m - Epoch:  19 [   12120/   33001], loss: 1.2976, top1: 85.9076, top5: 99.9587, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.000, Elapsed time: 26.31
+2025-05-07 00:44:38 - [34m[1mLOGS   [0m - Epoch:  19 [   18120/   33001], loss: 0.93, top1: 89.2605, top5: 99.9062, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.000, Elapsed time: 28.29
+2025-05-07 00:44:40 - [34m[1mLOGS   [0m - Epoch:  19 [   24120/   33001], loss: 0.702, top1: 91.8781, top5: 99.9212, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.000, Elapsed time: 30.78
+2025-05-07 00:44:43 - [34m[1mLOGS   [0m - Epoch:  19 [   30120/   33001], loss: 0.7308, top1: 90.1726, top5: 99.9369, LR: [2.6e-05, 2.6e-05], Avg. batch load time: 0.000, Elapsed time: 33.20
+2025-05-07 00:44:45 - [34m[1mLOGS   [0m - *** Validation summary for epoch 19
+	 loss=0.6799 || top1=90.4408 || top5=99.9426
+2025-05-07 00:44:45 - [34m[1mLOGS   [0m - Last training checkpoint is saved at: results/train/training_checkpoint_last.pt
+2025-05-07 00:44:45 - [34m[1mLOGS   [0m - Last checkpoint's model state is saved at: results/train/checkpoint_last.pt
+2025-05-07 00:44:45 - [34m[1mLOGS   [0m - Training took 02:05:29.39

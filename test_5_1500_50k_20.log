@@ -1,0 +1,176 @@
+2025-05-06 22:37:13 - [93m[1mDEBUG   [0m - Cannot load internal arguments, skipping.
+2025-05-06 22:37:13 - [34m[1mLOGS   [0m - Random seeds are set to 0
+2025-05-06 22:37:13 - [34m[1mLOGS   [0m - Using PyTorch version 2.3.0+cu121
+2025-05-06 22:37:13 - [34m[1mLOGS   [0m - Available GPUs: 1
+2025-05-06 22:37:13 - [34m[1mLOGS   [0m - CUDNN is enabled
+2025-05-06 22:37:13 - [34m[1mLOGS   [0m - Setting --ddp.world-size the same as the number of available gpus.
+2025-05-06 22:37:13 - [34m[1mLOGS   [0m - Directory exists at: results/train
+2025-05-06 22:37:14 - [32m[1mINFO   [0m - distributed init (rank 0): tcp://nebula:30786
+2025-05-06 22:37:15 - [34m[1mLOGS   [0m - Evaluation dataset details: 
+PCAPTupleDataset(
+	root=/home/jason/data/pcap/pcap_tuples/splits/test 
+	is_training=False 
+	num_samples=4950
+)
+2025-05-06 22:37:15 - [34m[1mLOGS   [0m - Evaluation sampler details: BatchSamplerDDP(
+	 num_repeat=1
+	 trunc_rep_aug=False
+	 sharding=False
+	 disable_shuffle_sharding=False
+	base_im_size=(h=256, w=256)
+	base_batch_size=120
+)
+2025-05-06 22:37:15 - [34m[1mLOGS   [0m - Pretrained weights are loaded from results/train/checkpoint_best.pt
+2025-05-06 22:37:15 - [32m[1mINFO   [0m - Trainable parameters: ['embeddings.weight', 'token_reduction_net.weight', 'pos_embed.pos_embed.pos_embed', 'downsamplers.downsample_0.reduction.weight', 'downsamplers.downsample_0.norm.weight', 'downsamplers.downsample_0.norm.bias', 'downsamplers.downsample_1.reduction.weight', 'downsamplers.downsample_1.norm.weight', 'downsamplers.downsample_1.norm.bias', 'downsamplers.downsample_3.reduction.weight', 'downsamplers.downsample_3.norm.weight', 'downsamplers.downsample_3.norm.bias', 'downsamplers.downsample_5.reduction.weight', 'downsamplers.downsample_5.norm.weight', 'downsamplers.downsample_5.norm.bias', 'downsamplers.downsample_7.reduction.weight', 'downsamplers.downsample_7.norm.weight', 'downsamplers.downsample_7.norm.bias', 'downsamplers.downsample_9.reduction.weight', 'downsamplers.downsample_9.norm.weight', 'downsamplers.downsample_9.norm.bias', 'transformer.0.pre_norm_mha.0.weight', 'transformer.0.pre_norm_mha.0.bias', 'transformer.0.pre_norm_mha.1.qkv_proj.weight', 'transformer.0.pre_norm_mha.1.qkv_proj.bias', 'transformer.0.pre_norm_mha.1.out_proj.weight', 'transformer.0.pre_norm_mha.1.out_proj.bias', 'transformer.0.pre_norm_ffn.0.weight', 'transformer.0.pre_norm_ffn.0.bias', 'transformer.0.pre_norm_ffn.1.weight', 'transformer.0.pre_norm_ffn.1.bias', 'transformer.0.pre_norm_ffn.4.weight', 'transformer.0.pre_norm_ffn.4.bias', 'transformer.1.pre_norm_mha.0.weight', 'transformer.1.pre_norm_mha.0.bias', 'transformer.1.pre_norm_mha.1.qkv_proj.weight', 'transformer.1.pre_norm_mha.1.qkv_proj.bias', 'transformer.1.pre_norm_mha.1.out_proj.weight', 'transformer.1.pre_norm_mha.1.out_proj.bias', 'transformer.1.pre_norm_ffn.0.weight', 'transformer.1.pre_norm_ffn.0.bias', 'transformer.1.pre_norm_ffn.1.weight', 'transformer.1.pre_norm_ffn.1.bias', 'transformer.1.pre_norm_ffn.4.weight', 'transformer.1.pre_norm_ffn.4.bias', 'transformer.2.pre_norm_mha.0.weight', 'transformer.2.pre_norm_mha.0.bias', 'transformer.2.pre_norm_mha.1.qkv_proj.weight', 'transformer.2.pre_norm_mha.1.qkv_proj.bias', 'transformer.2.pre_norm_mha.1.out_proj.weight', 'transformer.2.pre_norm_mha.1.out_proj.bias', 'transformer.2.pre_norm_ffn.0.weight', 'transformer.2.pre_norm_ffn.0.bias', 'transformer.2.pre_norm_ffn.1.weight', 'transformer.2.pre_norm_ffn.1.bias', 'transformer.2.pre_norm_ffn.4.weight', 'transformer.2.pre_norm_ffn.4.bias', 'transformer.3.pre_norm_mha.0.weight', 'transformer.3.pre_norm_mha.0.bias', 'transformer.3.pre_norm_mha.1.qkv_proj.weight', 'transformer.3.pre_norm_mha.1.qkv_proj.bias', 'transformer.3.pre_norm_mha.1.out_proj.weight', 'transformer.3.pre_norm_mha.1.out_proj.bias', 'transformer.3.pre_norm_ffn.0.weight', 'transformer.3.pre_norm_ffn.0.bias', 'transformer.3.pre_norm_ffn.1.weight', 'transformer.3.pre_norm_ffn.1.bias', 'transformer.3.pre_norm_ffn.4.weight', 'transformer.3.pre_norm_ffn.4.bias', 'transformer.4.pre_norm_mha.0.weight', 'transformer.4.pre_norm_mha.0.bias', 'transformer.4.pre_norm_mha.1.qkv_proj.weight', 'transformer.4.pre_norm_mha.1.qkv_proj.bias', 'transformer.4.pre_norm_mha.1.out_proj.weight', 'transformer.4.pre_norm_mha.1.out_proj.bias', 'transformer.4.pre_norm_ffn.0.weight', 'transformer.4.pre_norm_ffn.0.bias', 'transformer.4.pre_norm_ffn.1.weight', 'transformer.4.pre_norm_ffn.1.bias', 'transformer.4.pre_norm_ffn.4.weight', 'transformer.4.pre_norm_ffn.4.bias', 'transformer.5.pre_norm_mha.0.weight', 'transformer.5.pre_norm_mha.0.bias', 'transformer.5.pre_norm_mha.1.qkv_proj.weight', 'transformer.5.pre_norm_mha.1.qkv_proj.bias', 'transformer.5.pre_norm_mha.1.out_proj.weight', 'transformer.5.pre_norm_mha.1.out_proj.bias', 'transformer.5.pre_norm_ffn.0.weight', 'transformer.5.pre_norm_ffn.0.bias', 'transformer.5.pre_norm_ffn.1.weight', 'transformer.5.pre_norm_ffn.1.bias', 'transformer.5.pre_norm_ffn.4.weight', 'transformer.5.pre_norm_ffn.4.bias', 'transformer.6.pre_norm_mha.0.weight', 'transformer.6.pre_norm_mha.0.bias', 'transformer.6.pre_norm_mha.1.qkv_proj.weight', 'transformer.6.pre_norm_mha.1.qkv_proj.bias', 'transformer.6.pre_norm_mha.1.out_proj.weight', 'transformer.6.pre_norm_mha.1.out_proj.bias', 'transformer.6.pre_norm_ffn.0.weight', 'transformer.6.pre_norm_ffn.0.bias', 'transformer.6.pre_norm_ffn.1.weight', 'transformer.6.pre_norm_ffn.1.bias', 'transformer.6.pre_norm_ffn.4.weight', 'transformer.6.pre_norm_ffn.4.bias', 'transformer.7.pre_norm_mha.0.weight', 'transformer.7.pre_norm_mha.0.bias', 'transformer.7.pre_norm_mha.1.qkv_proj.weight', 'transformer.7.pre_norm_mha.1.qkv_proj.bias', 'transformer.7.pre_norm_mha.1.out_proj.weight', 'transformer.7.pre_norm_mha.1.out_proj.bias', 'transformer.7.pre_norm_ffn.0.weight', 'transformer.7.pre_norm_ffn.0.bias', 'transformer.7.pre_norm_ffn.1.weight', 'transformer.7.pre_norm_ffn.1.bias', 'transformer.7.pre_norm_ffn.4.weight', 'transformer.7.pre_norm_ffn.4.bias', 'transformer.8.pre_norm_mha.0.weight', 'transformer.8.pre_norm_mha.0.bias', 'transformer.8.pre_norm_mha.1.qkv_proj.weight', 'transformer.8.pre_norm_mha.1.qkv_proj.bias', 'transformer.8.pre_norm_mha.1.out_proj.weight', 'transformer.8.pre_norm_mha.1.out_proj.bias', 'transformer.8.pre_norm_ffn.0.weight', 'transformer.8.pre_norm_ffn.0.bias', 'transformer.8.pre_norm_ffn.1.weight', 'transformer.8.pre_norm_ffn.1.bias', 'transformer.8.pre_norm_ffn.4.weight', 'transformer.8.pre_norm_ffn.4.bias', 'transformer.9.pre_norm_mha.0.weight', 'transformer.9.pre_norm_mha.0.bias', 'transformer.9.pre_norm_mha.1.qkv_proj.weight', 'transformer.9.pre_norm_mha.1.qkv_proj.bias', 'transformer.9.pre_norm_mha.1.out_proj.weight', 'transformer.9.pre_norm_mha.1.out_proj.bias', 'transformer.9.pre_norm_ffn.0.weight', 'transformer.9.pre_norm_ffn.0.bias', 'transformer.9.pre_norm_ffn.1.weight', 'transformer.9.pre_norm_ffn.1.bias', 'transformer.9.pre_norm_ffn.4.weight', 'transformer.9.pre_norm_ffn.4.bias', 'transformer.10.pre_norm_mha.0.weight', 'transformer.10.pre_norm_mha.0.bias', 'transformer.10.pre_norm_mha.1.qkv_proj.weight', 'transformer.10.pre_norm_mha.1.qkv_proj.bias', 'transformer.10.pre_norm_mha.1.out_proj.weight', 'transformer.10.pre_norm_mha.1.out_proj.bias', 'transformer.10.pre_norm_ffn.0.weight', 'transformer.10.pre_norm_ffn.0.bias', 'transformer.10.pre_norm_ffn.1.weight', 'transformer.10.pre_norm_ffn.1.bias', 'transformer.10.pre_norm_ffn.4.weight', 'transformer.10.pre_norm_ffn.4.bias', 'transformer.11.pre_norm_mha.0.weight', 'transformer.11.pre_norm_mha.0.bias', 'transformer.11.pre_norm_mha.1.qkv_proj.weight', 'transformer.11.pre_norm_mha.1.qkv_proj.bias', 'transformer.11.pre_norm_mha.1.out_proj.weight', 'transformer.11.pre_norm_mha.1.out_proj.bias', 'transformer.11.pre_norm_ffn.0.weight', 'transformer.11.pre_norm_ffn.0.bias', 'transformer.11.pre_norm_ffn.1.weight', 'transformer.11.pre_norm_ffn.1.bias', 'transformer.11.pre_norm_ffn.4.weight', 'transformer.11.pre_norm_ffn.4.bias', 'post_transformer_norm.weight', 'post_transformer_norm.bias', 'classifier.weight', 'classifier.bias']
+2025-05-06 22:37:15 - [34m[1mLOGS   [0m - [36mModel[0m
+ByteFormer(
+  (embeddings): Embedding(257, 192, padding_idx=256)
+  (token_reduction_net): Conv1d(192, 192, kernel_size=(32,), stride=(16,), bias=False)
+  (pos_embed): LearnablePositionalEmbedding(num_embeddings=20000, embedding_dim=192, padding_idx=None, sequence_first=False)
+  (emb_dropout): Dropout(p=0.3, inplace=False)
+  (downsamplers): ModuleDict(
+    (downsample_0): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_1): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_3): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_5): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_7): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (downsample_9): TokenMerging(
+      dim=192, window=2
+      (reduction): LinearLayer(in_features=384, out_features=192, bias=False, channel_first=False)
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (transformer): Sequential(
+    (0): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (1): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (2): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (3): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (4): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (5): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (6): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (7): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (8): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (9): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+    (10): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 0)
+    (11): WindowedTransformerEncoder(embed_dim=192, ffn_dim=768, dropout=0.3, ffn_dropout=0.0, stochastic_dropout=0.0, attn_fn=MultiHeadAttention, act_fn=GELU, norm_fn=layer_norm, 128, 64)
+  )
+  (post_transformer_norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+  (classifier): LinearLayer(in_features=192, out_features=33, bias=True, channel_first=False)
+)
+[31m=================================================================[0m
+                         ByteFormer Summary
+[31m=================================================================[0m
+Total parameters     =   10.859 M
+Total trainable parameters =   10.859 M
+
+2025-05-06 22:37:15 - [34m[1mLOGS   [0m - FVCore Analysis:
+2025-05-06 22:37:15 - [34m[1mLOGS   [0m - Input sizes: [1, 48564]
+| module                                 | #parameters or shape   | #flops     |
+|:---------------------------------------|:-----------------------|:-----------|
+| model                                  | 10.859M                | 7.718G     |
+|  embeddings                            |  49.344K               |  0         |
+|   embeddings.weight                    |   (257, 192)           |            |
+|  token_reduction_net                   |  1.18M                 |  3.579G    |
+|   token_reduction_net.weight           |   (192, 192, 32)       |            |
+|  pos_embed.pos_embed                   |  3.84M                 |  0         |
+|   pos_embed.pos_embed.pos_embed        |   (1, 1, 20000, 192)   |            |
+|  downsamplers                          |  0.445M                |  0.223G    |
+|   downsamplers.downsample_0            |   74.112K              |   0.113G   |
+|    downsamplers.downsample_0.reduction |    73.728K             |    0.112G  |
+|    downsamplers.downsample_0.norm      |    0.384K              |    1.456M  |
+|   downsamplers.downsample_1            |   74.112K              |   56.688M  |
+|    downsamplers.downsample_1.reduction |    73.728K             |    55.96M  |
+|    downsamplers.downsample_1.norm      |    0.384K              |    0.729M  |
+|   downsamplers.downsample_3            |   74.112K              |   28.381M  |
+|    downsamplers.downsample_3.reduction |    73.728K             |    28.017M |
+|    downsamplers.downsample_3.norm      |    0.384K              |    0.365M  |
+|   downsamplers.downsample_5            |   74.112K              |   14.191M  |
+|    downsamplers.downsample_5.reduction |    73.728K             |    14.008M |
+|    downsamplers.downsample_5.norm      |    0.384K              |    0.182M  |
+|   downsamplers.downsample_7            |   74.112K              |   7.095M   |
+|    downsamplers.downsample_7.reduction |    73.728K             |    7.004M  |
+|    downsamplers.downsample_7.norm      |    0.384K              |    91.2K   |
+|   downsamplers.downsample_9            |   74.112K              |   3.585M   |
+|    downsamplers.downsample_9.reduction |    73.728K             |    3.539M  |
+|    downsamplers.downsample_9.norm      |    0.384K              |    46.08K  |
+|  transformer                           |  5.338M                |  3.916G    |
+|   transformer.0                        |   0.445M               |   1.516G   |
+|    transformer.0.pre_norm_mha          |    0.149M              |    0.607G  |
+|    transformer.0.pre_norm_ffn          |    0.296M              |    0.909G  |
+|   transformer.1                        |   0.445M               |   0.758G   |
+|    transformer.1.pre_norm_mha          |    0.149M              |    0.303G  |
+|    transformer.1.pre_norm_ffn          |    0.296M              |    0.454G  |
+|   transformer.2                        |   0.445M               |   0.379G   |
+|    transformer.2.pre_norm_mha          |    0.149M              |    0.152G  |
+|    transformer.2.pre_norm_ffn          |    0.296M              |    0.227G  |
+|   transformer.3                        |   0.445M               |   0.379G   |
+|    transformer.3.pre_norm_mha          |    0.149M              |    0.152G  |
+|    transformer.3.pre_norm_ffn          |    0.296M              |    0.227G  |
+|   transformer.4                        |   0.445M               |   0.189G   |
+|    transformer.4.pre_norm_mha          |    0.149M              |    75.866M |
+|    transformer.4.pre_norm_ffn          |    0.296M              |    0.114G  |
+|   transformer.5                        |   0.445M               |   0.189G   |
+|    transformer.5.pre_norm_mha          |    0.149M              |    75.866M |
+|    transformer.5.pre_norm_ffn          |    0.296M              |    0.114G  |
+|   transformer.6                        |   0.445M               |   0.126G   |
+|    transformer.6.pre_norm_mha          |    0.149M              |    50.577M |
+|    transformer.6.pre_norm_ffn          |    0.296M              |    75.743M |
+|   transformer.7                        |   0.445M               |   0.126G   |
+|    transformer.7.pre_norm_mha          |    0.149M              |    50.577M |
+|    transformer.7.pre_norm_ffn          |    0.296M              |    75.743M |
+|   transformer.8                        |   0.445M               |   63.16M   |
+|    transformer.8.pre_norm_mha          |    0.149M              |    25.289M |
+|    transformer.8.pre_norm_ffn          |    0.296M              |    37.872M |
+|   transformer.9                        |   0.445M               |   63.16M   |
+|    transformer.9.pre_norm_mha          |    0.149M              |    25.289M |
+|    transformer.9.pre_norm_ffn          |    0.296M              |    37.872M |
+|   transformer.10                       |   0.445M               |   63.16M   |
+|    transformer.10.pre_norm_mha         |    0.149M              |    25.289M |
+|    transformer.10.pre_norm_ffn         |    0.296M              |    37.872M |
+|   transformer.11                       |   0.445M               |   63.16M   |
+|    transformer.11.pre_norm_mha         |    0.149M              |    25.289M |
+|    transformer.11.pre_norm_ffn         |    0.296M              |    37.872M |
+|  post_transformer_norm                 |  0.384K                |  46.08K    |
+|   post_transformer_norm.weight         |   (192,)               |            |
+|   post_transformer_norm.bias           |   (192,)               |            |
+|  classifier                            |  6.369K                |  6.336K    |
+|   classifier.weight                    |   (33, 192)            |            |
+|   classifier.bias                      |   (33,)                |            |
+2025-05-06 22:37:15 - [33m[1mWARNING[0m - 
+** Please be cautious when using the results in papers. Certain operations may or may not be accounted in FLOP computation in FVCore. Therefore, you want to manually ensure that FLOP computation is correct.
+2025-05-06 22:37:15 - [33m[1mWARNING[0m - Uncalled Modules:
+{'transformer.10.drop_path', 'transformer.2.drop_path', 'transformer.11.drop_path', 'transformer.3.drop_path', 'transformer.4.drop_path', 'transformer.1.drop_path', 'transformer.0.drop_path', 'transformer.9.drop_path', 'transformer.6.drop_path', 'transformer.8.drop_path', 'transformer.5.drop_path', 'transformer.7.drop_path'}
+2025-05-06 22:37:15 - [33m[1mWARNING[0m - Unsupported Ops:
+Counter({'aten::mul': 43, 'aten::add': 25, 'aten::pad': 24, 'aten::rsub': 18, 'aten::unfold': 13, 'aten::softmax': 12, 'aten::gelu': 12, 'aten::sum': 2, 'aten::embedding': 1, 'aten::div': 1})
+[31m=================================================================[0m
+2025-05-06 22:37:15 - [34m[1mLOGS   [0m - Using DistributedDataParallel.
+2025-05-06 22:37:15 - [34m[1mLOGS   [0m - [36mLoss function[0m
+CrossEntropy(
+	 ignore_idx=-1
+	 class_weighting=False
+	 label_smoothing=0.0
+)
+2025-05-06 22:37:37 - [34m[1mLOGS   [0m - Epoch:   0 [     120/    4950], loss: 5.9795, top1: 0.0, top5: 0.0, LR: 0.000000, Avg. batch load time: 0.000, Elapsed time: 21.57
+2025-05-06 22:37:39 - [34m[1mLOGS   [0m - *** Evaluation summary for epoch 0
+	 loss=3.9487 || top1=10.496 || top5=31.8849
+2025-05-06 22:37:39 - [34m[1mLOGS   [0m - Evaluation took 23.966898441314697 seconds
